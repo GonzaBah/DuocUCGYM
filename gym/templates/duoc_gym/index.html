@@ -1,0 +1,54 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <title>Menu Principal</title>
+{% endblock titulo %}
+
+{% block cuerpo %}
+    <div class="container-fluid" style="position: relative;">
+
+        <!-- BARRA LATERAL -->
+
+        <div class="row">
+            <div class="col-md-2 barra_lateralD ">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h2 class="titulo1">Duoc</h2>
+                    </div>
+                    <div class="col-md">
+                        <h2 class="titulo2">UC GYM</h2>
+                    </div>
+
+                    <p>*</p>
+                    <p>*</p>
+                </div>
+                <div class="row">
+                    <h4><a href="../Funcionarios/Lista_Alumnos/lista_alumnos.html" class="texto_barra">Lista Alumnos</a> </h4>
+                    <h4><a href="../Socios/socios_registrarse.html" class="texto_barra">Registrar Socios</a> </h4>
+
+                    <p>*</p>
+                </div>
+                <div class="">
+                    <a href="" class="btn btn-danger align-bottom">
+                        TEC
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-md-10 contenido">
+                <p style="color: lightgray">*</p>
+
+                <div class="row">
+                    <div class="col-md-3  titulo_pagina">
+                        <h1>Bienvenido!</h1>
+                    </div>
+                    <div>
+                        Trabajo en progreso.
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+{% endblock cuerpo %}
