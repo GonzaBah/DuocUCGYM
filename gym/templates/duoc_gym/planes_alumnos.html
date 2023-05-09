@@ -1,0 +1,102 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Registrarse Socios</title>
+{% endblock titulo %}
+
+{% block cuerpo %}
+<div class="container-fluid" style="position: relative;">
+
+    <!-- BARRA LATERAL -->
+
+    <div class="row">
+        <div class="col-md-2 barra_lateralD ">
+            <div class="row">
+                <div class="col-md-3">
+                    <h2 class="titulo1">Duoc</h2>
+                </div>
+                <div class="col-md">
+                    <h2 class="titulo2">UC GYM</h2>
+                </div>
+
+                <p style="color: #303030">*</p>
+                <p style="color: #303030">*</p>
+            </div>
+            <div class="row">
+                <h4><a href="../Index/index.html" class="texto_barra">Menu Principal</a> </h4>
+
+
+                <p style="color: #303030">*</p>
+            </div>
+            <div class="row align-bottom">
+                <a href="" class="btn btn-danger">
+                    TEC
+                </a>
+            </div>
+
+        </div>
+        <div class="col-md-10 contenido">
+            <p style="color: lightgray">*</p>
+
+            <div class="row">
+                <div class="col-md-3  titulo_pagina">
+                    <h1>Selecciona un Plan</h1>
+                </div>
+
+                <p style="color: lightgray">*</p>
+
+            </div>
+
+            <div class="container-md">
+                <form action="" class="formulario" style="font-size:32px">
+                    <div class="form-group">
+
+                        <div class="card">
+                            <img src="../../static/duoc_gym/resources/ejercicio_custom.avif" alt="Avatar"
+                                style="width:300px">
+                            <div class="container">
+                                <h4><b>Plan Personalizado</b></h4>
+                                <p>Esto es una custom, puedes editarlos tu gusto! Si necesitas ayuda al editar</p>
+                            </div>
+                            <button href="{% url 'plan' %}">Ver Detalles</button>
+                            <button>Subscribirme</button>
+                        </div>
+
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Launch demo modal
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock cuerpo %}
