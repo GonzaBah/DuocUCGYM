@@ -45,6 +45,7 @@ class Socio(models.Model):
     observaciones = models.CharField(max_length=100, verbose_name="Observaciones")
     usuario = models.ForeignKey(Usuario, on_delete=models.SET_DEFAULT, default=0)
     plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=0)
+    titularPlan = models.CharField(max_length=30, verbose_name="Titular del Plan")
 
 class Equipamiento(models.Model):
     idEquipamiento = models.AutoField(primary_key=True, verbose_name="ID del Equipamiento")
