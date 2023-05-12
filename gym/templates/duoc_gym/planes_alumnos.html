@@ -70,7 +70,8 @@
                                 </div>
                                
                             </div>
-<a  class="btn" type="button" class="btn btn-outline-info" onclick="this.value='close'; this.style.backgroundColor='green';"> Suscribirme</a>
+                            <input type="button" name="subs" id="sub" class="btn btn-warning btn-lg" onclick="selSub();" value="Suscribirme">
+                        
 
                        
                         </div>
@@ -83,9 +84,12 @@
 
 
             </div>
+            <input  type="button" id="sig" name="next" class="btn btn-warning btn-lg" onclick="habilitarBoton();" value="Siguiente">
             
-            <a  href="{% url 'd_plan' %}" class="btn btn-warning">Siguiente</a>
         </div>
     </div>
+
 </div>
+
+
 {% endblock cuerpo %}
