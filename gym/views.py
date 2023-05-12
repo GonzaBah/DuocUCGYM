@@ -17,3 +17,5 @@ def planes_alumnos(request):
 def desc_plan(request):
     return render(request, 'duoc_gym/descripcion_plan.html')
 
+def list_plan(request):
+    return render(request, 'duoc_gym/planes_miplan.html')

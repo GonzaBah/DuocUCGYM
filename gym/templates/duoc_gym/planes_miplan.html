@@ -1,0 +1,62 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <title>Menu Principal</title>
+{% endblock titulo %}
+
+{% block cuerpo %}
+    <div class="container-fluid" style="position: relative;">
+
+        <!-- BARRA LATERAL -->
+
+        <div class="row">
+            <div class="col-md-2 barra_lateralD ">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h2 class="titulo1">Duoc</h2>
+                    </div>
+                    <div class="col-md">
+                        <h2 class="titulo2">UC GYM</h2>
+                    </div>
+
+                    <p style="color: #303030">*</p>
+                    <p style="color: #303030">*</p>
+                </div>
+                <div class="row">
+                    <!---
+                        <h4><a  href="{% url 'lista' %}" class="texto_barra">A</a> </h4>
+                        <h4><a href="{% url 'plan' %}" class="texto_barra">A</a> </h4>
+                    --->
+                  
+
+                    <p style="color: #303030">*</p>
+                </div>
+                
+
+            </div>
+            <div class="col-md-10 contenido">
+                <p style="color: lightgray">*</p>
+
+                <div class="row">
+                    <div class="col-md-3  titulo_pagina">
+                        <h1>Mi Plan</h1>
+                    </div>
+                    <div class="col" style="align-items: end;"> NOMBRE <img
+                        src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" style="width: 45px;" alt="">
+                    </div>
+                    
+                    <div>
+                        <h4>Aún no tiene un plan. ¿Desea inscribirse?</h4>
+                    </div>
+                    <div class="">
+                        <a href="{% url 'plan' %}"  class="btn btn-warning align-bottom">
+                            Subscribirme
+                        </a>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+{% endblock cuerpo %}
