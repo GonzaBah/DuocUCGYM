@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 
 # Create your views here.
 
@@ -15,7 +16,11 @@ def socio_reg(request):
     return render(request, 'duoc_gym/socios_registrarse.html')
 
 def planes_alumnos(request):
-    return render(request, 'duoc_gym/planes_alumnos.html')
+    listaPlanes = Plan.objects.all()
+    contexto = {
+        "listaPlanes": listaPlanes
+    }
+    return render(request, 'duoc_gym/planes_alumnos.html', contexto)
 
 def desc_plan(request):
     return render(request, 'duoc_gym/descripcion_plan.html')

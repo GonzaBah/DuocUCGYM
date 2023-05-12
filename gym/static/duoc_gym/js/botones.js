@@ -1,28 +1,30 @@
 //Load
 document.addEventListener("DOMContentLoaded", function(event) {
     // Todo lo que vaya aqui se ejecutará cuando cargue la página
-    document.getElementById('sig').disabled = true;
+    habilitarBoton(true)
 });
 
-
-//Planes
-function selSub() {
-    let $input = document.getElementById('sub')
-    $input.addEventListener('click', function () {
-        var texto = document.getElementById('sub');
-        texto.style.color="white";
+let $input = document.getElementById('sub')
+$input.addEventListener('click', function () {
+    if(this.value == "Suscribirme"){
+        // var texto = document.getElementById('sub');
+        this.style.color="white";
         this.value = "Seleccionado";
         this.style.backgroundColor = "green";
-        
-    })
-    habilitarBoton()
-    
-}
+        habilitarBoton(false)
+    }else{
+        // var texto = document.getElementById('sub');
+        this.style.color="";
+        this.value = "Suscribirme";
+        this.style.backgroundColor = "";
+        habilitarBoton(true)
+    }
+})
 
 //Habilitador
-function habilitarBoton(){
+function habilitarBoton(valor){
     'use strict';
-    document.getElementById('sig').disabled = false;
+    document.getElementById('sig').disabled = valor;
 }
 
 

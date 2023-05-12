@@ -47,7 +47,6 @@
             <div class="row">
                 <div class="col-md-3  titulo_pagina">
                     <h1>Selecciona un Plan</h1>
-                    
                 </div>
                 <div class="col" style="align-items: end;"> NOMBRE <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}"
                     style="width: 45px;" alt=""></div>
@@ -57,37 +56,33 @@
             </div>
 
             <div class="container-md">
-
-
-                <form action="" class="formulario" style="font-size:32px">
-                    <div class="form-group">
-
-                        <div class="card " style="width: 20rem;">
-                            <img src="../../static/duoc_gym/resources/ejercicio_custom.avif" alt="Avatar" class="card-img-top">
-                            <div class="container">
-                                <div class="card-body">
-                                    <h2 class="card-title">Plan Standard</h2>
-                                    <p class="card-text">Esto es un Plan. Si necesitas ayuda, contacta a un profesor o soporte.</p>
+                <div class="row">
+                {% for plan in listaPlanes%}
+                    <div class="col-md-3">
+                        <form action="" class="formulario" style="font-size:32px">
+                            <div class="form-group">
+                                <div class="card " style="width: 20rem;">
+                                    <img src="../../static/duoc_gym/resources/ejercicio_custom.avif" alt="Avatar" class="card-img-top">
+                                    <div class="container">
+                                        <div class="card-body">
+                                            <h2 class="card-title">{{ plan.nombrePlan }}</h2>
+                                            <h4 class="card-text">Esto es un Plan. Si necesitas ayuda, contacta a un profesor o soporte.</h4>
+                                        </div>
+                                       
+                                    </div>
+                                    <input type="button" name="subs" id="sub" class="btn btn-warning btn-lg" value="Suscribirme">                       
                                 </div>
-                               
                             </div>
-                            <input type="button" name="subs" id="sub" class="btn btn-warning btn-lg" onclick="selSub();" value="Suscribirme">
-                        
-
-                       
-                        </div>
-
-                
+                        </form>
                     </div>
+                
 
-                    
-                </form>
-
-
+                {% endfor %}
+                </div>
             </div>
 
 
-            <input href="{% url 'd_plan' %}" type="button" id="sig" name="next" class="btn btn-lg btn-warning " onclick="habilitarBoton();" value="Siguiente" disabled>
+            <button class="btn btn-warning btn-lg" id="sig" name="next" disabled><a href="{% url 'd_plan' %}" type="button"  style="color: inherit; text-decoration: inherit;">Siguiente</a></button>
             
         </div>
     </div>
