@@ -4,6 +4,8 @@
 
 {% block titulo %}
 <title>Registrarse Socios</title>
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 {% endblock titulo %}
 
 {% block cuerpo %}
@@ -26,13 +28,14 @@
             </div>
             <div class="row">
                 <h4><a href="../Index/index.html" class="texto_barra">Menu Principal</a> </h4>
+                
 
 
                 <p style="color: #303030">*</p>
             </div>
             <div class="row align-bottom">
-                <a href="" class="btn btn-danger">
-                    TEC
+                <a href="{% url 'index' %}" class="btn btn-warning ">
+                    HOME
                 </a>
             </div>
 
@@ -43,13 +46,18 @@
             <div class="row">
                 <div class="col-md-3  titulo_pagina">
                     <h1>Selecciona un Plan</h1>
+                    
                 </div>
+                <div class="col" style="align-items: end;"> NOMBRE <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}"
+                    style="width: 45px;" alt=""></div>
 
                 <p style="color: lightgray">*</p>
 
             </div>
 
             <div class="container-md">
+
+
                 <form action="" class="formulario" style="font-size:32px">
                     <div class="form-group">
 
@@ -63,43 +71,20 @@
                                
                             </div>
 
-                            <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver
-                                Detalles</button>
+                           
                             <button>Subscribirme</button>
                         </div>
 
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
                 
                     </div>
+
+                    
                 </form>
 
 
             </div>
+            
+            <a  href="{% url 'd_plan' %}" class="btn btn-warning">Siguiente</a>
         </div>
     </div>
 </div>

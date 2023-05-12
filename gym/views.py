@@ -15,4 +15,5 @@ def planes_alumnos(request):
     return render(request, 'duoc_gym/planes_alumnos.html')
 
 def desc_plan(request):
-    return render(request, 'duoc_gym/planes_alumnos.html')
+    return render(request, 'duoc_gym/descripcion_plan.html')
+
