@@ -36,7 +36,7 @@ class Plan(models.Model):
     nombrePlan = models.CharField(max_length=30, verbose_name="Nombre del Plan")
     estadoPlan = models.BooleanField(verbose_name="Estado del Plan")
     sucursalLibre = models.BooleanField(verbose_name="Sucursal Libre")
-    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=0)
+    precio = models.IntegerField(verbose_name="Precio del plan", default=0)
 
 class Socio(models.Model):
     idSocio = models.AutoField(primary_key=True, verbose_name="ID del Socio")
@@ -45,9 +45,10 @@ class Socio(models.Model):
     observaciones = models.CharField(max_length=100, verbose_name="Observaciones")
     usuario = models.ForeignKey(Usuario, on_delete=models.SET_DEFAULT, default=0)
     plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=0)
-
+    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=0)
 class Equipamiento(models.Model):
     idEquipamiento = models.AutoField(primary_key=True, verbose_name="ID del Equipamiento")
+    nombreEquipamiento = models.CharField(max_length=30, verbose_name="Nombre del Equipamiento")
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=0)
 
 class Reserva(models.Model):
