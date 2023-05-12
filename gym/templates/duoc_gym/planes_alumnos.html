@@ -6,10 +6,11 @@
 <title>Registrarse Socios</title>
 <!-- google font -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
 {% endblock titulo %}
 
 {% block cuerpo %}
-<div class="container-fluid" style="position: relative;">
+<div class="container-fluid" style="position: relative;" >
 
     <!-- BARRA LATERAL -->
 
@@ -84,7 +85,9 @@
 
 
             </div>
-            <input  type="button" id="sig" name="next" class="btn btn-warning btn-lg" onclick="habilitarBoton();" value="Siguiente">
+
+
+            <input href="{% url 'd_plan' %}" type="button" id="sig" name="next" class="btn btn-lg btn-warning " onclick="habilitarBoton();" value="Siguiente" disabled>
             
         </div>
     </div>

@@ -1,3 +1,9 @@
+//Load
+document.addEventListener("DOMContentLoaded", function(event) {
+    // Todo lo que vaya aqui se ejecutará cuando cargue la página
+    document.getElementById('sig').disabled = true;
+});
+
 
 //Planes
 function selSub() {
@@ -7,13 +13,16 @@ function selSub() {
         texto.style.color="white";
         this.value = "Seleccionado";
         this.style.backgroundColor = "green";
-     
+        
     })
+    habilitarBoton()
+    
 }
 
 //Habilitador
 function habilitarBoton(){
-    document.getElementById('sub').addEventListener('input', function(event) {
-        document.getElementById('sig').disabled = !this.value;
-    }, false);
+    'use strict';
+    document.getElementById('sig').disabled = false;
 }
+
+
