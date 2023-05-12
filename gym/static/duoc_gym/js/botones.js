@@ -4,20 +4,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById('sig').disabled = true;
 });
 
-
-//Planes
-function selSub() {
-    let $input = document.getElementById('sub')
+let $input = document.getElementById('sub')
     $input.addEventListener('click', function () {
         var texto = document.getElementById('sub');
+ 
         texto.style.color="white";
         this.value = "Seleccionado";
         this.style.backgroundColor = "green";
-        
+        habilitarBoton()
     })
-    habilitarBoton()
-    
-}
+
+
 
 //Habilitador
 function habilitarBoton(){
@@ -25,4 +22,7 @@ function habilitarBoton(){
     document.getElementById('sig').disabled = false;
 }
 
-
+function Enviar()
+{
+    window.location.href="{% url 'd_plan' %};"
+}

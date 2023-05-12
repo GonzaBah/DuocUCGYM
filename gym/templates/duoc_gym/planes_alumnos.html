@@ -71,7 +71,7 @@
                                 </div>
                                
                             </div>
-                            <input type="button" name="subs" id="sub" class="btn btn-warning btn-lg" onclick="selSub();" value="Suscribirme">
+                            <input type="button" name="subs" id="sub" class="btn btn-warning btn-lg"  value="Suscribirme">
                         
 
                        
@@ -86,8 +86,8 @@
 
             </div>
 
-
-            <input href="{% url 'd_plan' %}" type="button" id="sig" name="next" class="btn btn-lg btn-warning " onclick="habilitarBoton();" value="Siguiente" disabled>
+            <button id="sig" name="next" class="btn btn-lg btn-warning " disablede><a href="{% url 'd_plan' %}" style="color:inherit; text-decoration: inherit;">Siguiente</a></button>
+            <!-- <input href="" type="button"  onclick="habilitarBoton();" value="Siguiente" disabled> -->
             
         </div>
     </div>
