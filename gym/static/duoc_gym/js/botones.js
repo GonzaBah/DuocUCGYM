@@ -4,22 +4,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
     habilitarBoton(true)
 });
 
-let $input = document.getElementById('sub')
-$input.addEventListener('click', function () {
-    if(this.value == "Suscribirme"){
-        // var texto = document.getElementById('sub');
-        this.style.color="white";
-        this.value = "Seleccionado";
-        this.style.backgroundColor = "green";
+function seleccionar(id){
+    console.log(id);
+    document.getElementsByName("subs").disabled = true;
+    let input = document.getElementById(id);
+    if (input.value == "Suscribirme"){
+        input.style.color="white";
+        input.value = "Seleccionado";
+        input.style.backgroundColor = "green";
         habilitarBoton(false)
-    }else{
-        // var texto = document.getElementById('sub');
-        this.style.color="";
-        this.value = "Suscribirme";
-        this.style.backgroundColor = "";
+    } else {
+        input.style.color="";
+        input.value = "Suscribirme";
+        input.style.backgroundColor = "";
         habilitarBoton(true)
     }
-})
+
+}
 
 //Habilitador
 function habilitarBoton(valor){

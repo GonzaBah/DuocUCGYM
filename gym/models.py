@@ -78,3 +78,7 @@ class Deporte(models.Model):
 class DeporteProfesor(models.Model):
     profesor = models.ForeignKey(Profesor, on_delete=models.SET_DEFAULT, default=0)
     deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=0)
+
+class Sede(models.Model):
+    idSede = models.AutoField(primary_key=True, verbose_name="ID de la sede")
+    nombreSede = models.CharField(max_length=30, verbose_name="Nombre del sede")

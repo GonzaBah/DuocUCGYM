@@ -27,7 +27,7 @@
                 <p style="color: #303030">*</p>
             </div>
             <div class="row">
-                <h4><a href="../Index/index.html" class="texto_barra">Menu Principal</a> </h4>
+                <h4><a href="{% url 'index' %}" class="texto_barra">Menu Principal</a> </h4>
 
 
 
@@ -45,7 +45,7 @@
 
             <div class="row">
                 <div class="col-md-3  titulo_pagina">
-                    <h1>Selecciona un Plan</h1>
+                    <h1>Selecciona tu Sede</h1>
 
                 </div>
                 <div class="col" style="align-items: end;"> NOMBRE <img
@@ -173,29 +173,14 @@
                           <label for="validationCustom03" class="form-label">Sede</label>
                           <select class="form-select" id="validationCustom03" required>
                             <option selected disabled value="">Selecciona una sede</option>
-                            <option>Plaza Norte</option>
-                            <option>San Juaquin</option>
-                            <option>Plaza Oeste</option>
+                            {% for sede in listaSedes %}
+                            <option value="{{ sede.idSede }}">{{ sede.nombreSede }}</option>
+                            {% endfor %}
                           </select>
                           <div class="invalid-feedback">
                             Por favor Seleccione una sede valida.
                           </div>
                         </div>
-
-                        <div class="col-md-3">
-                          <label for="validationCustom04" class="form-label">Sala</label>
-
-                          <select class="form-select" id="validationCustom04" required>
-                            <option selected disabled value="">Selecciona una sala</option>
-                            <option>Piscina</option>
-                            <option>GYM</option>
-                            <option>Yoga</option>
-                          </select>
-
-                          <div class="invalid-feedback">
-                            Por favor, seleccione una sala.
-                          </div>
-
                         </div>
 
                         <div class="form-check">
@@ -221,7 +206,7 @@
                           </div>
                         </div>
                         <div class="col-12">
-                          <button class="btn btn-primary" type="submit">Enviar</button>
+                          <button class="btn btn-primary" type="submit">Ir a Pagar</button>
                         </div>
                       </form>
         

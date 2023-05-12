@@ -23,7 +23,11 @@ def planes_alumnos(request):
     return render(request, 'duoc_gym/planes_alumnos.html', contexto)
 
 def desc_plan(request):
-    return render(request, 'duoc_gym/descripcion_plan.html')
+    listaSedes = Sede.objects.all()
+    contexto = {
+        "listaSedes": listaSedes
+    }
+    return render(request, 'duoc_gym/descripcion_plan.html', contexto)
 
 def list_plan(request):
     return render(request, 'duoc_gym/planes_miplan.html')

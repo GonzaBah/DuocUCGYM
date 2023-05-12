@@ -30,3 +30,17 @@ planIndividualS.save()
 
 planIndividualL = Plan(nombrePlan='Plan individual light', estadoPlan=True, sucursalLibre=True, precio=45000)
 planIndividualL.save()
+from gym.models import Sede
+
+
+sede1 = Sede(nombreSede='Plaza Norte')
+sede1.save()
+
+sede2 = Sede(nombreSede='Plaza Oeste')
+sede2.save()
+sede3 = Sede(nombreSede='San Joaquin')
+sede3.save()
+
+
+sede4 = Sede(nombreSede='Antonio Varas')
+sede4.save()
