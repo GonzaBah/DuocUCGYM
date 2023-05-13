@@ -74,14 +74,20 @@
                                     <input type="button" name="subs" id="{{ plan.idPlan }}" onclick="seleccionar('{{plan.idPlan}}')" class="btn btn-warning btn-lg" value="Suscribirme">                       
                                 </div>
                             </div>
-                        </form>
+                            <input type="button" name="subs" id="sub" class="btn btn-warning btn-lg"  value="Suscribirme">
+                        
+
+                       
+                        </div>
+
+                
                     </div>
                 {% endfor %}
                 </div>
             </div>
 
-
-            <button class="btn btn-warning btn-lg" id="sig" name="next" disabled><a href="{% url 'd_plan' %}" type="button"  style="color: inherit; text-decoration: inherit;">Siguiente</a></button>
+            <button id="sig" name="next" class="btn btn-lg btn-warning " disablede><a href="{% url 'd_plan' %}" style="color:inherit; text-decoration: inherit;">Siguiente</a></button>
+            <!-- <input href="" type="button"  onclick="habilitarBoton();" value="Siguiente" disabled> -->
             
         </div>
     </div>

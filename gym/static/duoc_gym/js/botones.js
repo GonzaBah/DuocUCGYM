@@ -28,4 +28,7 @@ function habilitarBoton(valor){
     document.getElementById('sig').disabled = valor;
 }
 
-
+function Enviar()
+{
+    window.location.href="{% url 'd_plan' %};"
+}
