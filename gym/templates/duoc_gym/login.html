@@ -12,7 +12,7 @@
     <div class="container-fluid" style="position: relative;">
 
         <!-- BARRA LATERAL -->
-        <button>A</button>
+        
         <div class="row">
             
 
@@ -21,19 +21,19 @@
                 <p style="color: lightgray">*</p>
 
                 <div class="row">
-                    <div class="col-md-3  titulo_pagina">
-                        <h1>Mi Plan</h1>
-                    </div>
-                    <div class="col" style="align-items: end;"> NOMBRE <img
-                        src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" style="width: 45px;" alt="">
-                    </div>
+                
+                  <h1>Iniciar Sesion</h1>
                     
                     <div>
-                        <h4>Aún no tiene un plan. ¿Desea inscribirse?</h4>
+                        <label for="">Usuario</label>
+                        <input type="text">
+                        
+                        <label for="">Contraseña</label>
+                        <input type="password">
                     </div>
                     <div class="">
-                        <a href="{% url 'plan' %}"  class="btn btn-warning align-bottom">
-                            Subscribirme
+                        <a href="{% url 'index' %}"  class="btn btn-warning align-bottom">
+                            Ingresar
                         </a>
                     </div>
                 </div>                

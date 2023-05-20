@@ -6,6 +6,9 @@ from .models import *
 def index(request):
     return render(request, 'duoc_gym/index.html')
 
+def login(request):
+    return render(request, 'duoc_gym/login.html')
+
 def index_docente(request):
     return render(request, 'duoc_gym/index_docente.html')
 
@@ -16,18 +19,13 @@ def socio_reg(request):
     return render(request, 'duoc_gym/socios_registrarse.html')
 
 def planes_alumnos(request):
-    listaPlanes = Plan.objects.all()
-    contexto = {
-        "listaPlanes": listaPlanes
-    }
-    return render(request, 'duoc_gym/planes_alumnos.html', contexto)
+    
+    return render(request, 'duoc_gym/planes_alumnos.html')
 
 def desc_plan(request):
-    listaSedes = Sede.objects.all()
-    contexto = {
-        "listaSedes": listaSedes
-    }
-    return render(request, 'duoc_gym/descripcion_plan.html', contexto)
+   
+   
+    return render(request, 'duoc_gym/descripcion_plan.html')
 
 def list_plan(request):
     return render(request, 'duoc_gym/planes_miplan.html')

@@ -8,14 +8,21 @@
 
 {% block cuerpo %}
 <div class="flex flex-wrap">
+  <button class="outline outline-offset-2 outline-blue-500">
+    <a href="{% url 'l_plan' %}">Mi Plan</a>
+    <a href="{% url 'docente' %}">Docente</a>
+    
+  </button>
+
   <div class="flex">
     <div class="w-full flex flex-wrap">
       <div class="flex justify-between w-full">
         <h1 class="bg-yellow-500 py-2 pl-40 text-l" >Bienvenido!</h1>
         <div class="text-m">  
-          <img class="w-5"
-            src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="">
-          NOMBRE
+          
+          <a href="{% url 'login' %}">login</a>
+          
+          
         </div>
       </div>
       <div class="flex flex-wrap">
@@ -42,7 +49,7 @@
               <div
                 class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
                 data-te-carousel-active data-te-carousel-item style="backface-visibility: hidden">
-                <img src="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(21).jpg" class="block w-auto" alt="..." />
+                <img src="../../static/duoc_gym/resources/carrusel/carrusel1.jpg" class="block w-auto" alt="..." />
                 <div class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
                   <h5 class="text-xl">First slide label</h5>
                   <p>
@@ -54,7 +61,7 @@
               <div
                 class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
                 data-te-carousel-item style="backface-visibility: hidden">
-                <img src="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(22).jpg" class="block w-full" alt="..." />
+                <img src="../../static/duoc_gym/resources/carrusel/carrusel3.jpg" class="block w-full" alt="..." />
                 <div class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
                   <h5 class="text-xl">Second slide label</h5>
                   <p>
@@ -66,7 +73,7 @@
               <div
                 class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
                 data-te-carousel-item style="backface-visibility: hidden">
-                <img src="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(23).jpg" class="block w-full" alt="..." />
+                <img src="../../static/duoc_gym/resources/carrusel/carrusel2.jpg" class="block w-full" alt="..." />
                 <div class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
                   <h5 class="text-xl">Third slide label</h5>
                   <p>

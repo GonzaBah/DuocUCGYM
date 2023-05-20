@@ -18,6 +18,7 @@ from .views import *
 
 urlpatterns = [
     path('', index, name='index'),
+    path('logIn', login, name='login'),
     path('docente', index_docente, name='docente'),
     path('lista_alumnos', lista_alumnos, name='lista'),
     path('planes_alumnos', planes_alumnos, name='plan'),

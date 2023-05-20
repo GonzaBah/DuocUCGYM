@@ -15,32 +15,7 @@ justify-self: center;">
   <!-- BARRA LATERAL -->
 
   <div class="row">
-    <div class="col-md-2 barra_lateralD ">
-      <div class="row">
-        <div class="col-md-3">
-          <h2 class="titulo1">Duoc</h2>
-        </div>
-        <div class="col-md">
-          <h2 class="titulo2">UC GYM</h2>
-        </div>
-
-        <p style="color: #303030">*</p>
-        <p style="color: #303030">*</p>
-      </div>
-      <div class="row">
-        <h4><a href="../Index/index.html" class="texto_barra">Menu Principal</a> </h4>
-
-
-
-        <p style="color: #303030">*</p>
-      </div>
-      <div class="row align-bottom">
-        <a href="{% url 'index' %}" class="btn btn-warning ">
-          HOME
-        </a>
-      </div>
-
-    </div>
+    
     <div class="col-md-10 contenido">
       <p style="color: lightgray">*</p>
 
@@ -113,7 +88,7 @@ justify-self: center;">
                       Debe aceptar terminos y condiciones.
                     </div>
                     <div class="text-center mt-3">
-                      <button class="btn btn-warning" type="submit">Enviar</button>
+                      <button class="btn btn-warning" type="submit"><a href="{% url 'd_plan' %}">Enviar</a></button>
                     </div>
                   </div>
                 </div>
