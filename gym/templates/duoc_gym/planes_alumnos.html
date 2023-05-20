@@ -1,0 +1,74 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Registrarse Socios</title>
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+{% endblock titulo %}
+
+{% block cuerpo %}
+<div class="container-fluid" style="position: relative;" >
+
+    <!-- BARRA LATERAL -->
+
+    <div class="row">
+        
+        <div class="col-md-10 contenido">
+            <p style="color: lightgray">*</p>
+
+            <div class="row">
+                <div class="col-md-3  titulo_pagina">
+                    <h1>Selecciona un Plan</h1>
+                </div>
+                <div class="col" style="align-items: end;"> NOMBRE <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}"
+                    style="width: 45px;" alt=""></div>
+
+                <p style="color: lightgray">*</p>
+
+            </div>
+
+            <div class="container-md">
+                <div class="row">
+                {% for plan in listaPlanes %}
+                    <div class="col-md-3">
+                        <form action="" class="formulario" style="font-size:32px">
+                            <div class="form-group">
+                                <div class="card " style="width: 20rem;">
+                                    <img src="../../static/duoc_gym/resources/ejercicio_custom.avif" alt="Avatar" class="card-img-top">
+                                    <div class="container">
+                                        <div class="card-body">
+                                            <h2 class="card-title">{{ plan.nombrePlan }}</h2>
+                                            <h4 class="card-text">Esto es un Plan. Si necesitas ayuda, contacta a un profesor o soporte.</h4>
+                                            <h3 class="card-text" style="font-weight: 700; text-align: center;">$ {{ plan.precio }}</h3>
+                                        </div>
+                                       
+                                    </div>
+                                    <input type="button" name="subs" id="{{ plan.idPlan }}" onclick="seleccionar('{{plan.idPlan}}')" class="btn btn-warning btn-lg" value="Suscribirme">                       
+                                </div>
+                            </div>
+                            <input type="button" name="subs" id="sub" class="btn btn-warning btn-lg"  value="Suscribirme">
+                        
+
+                       
+                        </div>
+
+                
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+
+            <button id="sig" name="next" class="btn btn-lg btn-warning " disablede><a href="{% url 'd_plan' %}" style="color:inherit; text-decoration: inherit;">Siguiente</a></button>
+            <!-- <input href="" type="button"  onclick="habilitarBoton();" value="Siguiente" disabled> -->
+            
+        </div>
+    </div>
+
+</div>
+
+
+<script src="{% static 'duoc_gym/js/botones.js' %}"></script>
+{% endblock cuerpo %}

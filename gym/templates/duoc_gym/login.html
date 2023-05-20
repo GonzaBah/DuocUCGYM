@@ -1,0 +1,43 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <title>Menu Principal</title>
+{% endblock titulo %}
+
+
+
+{% block cuerpo %}
+    <div class="container-fluid" style="position: relative;">
+
+        <!-- BARRA LATERAL -->
+        
+        <div class="row">
+            
+
+            </div>
+            <div class="col-md-10 contenido">
+                <p style="color: lightgray">*</p>
+
+                <div class="row">
+                
+                  <h1>Iniciar Sesion</h1>
+                    
+                    <div>
+                        <label for="">Usuario</label>
+                        <input type="text">
+                        
+                        <label for="">Contraseña</label>
+                        <input type="password">
+                    </div>
+                    <div class="">
+                        <a href="{% url 'index' %}"  class="btn btn-warning align-bottom">
+                            Ingresar
+                        </a>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+{% endblock cuerpo %}
