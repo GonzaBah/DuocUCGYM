@@ -10,22 +10,22 @@ def login(request):
     return render(request, 'duoc_gym/login.html')
 
 def index_docente(request):
-    return render(request, 'duoc_gym/index_docente.html')
+    return render(request, 'duoc_gym/indexDocente.html')
 
 def lista_alumnos(request):
-    return render(request, 'duoc_gym/lista_alumnos.html')
+    return render(request, 'duoc_gym/listaAlumnos.html')
 
 def socio_reg(request):
-    return render(request, 'duoc_gym/socios_registrarse.html')
+    return render(request, 'duoc_gym/sociosRegistrarse.html')
 
 def planes_alumnos(request):
     
-    return render(request, 'duoc_gym/planes_alumnos.html')
+    return render(request, 'duoc_gym/planesAlumnos.html')
 
 def desc_plan(request):
    
    
-    return render(request, 'duoc_gym/descripcion_plan.html')
+    return render(request, 'duoc_gym/descripcionPlan.html')
 
 def list_plan(request):
-    return render(request, 'duoc_gym/planes_miplan.html')
+    return render(request, 'duoc_gym/planesMiPlan.html')
