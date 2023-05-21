@@ -8,23 +8,20 @@
 
 {% block cuerpo %}
 <div class="flex flex-wrap">
-  <button class="outline outline-offset-2 outline-blue-500">
-    <a href="{% url 'l_plan' %}">Mi Plan</a>
-    <a href="{% url 'docente' %}">Docente</a>
-    
-  </button>
+
 
   <div class="flex">
     <div class="w-full flex flex-wrap">
       <div class="flex justify-between w-full">
-        <h1 class="bg-yellow-500 py-2 pl-40 text-l" >Bienvenido!</h1>
-        <div class="text-m">  
-          
-          <a href="{% url 'login' %}">login</a>
-          
-          
+        <div class="flex justify-start">
+          <h1 class="bg-yellow-500 py-2 pl-40 text-l">Bienvenido!</h1>
+        </div>
+        <div class="flex justify-end">  
+          <button class="bg-amber-400 hover:bg-amber-500 p-3 text-xl  rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" >
+            <a href="{% url 'login' %}">Iniciar Sesion</a> </button>
         </div>
       </div>
+     
       <div class="flex flex-wrap">
         <div class="my-5 mx-10">
           <div id="carouselExampleCaptions" class="relative" data-te-carousel-init data-te-carousel-slide>
