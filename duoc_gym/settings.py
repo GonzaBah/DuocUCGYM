@@ -74,15 +74,15 @@ WSGI_APPLICATION = 'duoc_gym.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES={
-#     'default':
-#     {
-#     'ENGINE':'django.db.backends.oracle',
-#     'NAME':'wcct8xkg1dn2t4pc_high',
-#     'USER':'ADMIN', 
-#     'PASSWORD': '8ENWFPhufhJbg9Jz' ,    #Please provide the db password here
-#     }
-# }
+DATABASES={
+    'default':
+    {
+    'ENGINE':'django.db.backends.oracle',
+    'NAME':'wcct8xkg1dn2t4pc_high',
+    'USER':'ADMIN', 
+    'PASSWORD': '8ENWFPhufhJbg9Jz' ,#Please provide the db password here
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -124,4 +124,3 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
