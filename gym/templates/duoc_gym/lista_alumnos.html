@@ -3,30 +3,30 @@
 {% load static %}
 
 {% block titulo %}
-    <title>Lista de Alumnos</title>
+<title>Lista de Alumnos</title>
 {% endblock titulo %}
 
 {% block cuerpo %}
-    <div class="container-fluid">
+<div class="container-fluid">
 
-        <!-- BARRA LATERAL -->
+    <!-- BARRA LATERAL -->
 
-        <div class="flex">
-            <div class="w-full flex flex-wrap">
-              <div class="flex justify-between w-full">
+    <div class="flex">
+        <div class="w-full flex flex-wrap">
+            <div class="flex justify-between w-full">
                 <div class="flex justify-start">
-                  <h1 class="bg-yellow-500 py-2 pl-40 text-l">Lista Alumnos</h1>
+                    <h1 class="bg-yellow-500 py-2 pl-40 text-l">Lista Alumnos</h1>
                 </div>
-                <div class="flex justify-end w-full">  
-                    <div class="py-2 pl-40 text-l" > 
-                        <p>NOMBRE</p>  
-                        <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}"style="width: 45px;" alt="">
+                <div class="flex justify-end w-full">
+                    <div class="py-2 pl-40 text-l">
+                        <p>NOMBRE</p>
+                        <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" style="width: 45px;" alt="">
                     </div>
                 </div>
-              </div>
             </div>
         </div>
-                <!-- <div class="row">
+    </div>
+    <!-- <div class="row">
                     <div class="col-md-3  titulo_pagina">
                         <h1>Lista de alumnos</h1>
                     </div>
@@ -35,27 +35,30 @@
                     </div>
                 </div> -->
 
-                <ul role="list" class="grid justify-items-center flex items-stretch bg-white mx-8 rounded-md">
-                    
-                      <li class="group/item hover:bg-slate-100 ">
-                        <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}"style="width: 45px;" alt="">
-                        <div>
-                          <a href="{person.url}">Morli morales</a>
-                          <p>11.111.111-1</p>
-                        </div>
-                        <a class="group/edit invisible hover:bg-slate-200 group-hover/item:visible " href="tel:{person.phone}">
-                          <span class="group-hover/edit:text-gray-700">Modificar</span>
-                          <span class="group-hover/edit:text-gray-700">Eliminar</span>
-                          <svg class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500">
-                           
-                          </svg>
-                        </a>
-                        
-                      </li>
-                     
-                   
-                  </ul>
-<!--                 
+    <ul role="list" class="grid justify-items-center flex items-stretch bg-white mx-8 rounded-md">
+
+        <li class="group/item hover:bg-slate-100 ">
+            <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" style="width: 45px;" alt="">
+            <div>
+                <a href="{person.url}">Morli morales</a>
+                <p>11.111.111-1</p>
+            </div>
+            <a class="group/edit invisible hover:bg-slate-200 group-hover/item:visible " href="tel:{person.phone}">
+                <span class="group-hover/edit:text-gray-700">Modificar</span>
+                <span class="group-hover/edit:text-gray-700">Eliminar</span>
+                <svg class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500">
+
+                </svg>
+            </a>
+
+        </li>
+
+
+    </ul>
+
+
+
+    <!--                 
                 <table class="table table-striped estilo-table">
                     <thead>
                         <tr>
@@ -92,6 +95,11 @@
                         </tr>
                     </tbody>
                 </table> -->
-            
-    </div>
+
+                <div>
+                    <button class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" >
+                        <a href="{% url 'docente' %}" class="texto_barra">Volver</a> 
+                    </button>
+                </div>
+</div>
 {% endblock cuerpo %}

@@ -21,8 +21,11 @@ urlpatterns = [
     path('logIn', login, name='login'),
     path('docente', index_docente, name='docente'),
     path('lista_alumnos', lista_alumnos, name='lista'),
+   
     path('planes_alumnos', planes_alumnos, name='plan'),
     path('socios_reg', socio_reg, name='socios_registrarse'),
     path('descripcion_plan', desc_plan, name='d_plan'),
     path('lista_miplan', list_plan, name='l_plan')
-]
+
+#     path('mantenedor_planes', mantenedor_planes, 'm_planes')#
+ ]
