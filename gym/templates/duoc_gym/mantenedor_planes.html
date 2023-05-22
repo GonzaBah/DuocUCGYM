@@ -15,7 +15,7 @@
         <div class="w-full flex flex-wrap">
             <div class="flex justify-between w-full">
                 <div class="flex justify-start">
-                    <h1 class="bg-yellow-500 py-2 pl-40 text-l">Lista Alumnos</h1>
+                    <h1 class="bg-yellow-500 py-2 pl-40 text-l">Lista Planes</h1>
                 </div>
                 <div class="flex justify-end w-full">
                     <div class="py-2 pl-40 text-l">
@@ -32,11 +32,13 @@
 
         <li class="group/item hover:bg-slate-100 ">
             <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" style="width: 45px;" alt="">
-            <div>
-                <a href="{person.url}">Morli morales</a>
-                <p>11.111.111-1</p>
+            <div class="">
+                <a href="{person.url}">Plan Economico</a>
+                <p>Monto</p>
+                <p>$10.000</p>
             </div>
-            <a class="group/edit invisible hover:bg-slate-200 group-hover/item:visible " href="tel:{person.phone}">
+            <!--  en <a> = href="tel:{person.phone}"-->
+            <a class="group/edit invisible hover:bg-slate-200 group-hover/item:visible "  >
                 <span class="group-hover/edit:text-gray-700">Modificar</span>
                 <span class="group-hover/edit:text-gray-700">Eliminar</span>
                 <svg class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500">

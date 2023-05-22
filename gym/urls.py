@@ -25,7 +25,9 @@ urlpatterns = [
     path('planes_alumnos', planes_alumnos, name='plan'),
     path('socios_reg', socio_reg, name='socios_registrarse'),
     path('descripcion_plan', desc_plan, name='d_plan'),
-    path('lista_miplan', list_plan, name='l_plan')
+    path('lista_miplan', list_plan, name='l_plan'),
 
-#     path('mantenedor_planes', mantenedor_planes, 'm_planes')#
+    path('mantener_planes', mantenedor_planes, name='m_planes')
+
+
  ]

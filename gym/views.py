@@ -15,9 +15,6 @@ def index_docente(request):
 def lista_alumnos(request):
     return render(request, 'duoc_gym/lista_alumnos.html')
 
-# def mantenedor_planes(request):
-#     return render(request, 'duoc_gym/mantenedor_planes.html' )
-
 def socio_reg(request):
     return render(request, 'duoc_gym/socios_registrarse.html')
 
@@ -29,3 +26,6 @@ def desc_plan(request):
 
 def list_plan(request):
     return render(request, 'duoc_gym/planes_miplan.html')
+
+def mantenedor_planes(request):
+    return render(request, 'duoc_gym/mantenedor_planes.html' )
