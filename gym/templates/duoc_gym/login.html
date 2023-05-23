@@ -9,56 +9,55 @@
 
 
 {% block cuerpo %}
-<div class="container-fluid" style="position: relative;">
 
-    <!-- BARRA LATERAL -->
+<div class="container-fluid bg-gradient-to-t md:bg-gradient-to-b from-gray-500 to-gray-100 w-full h-full">
 
-    <div class="">
-
-        <div class="contenido-md bg-gradient-to-t md:bg-gradient-to-b from-gray-500 to-white-500 p-8">
-          
-            <form action="">
-                
-                <div class="grid justify-items-center flex items-stretch bg-white mx-8 rounded-md">
-
-                    <h1>Iniciar Sesion</h1>
-                    
-                    <div class="py-5">
-                        <div class=" flex flex-col py-2">
-                            <label class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700" for="usuario">Usuario</label>
-                            <input class="border-gray-900 " type="text">
-                        </div>
-    
-                        <div class="  flex flex-col">
-                            <label  class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700" for="pass">Contraseña</label>
-                            <input class="border-gray-900" type="password">
-                        </div>
-    
-                    </div>
-                    
-                    <div>
-                        <a href="">Olvidaste tu contraseña?</a>
-                    </div>
-
-                    <div>
-                        <button class="bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" >
-                           <a href="{% url 'index' %}">Ingresar</a> </button>
-                    </div>
-    
-                    <div class="py-2">
-                        <a href="{% url 'socios_registrarse' %}">Eres nuevo? Registrate</a>   
-                    </div>
-                  
-    
-                </div>
-            </form>
-           
-           
+    <div class="flex flex-wrap  ">
+        <div class="flex justify-start">
+            <h1 class="bg-yellow-500 py-2 pl-40 text-l">Iniciar Sesion</h1>
         </div>
-        
+
     </div>
 
-  
+    <form action="">
 
+        <div class="grid justify-items-center flex items-stretch bg-white mx-8 rounded-md">
+
+
+
+            <div class="py-5">
+                <div class=" flex flex-col py-2">
+                    <label
+                        class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                        for="usuario">Usuario</label>
+                    <input class="border-gray-900 " type="text">
+                </div>
+
+                <div class="  flex flex-col">
+                    <label
+                        class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                        for="pass">Contraseña</label>
+                    <input class="border-gray-900" type="password">
+                </div>
+
+            </div>
+
+            <div>
+                <a href="">Olvidaste tu contraseña?</a>
+            </div>
+
+            <div>
+                <button
+                    class="bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                    <a href="{% url 'index' %}">Ingresar</a> </button>
+            </div>
+
+            <div class="py-2">
+                <a href="{% url 'socios_registrarse' %}">Eres nuevo? Registrate</a>
+            </div>
+
+
+        </div>
+    </form>
 </div>
-    {% endblock cuerpo %}
+{% endblock cuerpo %}
