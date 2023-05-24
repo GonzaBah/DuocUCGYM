@@ -12,11 +12,11 @@
     <div class="container-fluid" style="position: relative;">
 
         <!-- BARRA LATERAL -->
-        <button>A</button>
+        
         <div class="row">
             
 
-            </div>
+        
             <div class="col-md-10 contenido">
                 <p style="color: lightgray">*</p>
 
@@ -31,12 +31,20 @@
                     <div>
                         <h4>Aún no tiene un plan. ¿Desea inscribirse?</h4>
                     </div>
-                    <div class="">
-                        <a href="{% url 'plan' %}"  class="btn btn-warning align-bottom">
-                            Subscribirme
-                        </a>
+
+                    <div>
+                        <button
+                            class="bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                            <a href="{% url 'plan' %}">Suscribirme</a> </button>
                     </div>
+                   
                 </div>                
+            </div>
+
+            <div>
+                <button class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" >
+                    <a href="{% url 'p_alumno' %}" class="texto_barra">Empecemos!</a> 
+                </button>
             </div>
         </div>
     </div>
