@@ -6,23 +6,11 @@
 <title>Menu Principal</title>
 {% endblock titulo %}
 
+{% block tituloBar %}
+Bienvenido!
+{% endblock tituloBar %}
+
 {% block cuerpo %}
-<!-- <button class="outline outline-offset-2 outline-blue-500">
-  <a href="{% url 'l_plan' %}">Mi Plan</a>
-  <a href="{% url 'docente' %}">Docente</a>
 
-</button> -->
 
-<div class="flex flex-no-wrap">
-  <div class="w-full flex flex-wrap">
-    <div class="flex justify-between w-full">
-      <h1 class="bg-yellow-500 py-2 pl-40 text-l">Bienvenido!</h1>
-      <div class="text-m">
-        <a href="{% url 'login' %}">login</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="{% static 'duoc_gym/js/carrusel.js' %}"></script>
 {% endblock cuerpo %}

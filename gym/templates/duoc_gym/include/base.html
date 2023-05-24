@@ -13,39 +13,29 @@
 </head>
 
 <body>
-    <div class="w-full h-screen">
+    <div class="w-screen h-screen">
         <dh-component>
-            <div class="flex flex-no-wrap w-full h-screen">
-                {% include "duoc_gym/include/sideBar.html" %}
+            <div class="flex flex-no-wrap w-full h-full">
+                <div>
+                    {% include "duoc_gym/include/sideBar.html" %}
+                </div>
                 <!-- Sidebar ends -->
-                <div class="container  w-11/12">
+                <div class="container xl:ml-60 sm:m-0 max-w-full bg-gray-200">
                     <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
-                    <div class="h-full rounded bg-gray-300">
-                        <!-- Place your content here -->
+                    <div class="flex flex-no-wrap">
+                        <div class="w-full flex flex-wrap">
+                          <div class="flex justify-between w-full">
+                            <label class="bg-yellow-500 py-2 pl-40 font-bold pr-1 text-4xl sm:text-m mt-20">{% block tituloBar %}{% endblock tituloBar %}</label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap xl:m-10 my-5 mx-0 p-5 w-auto bg-gray-100">
                         {% block cuerpo %}{% endblock cuerpo %}
                     </div>
                 </div>
             </div>
         </dh-component>
     </div>
-    <script>
-        var sideBar = document.getElementById("mobile-nav");
-        var openSidebar = document.getElementById("openSideBar");
-        var closeSidebar = document.getElementById("closeSideBar");
-        sideBar.style.transform = "translateX(-260px)";
-
-        function sidebarHandler(flag) {
-            if (flag) {
-                sideBar.style.transform = "translateX(0px)";
-                openSidebar.classList.add("hidden");
-                closeSidebar.classList.remove("hidden");
-            } else {
-                sideBar.style.transform = "translateX(-260px)";
-                closeSidebar.classList.add("hidden");
-                openSidebar.classList.remove("hidden");
-            }
-        }
-    </script>
 </body>
 
 </html>
