@@ -29,3 +29,6 @@ def list_plan(request):
 
 def mantenedor_planes(request):
     return render(request, 'duoc_gym/mantenedor_planes.html' )
+
+def prepa_alumno(request):
+    return render(request, 'duoc_gym/preparacion_alumno.html')
