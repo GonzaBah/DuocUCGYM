@@ -1,0 +1,81 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Iniciar Sesion</title>
+{% endblock titulo %}
+
+{% block tituloBar %}
+Preparate con nuestros profesores
+{% endblock tituloBar %}
+
+{% block cuerpo %}
+
+<div class="container-fluid bg-gradient-to-t md:bg-gradient-to-b from-gray-500 to-gray-100 w-full h-full">
+
+    <form action="">
+
+        <div class="grid justify-items-center flex items-stretch bg-white mx-8 rounded-md">
+
+
+
+            <div class="py-5">
+                <div class="col-md-10">
+                    <h3><label for="validationCustom03" class="form-label">Profesores</label></h3>
+                    <select class="form-select" id="validationCustom03" required>
+                      <option selected disabled value="">Selecciona tu profesor</option>
+                      <option>Juan Gana</option>
+                      <option>Juaquin Pierde</option>
+                      <option>Astudillo King</option>
+                    </select>
+                    <!-- <div class="invalid-feedback">
+                      Por favor Seleccione su horario.
+                    </div> -->
+                </div>
+
+                <div class="col-md-10">
+                    <h3><label for="validationCustom03" class="form-label">Horas</label></h3>
+                    <select class="form-select" id="validationCustom03" required>
+                      <option selected disabled value="">Selecciona tu hora</option>
+                      <option>Lun - 14:00</option>
+                      <option>Mie - 16:00</option>
+                      <option>Jue - 12:30</option>
+                    </select>
+                    <!-- <div class="invalid-feedback">
+                      Por favor Seleccione su horario.
+                    </div> -->
+                </div>
+
+                <!-- <div class="  flex flex-col">
+                    <label
+                        class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                        for="pass">Contraseña</label>
+                    <input class="border-gray-900" type="password">
+                </div> -->
+
+            </div>
+
+            <!-- <div>
+                <a href="">Olvidaste tu contraseña?</a>
+            </div> -->
+
+            <div>
+                <button
+                    class="bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                    <a href="{% url 'index' %}">Aceptar</a> </button>
+            </div>
+
+            <!-- <div class="py-2">
+                <a href="{% url 'socios_registrarse' %}">Eres nuevo? Registrate</a>
+            </div>
+            <div>
+                <button class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" >
+                    <a href="{% url 'm_planes' %}" class="texto_barra">Planes</a> 
+                </button>
+            </div> -->
+
+        </div>
+    </form>
+</div>
+{% endblock cuerpo %}

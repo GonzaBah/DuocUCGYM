@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Menu Principal - Docente</title>
+<title>Docente</title>
 {% endblock titulo %}
 
 {% block cuerpo %}
@@ -16,17 +16,34 @@
 
         </div>
         <div class="col-md-10 contenido">
-            <p style="color: lightgray">*</p>
+            
 
             <div class="row">
                 <div class="titulo_pagina">
-                    <h1>Bienvenido Docente!!</h1>
+                    <h1>Bienvenido NombreDocente</h1>
+                </div>
+
+                <div>
+
+                </div>
+                <h1>Mantenedores</h1>
+
+                <div>
+                    <button class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" >
+                        <a href="{% url 'lista' %}" class="texto_barra">Alumnos</a> 
+                    </button>
                 </div>
                 <div>
-                    <h4><a href="../Funcionarios/Lista_Alumnos/lista_alumnos.html" class="texto_barra">Lista Alumnos</a> </h4> 
-                    <h4><a href="../Socios/socios_registrarse.html" class="texto_barra">Registrar Socios</a> </h4>
-                
+                    <button class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" >
+                        <a href="{% url 'm_planes' %}" class="texto_barra">Planes</a> 
+                    </button>
                 </div>
+                
+                <!-- <div>
+                    <h4><a href="{% url 'lista' %}" class="texto_barra">Alumnos</a> </h4> 
+                    <h4><a href="{% url 'lista' %}" class="texto_barra">Planes</a> </h4>
+                
+                </div> -->
               
             
             </div>

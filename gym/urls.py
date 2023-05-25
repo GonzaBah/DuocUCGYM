@@ -19,10 +19,16 @@ from .views import *
 urlpatterns = [
     path('', index, name='index'),
     path('logIn', login, name='login'),
+    path('socios_reg', socio_reg, name='socios_registrarse'),
+
     path('docente', index_docente, name='docente'),
     path('lista_alumnos', lista_alumnos, name='lista'),
+    
+    path('mantener_planes', mantenedor_planes, name='m_planes'),
+    
     path('planes_alumnos', planes_alumnos, name='plan'),
-    path('socios_reg', socio_reg, name='socios_registrarse'),
+    path('prepa_alumno',prepa_alumno, name='p_alumno'),
     path('descripcion_plan', desc_plan, name='d_plan'),
     path('lista_miplan', list_plan, name='l_plan')
-]
+ 
+ ]

@@ -24,9 +24,10 @@
                     <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
                     <div class="flex flex-no-wrap">
                         <div class="w-full flex flex-wrap">
-                          <div class="flex justify-between w-full">
-                            <label class="bg-yellow-500 py-2 pl-40 font-bold pr-1 text-4xl sm:text-m mt-20">{% block tituloBar %}{% endblock tituloBar %}</label>
-                          </div>
+                            <div class="flex justify-between w-full">
+                                <label class="bg-yellow-500 py-2 pl-40 font-bold pr-1 text-4xl sm:text-m mt-20">{% block
+                                    tituloBar %}{% endblock tituloBar %}</label>
+                            </div>
                         </div>
                     </div>
                     <div class="flex flex-wrap xl:m-10 my-5 mx-0 p-5 w-auto bg-gray-100">
@@ -35,6 +36,25 @@
                 </div>
             </div>
         </dh-component>
+        <div class="w-full py-8">
+            <ul class="pt-8">
+                <li
+                    class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                    <a class="capitalize text-2xl truncate" href="{% url 'l_plan' %}">Mi Plan</a>
+                </li>
+                <li
+                    class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                    <a class="capitalize text-2xl truncate" href="">Docentes</a>
+                </li>
+                <li
+                    class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                    <a class="capitalize text-2xl truncate" href="">Maquinas (no disponible)</a>
+                </li>
+            </ul>
+        </div>
+        <div class="w-5/6 contenido">
+            {% block cuerpo %}{% endblock cuerpo %}
+        </div>
     </div>
 </body>
 

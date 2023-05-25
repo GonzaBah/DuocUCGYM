@@ -3,41 +3,53 @@
 {% load static %}
 
 {% block titulo %}
-    <title>Menu Principal</title>
+<title>Iniciar Sesion</title>
 {% endblock titulo %}
 
-
+{% block tituloBar %}
+Iniciar Sesión
+{% endblock tituloBar %}
 
 {% block cuerpo %}
-    <div class="container-fluid" style="position: relative;">
 
-        <!-- BARRA LATERAL -->
-        
-        <div class="row">
-            
+<div class="container-fluid bg-gradient-to-t md:bg-gradient-to-b from-gray-500 to-gray-100 w-full h-full">
+
+    <form id="login" action="{% url 'login' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="grid justify-items-center flex items-stretch bg-white mx-8 rounded-md">
+            <div class="py-5">
+                <div class=" flex flex-col py-2">
+                    <label
+                        class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                        for="usuario">Usuario</label>
+                    <input class="border-gray-900 " type="text">
+                </div>
+
+                <div class="  flex flex-col">
+                    <label
+                        class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                        for="pass">Contraseña</label>
+                    <input class="border-gray-900" type="password">
+                </div>
 
             </div>
-            <div class="col-md-10 contenido">
-                <p style="color: lightgray">*</p>
 
-                <div class="row">
-                
-                  <h1>Iniciar Sesion</h1>
-                    
-                    <div>
-                        <label for="">Usuario</label>
-                        <input type="text">
-                        
-                        <label for="">Contraseña</label>
-                        <input type="password">
-                    </div>
-                    <div class="">
-                        <a href="{% url 'index' %}"  class="btn btn-warning align-bottom">
-                            Ingresar
-                        </a>
-                    </div>
-                </div>                
+            <div>
+                <a href="">Olvidaste tu contraseña?</a>
             </div>
+
+            <div>
+                <button
+                    class="bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                    <a href="{% url 'index' %}">Ingresar</a> </button>
+            </div>
+
+            <div class="py-2">
+                <a href="{% url 'socios_registrarse' %}">Eres nuevo? Registrate</a>
+            </div>
+
+
         </div>
-    </div>
+    </form>
+</div>
 {% endblock cuerpo %}
