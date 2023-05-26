@@ -138,3 +138,6 @@ def suscribir_plan(request, user, plan):
         return redirect('index')
     else:
         return redirect('plan')
+
+def mi_perfil(request):
+    return render(request,'duoc_gym/miPerfil.html' )
