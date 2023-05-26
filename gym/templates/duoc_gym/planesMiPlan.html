@@ -14,21 +14,18 @@ Mi Plan
 <div class="flex flex-wrap w-full">
     <div class="flex w-full">
         <div class="flex flex-wrap w-full justify-between">
-            <div class="flex justify-start items-center">
-                <label class="text-sm">{{ user.nombre }}</label>
-                <img class="ml-3 w-12 h-12" src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="">
-            </div>
-            <div class="flex justify-end items-center">
+            <div class="flex justify-center  items-center w-full">
                 {% if user.is_sub %}
-                <div class="bg-gray-300 p-4 rounded-lg ">
-                    <div class="flex flex-wrap items-center">
-                        <img src="{% static 'duoc_gym/resources/ejercicio_custom.avif' %}" alt="Avatar"
-                        class="card-img-top">
-                        <div class="container">
-                            <div class="card-body">
-                                <label class="card-title text-lg font-bold">{{ miPlan.nombrePlan }}</label><br/>
-                                <label class="card-text text-md my-4">{{ miPlan.descripcionPlan }}</label><br/>
+                <div class="flex justify-center bg-gray-300 p-4 rounded-lg ">
+                    <div class="flex justify-center flex-wrap items-center">
+                        <div class="bg-cover bg-center" style="background-image: url(../../static/duoc_gym/resources/ejercicio_custom.avif)"></div>
+                      
+                        <div class="w-full">
+                            <div class="flex justify-center justify-items-center w-full">
+                                <div class="flex justify-center w-full font-bold text-4xl">{{ miPlan.nombrePlan }}</div>
+                                
                             </div>
+                            <div class="flex justify-center w-full text-lg">{{ miPlan.descripcionPlan }}</div>
                         </div>
                     </div>
                 </div>
