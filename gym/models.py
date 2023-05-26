@@ -19,6 +19,18 @@ class CustomAccountManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+    def create_superuser(self, correo, nombre, apellido1, rut, password, **other_fields):
+        rol_admin = TipoUsuario.objects.get(idTipo=22)
+        other_fields.setdefault('tipoUsuario', rol_admin)
+        other_fields.setdefault('is_superuser', True)
+
+        if other_fields.get('is_superuser') is not True:
+            raise ValueError(
+                'Superuser debe ser True')
+        if other_fields.get('tipoUsuario') is not rol_admin:
+            raise ValueError(
+                'Superuser debe ser tipo Funcionario')
+        return self.create_user(correo, nombre, apellido1, rut, password, **other_fields)
 
 class TipoUsuario(models.Model):
     idTipo = models.AutoField(primary_key=True, verbose_name="ID del Tipo de Usuario")
@@ -32,7 +44,9 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     correo = models.EmailField(verbose_name="Correo del Usuario", unique=True)
     tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=0)
     fechaNacimiento = models.DateField(verbose_name="Fecha de Nacimiento")
-    slug = models.SlugField(max_length=255, unique=True)
+
+    # slug = models.SlugField(max_length=255, default="", null=False, unique=True)
+    
     foto = models.ImageField(null=True, upload_to="\img", default="\img\avatar-redondo.png", verbose_name="Foto del Usuario")
     
     objects = CustomAccountManager()
@@ -41,10 +55,10 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['rut', 'nombre', 'apellido1']
 
     def __str__(self):
-            return f'{self.user_name}'
+            return f'{self.correo}'
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(rand_slug() + "-" + self.correo)
+        """ if not self.slug:
+            self.slug = slugify(rand_slug() + "-" + self.correo) """
         super(Usuario, self).save(*args, **kwargs)
 
 class TipoFuncionario(models.Model):
