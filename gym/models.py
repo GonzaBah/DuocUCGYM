@@ -89,11 +89,12 @@ class Socio(models.Model):
     idSocio = models.AutoField(primary_key=True, verbose_name="ID del Socio")
     altura = models.IntegerField(verbose_name="Altura del Socio")
     peso = models.FloatField(verbose_name="Peso del Socio")
-    observaciones = models.CharField(max_length=100, verbose_name="Observaciones")
+    porcGrasaCorporal = models.IntegerField(verbose_name="Porc. Grasa Corporal del Socio", default=0)
+    observaciones = models.CharField(max_length=500, verbose_name="Observaciones")
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
-    plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=1)
-    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
-    titularPlan = models.CharField(max_length=30, verbose_name="Titular del Plan")
+    plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=1, null=True)
+    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1, null=True)
+    titularPlan = models.CharField(max_length=30, verbose_name="Titular del Plan", null=True)
 
 class Equipamiento(models.Model):
     idEquipamiento = models.AutoField(primary_key=True, verbose_name="ID del Equipamiento")

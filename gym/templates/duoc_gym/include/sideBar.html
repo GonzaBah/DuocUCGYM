@@ -10,7 +10,7 @@
             <ul class="pt-8">
                 {% if user.is_authenticated %}
                     {% if user.tipoUsuario.idTipo == 3 %}
-                        {% if Socio.objects.get(usuario = user)%}
+                        {% if true%}
                         <li
                             class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
                             <a class="capitalize text-1xl truncate" href="{% url 'l_plan' %}">Mi Plan</a>
@@ -18,7 +18,7 @@
                         {% else %}
                         <li
                             class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
-                            <a class="capitalize text-1xl truncate" href="{% url 'l_plan' %}">Ver Planes</a>
+                            <a class="capitalize text-1xl truncate" href="{% url 'plan' %}">Ver Planes</a>
                         </li>
                         {% endif %}
                     <li
@@ -56,11 +56,11 @@
                 {% else %}
                 <li
                     class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
-                    <a class="capitalize text-1xl truncate" href="{% url 'l_plan' %}">Ver Planes</a>
+                    <a class="capitalize text-1xl truncate" href="{% url 'plan' %}">Ver Planes</a>
                 </li>
                 <li
                     class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
-                    <a class="capitalize text-1xl truncate" href="">Iniciar Sesión</a>
+                    <a class="capitalize text-1xl truncate" href="{% url 'login' %}">Iniciar Sesión</a>
                 </li>
                 {% endif %}
             </ul>

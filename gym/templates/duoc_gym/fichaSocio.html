@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block titulo %}
-<title>Registrarse</title>
+<title>Ficha de Ingreso</title>
 {% endblock titulo %}
 
 {% block tituloBar %}
-Registrarse
+Ficha de Ingreso
 {% endblock tituloBar %}
 
 {% block cuerpo %}
@@ -48,11 +48,19 @@ Registrarse
                         {{ fichaForm.porcGrasa }}
                     </div>
                 </div>
-                <div class="py-2">
-                    <label
-                        class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                        for="">Fecha de nacimiento</label>
-                    {{ fichaForm.fechaNac }}
+                <div class="flex flex-wrap justify-evenly w-full">
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Fecha de nacimiento</label>
+                        {{ fichaForm.fechaNac }}
+                    </div>
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Observaciones</label>
+                        {{ fichaForm.observaciones }}
+                    </div>
                 </div>
             </div>         
                 </div>

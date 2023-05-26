@@ -101,89 +101,10 @@ class FormRegisUsuario(forms.Form):
             raise forms.ValidationError('Las Contraseñas no coinciden')
         return cd['password2']
 
-
-
-#Este es el formulario de registro
-class FormRegisUsuario(forms.Form):
-    rut = forms.CharField(
-        max_length=10,
-        widget=forms.TextInput(
-            attrs={
-                'id': 'rut',
-                'type': 'text',
-                'class': inputClass
-            }
-        )
-    )
-    nombre = forms.CharField(
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'id': 'name',
-                'type': 'text',
-                'class': inputClass
-            }
-        )
-    )
-    apellido1 = forms.CharField(
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'id': 'lastname1',
-                'type': 'text',
-                'class': inputClass
-            }
-        )
-    )
-    apellido2 = forms.CharField(
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'id': 'lastname2',
-                'type': 'text',
-                'class': inputClass
-            }
-        )
-    )
-    correo = forms.EmailField(
-        widget=forms.TextInput(
-            attrs={
-                'id': 'email',
-                'type': 'email',
-                'class': inputClass
-            }
-        )
-    )
-    password = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                'id': 'password',
-                'type': 'password',
-                'class': inputClass
-            }
-        ))
-
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                'id': 'password2',
-                'type': 'password',
-                'class': inputClass
-            }
-        ))
-
-    def clean_password2(self):
-        cd = self.cleaned_data
-        if cd['password'] != cd['password2']:
-            raise forms.ValidationError('Las Contraseñas no coinciden')
-        return cd['password2']
-
-
-
-
 #Este es el formulario de ficha
 class FormFichaUsuario(forms.Form):
     rut = forms.CharField(
+        max_length=10,
         widget=forms.TextInput(
             attrs={
                 'id': 'rut',
@@ -227,7 +148,17 @@ class FormFichaUsuario(forms.Form):
                 'class': inputClass
             }
         )
-    ) 
+    )
+    observaciones = forms.CharField(
+        max_length=500,
+        widget=forms.TextInput(
+            attrs={
+                'id': 'obs',
+                'type': 'textarea',
+                'class': inputClass
+            }
+        )
+    )
 
 
 
