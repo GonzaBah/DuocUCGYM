@@ -23,6 +23,7 @@ urlpatterns = [
     path('logout', logout_view, name='logout'),
     path('signup_auth', signup_view, name='signup_auth'),
     path('socios_reg', socio_reg, name='socios_registrarse'),
+    path('suscribir_plan/<str:user>/<int:plan>', suscribir_plan, name='suscribir_plan'),
 
     path('docente', index_docente, name='docente'),
     path('lista_alumnos', lista_alumnos, name='lista'),

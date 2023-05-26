@@ -67,18 +67,27 @@ def lista_alumnos(request):
 
 def socio_reg(request):
     return render(request, 'duoc_gym/sociosRegistrarse.html')
+
 def fic_socio(request):
     return render(request, 'duoc_gym/fichaSocio.html')
 
-
 def planes_alumnos(request):  
-    return render(request, 'duoc_gym/planesAlumnos.html')
+    contexto = {
+        "listaPlanes": Plan.objects.all()
+    }
+    return render(request, 'duoc_gym/planesAlumnos.html', contexto)
 
 def desc_plan(request):
     return render(request, 'duoc_gym/descripcionPlan.html')
 
-def list_plan(request):
-    return render(request, 'duoc_gym/planesMiPlan.html')
+@login_required(login_url='login')
+def list_plan(request, user):
+    user = get_user_model().objects.get(correo = user)
+    socio = Socio.objects.get(usuario=user)
+    contexto = {
+        "miPlan": Plan.objects.get(idPlan=socio.plan.idPlan)
+    }
+    return render(request, 'duoc_gym/planesMiPlan.html', contexto)
 
 def mantenedor_planes(request):
     return render(request, 'duoc_gym/mantenedorPlanes.html' )
@@ -91,3 +100,10 @@ def agregar_socio(request):
 
 def mantenedor_maquinas(request):
     return render(request,'duoc_gym/inventarioMaquinas.html')
+
+def suscribir_plan(request, user, plan):
+    plan = Plan.objects.get(idPlan = plan)
+    user = get_user_model().objects.get(correo = user)
+    socio = Socio.objects.create(plan=plan, usuario=user)
+    socio.save()
+    return render(request, 'duoc_gym/index.html')

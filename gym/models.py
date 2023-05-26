@@ -43,7 +43,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     apellido1 = models.CharField(max_length=30, verbose_name="Primer apellido del Usuario")
     apellido2 = models.CharField(max_length=30, verbose_name="Segundo apellido del Usuario", null=True)
     correo = models.EmailField(verbose_name="Correo del Usuario", unique=True)
-    tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=1)
+    tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=3)
     fechaNacimiento = models.DateField(verbose_name="Fecha de Nacimiento", null=True)
 
     is_staff = models.BooleanField(default=False)
@@ -82,17 +82,18 @@ class Plan(models.Model):
     idPlan = models.AutoField(primary_key=True, verbose_name="ID del Plan")
     nombrePlan = models.CharField(max_length=30, verbose_name="Nombre del Plan")
     estadoPlan = models.BooleanField(verbose_name="Estado del Plan")
+    descripcionPlan = models.CharField(max_length=500, verbose_name="Descripcion del Plan", null=True)
     sucursalLibre = models.BooleanField(verbose_name="Sucursal Libre")
     precio = models.IntegerField(verbose_name="Precio del plan", default=1)
 
 class Socio(models.Model):
     idSocio = models.AutoField(primary_key=True, verbose_name="ID del Socio")
-    altura = models.IntegerField(verbose_name="Altura del Socio")
-    peso = models.FloatField(verbose_name="Peso del Socio")
+    altura = models.IntegerField(verbose_name="Altura del Socio", null=True)
+    peso = models.FloatField(verbose_name="Peso del Socio", null=True)
     porcGrasaCorporal = models.IntegerField(verbose_name="Porc. Grasa Corporal del Socio", default=0)
-    observaciones = models.CharField(max_length=500, verbose_name="Observaciones")
+    observaciones = models.CharField(max_length=500, verbose_name="Observaciones", null=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
-    plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=1, null=True)
+    plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=1)
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1, null=True)
     titularPlan = models.CharField(max_length=30, verbose_name="Titular del Plan", null=True)
 
