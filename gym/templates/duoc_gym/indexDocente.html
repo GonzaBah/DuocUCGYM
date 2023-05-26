@@ -11,34 +11,58 @@ Bienvenido NombreDocente
 {% endblock tituloBar %}
 
 {% block cuerpo %}
-<div class="container-fluid bg-gradient-to-t md:bg-gradient-to-b from-gray-500 to-gray-100 w-full h-full">
-    <div class="grid justify-items-center flex items-stretch bg-white mx-8 rounded-md">
-        
 
-        <div>
-            <button
-                class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
-                <a href="{% url 'lista' %}" class="texto_barra">Alumnos</a>
-            </button>
-        </div>
-        <div>
-            <button
-                class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
-                <a href="{% url 'm_planes' %}" class="texto_barra">Planes</a>
-            </button>
-        </div>
+<!-- container-fluid bg-gradient-to-t md:bg-gradient-to-b from-gray-500 to-gray-100 w-full h-full -->
 
-        <div>
-            <button
-                class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
-                <a href="{% url 'm_maquinas' %}" class="texto_barra">Maquinas</a>
-            </button>
-        </div>
+<div class="grid  justify-items-center bg-white rounded-md  p-5">
 
-        <label for="">Gestion de recintos</label>
-        <label for="">Gestion de Clases</label>
-        <label for="">Gestion de Rutinas</label>
+
+    <div>
+        <a href="{% url 'lista' %}">
+            <button class="  text-xl my-2 rounded-lg shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+
+                <div>
+                    <img class="z-10" src="../../static/duoc_gym/resources/WALLPAPERS/docente/wDocenteAlumnos.jpg"
+                        alt="">
+                    <label class="z-0" for="">Alumnos</label>
+                </div>
+            </button>
+        </a>
+
+    </div>
+    <div>
+        <a href="{% url 'm_planes' %}">
+            <button
+                class="  text-xl my-2 rounded-lg shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+
+                <div>
+                    <img class="z-10" src="../../static/duoc_gym/resources/WALLPAPERS/docente/wDocenteAlumnos.jpg"
+                        alt="">
+                    <label class="z-0" for="">Alumnos</label>
+                </div>
+            </button>
+        </a>      
     </div>
 
+    <div>
+        <a href="{% url 'm_maquinas' %}">
+            <button
+                class="  text-xl my-2 rounded-lg shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+
+                <div>
+                    <img class="z-10" src="../../static/duoc_gym/resources/WALLPAPERS/docente/wDocenteAlumnos.jpg"
+                        alt="">
+                    <label class="z-0" for="">Alumnos</label>
+                </div>
+            </button>
+        </a>
+
+    </div>
+
+    <label for="">Gestion de recintos</label>
+    <label for="">Gestion de Clases</label>
+    <label for="">Gestion de Rutinas</label>
 </div>
+
+
 {% endblock cuerpo %}

@@ -43,25 +43,32 @@
                         <a class="capitalize text-1xl truncate" href="">Docentes</a>
                     </li>
                         {% if user.tipoUsuario.idTipo == 1 %}
-                        <li
-                            class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
-                            <a class="capitalize text-1xl truncate" href="">Maquinas (no disponible)</a>
-                        </li>
-                        <li
-                            class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
-                            <a class="capitalize text-1xl truncate" href="{% url 'logout' %}">Cerrar Sesión</a>
-                        </li>
+                        <a class="capitalize text-1xl truncate" href="">
+                            <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                                Maquinas (no disponible)
+                            </li>
+                        </a>
+                        
+                        <a class="capitalize text-1xl truncate" href="{% url 'logout' %}">
+                            <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                                Cerrar Sesión
+                            </li>
+                        </a>
+                        
                         {% endif %}
                     {% endif %}
                 {% else %}
-                <li
-                    class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
-                    <a class="capitalize text-1xl truncate" href="{% url 'plan' %}">Ver Planes</a>
-                </li>
-                <li
-                    class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
-                    <a class="capitalize text-1xl truncate" href="{% url 'login' %}">Iniciar Sesión</a>
-                </li>
+                <a class="capitalize text-1xl truncate" href="{% url 'plan' %}">
+                    <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                        Ver Planes
+                    </li>
+                </a>
+
+                <a class="capitalize text-1xl truncate" href="{% url 'login' %}"> 
+                    <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                        Iniciar Sesión
+                    </li>
+                </a>
                 {% endif %}
             </ul>
         </div>
