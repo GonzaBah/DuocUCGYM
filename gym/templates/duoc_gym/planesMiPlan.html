@@ -16,20 +16,28 @@ Mi Plan
         <div class="flex flex-wrap w-full justify-between">
             <div class="flex justify-center  items-center w-full">
                 {% if user.is_sub %}
-                <div class="flex justify-center bg-gray-300 p-4 rounded-lg ">
-                    <div class="flex justify-center flex-wrap items-center">
-                        <div class="bg-cover bg-center" style="background-image: url(../../static/duoc_gym/resources/ejercicio_custom.avif)"></div>
-                      
-                        <div class="w-full">
-                            <div class="flex justify-center justify-items-center w-full">
-                                <div class="flex justify-center w-full font-bold text-4xl">{{ miPlan.nombrePlan }}</div>
-                                
+                <div
+                    class="mx-2 justify-items-center bg-white rounded-lg transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 align-middle overflow-x-auto scroll-smooth">
+
+                    <div class="bg-local bg-auto bg-cover bg-center h-4/6 w-full rounded-md pt-10  "
+                        style="background-image: url(../../static/duoc_gym/resources/ejercicio_custom.avif)">
+                        <div class="mt-44 mb-5 bg-white h-auto">
+                            <div class="p-5 flex justify-center whitespace-normal w-full font-bold text-2xl -pt-5">
+                                <div class="w-full">
+                                    <div class="flex justify-center justify-items-center w-full">
+                                        <div class="flex justify-center w-full font-bold text-4xl">{{ miPlan.nombrePlan}}</div>
+
+                                    </div>
+                                    
+                                    <div class="flex justify-center w-full text-lg">{{ miPlan.descripcionPlan }}</div>
+                                </div>
                             </div>
-                            <div class="flex justify-center w-full text-lg">{{ miPlan.descripcionPlan }}</div>
                         </div>
                     </div>
+
                 </div>
-                
+
+
                 {% else %}
                 <h4>Aún no tiene un plan. ¿Desea inscribirse?</h4>
                 <button
