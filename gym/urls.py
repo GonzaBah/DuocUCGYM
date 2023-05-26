@@ -25,10 +25,13 @@ urlpatterns = [
     path('lista_alumnos', lista_alumnos, name='lista'),
     
     path('mantener_planes', mantenedor_planes, name='m_planes'),
-    
+    path('mantener_maquinas', mantenedor_maquinas, name='m_maquinas'),
+
     path('planes_alumnos', planes_alumnos, name='plan'),
     path('prepa_alumno',prepa_alumno, name='p_alumno'),
     path('descripcion_plan', desc_plan, name='d_plan'),
-    path('lista_miplan', list_plan, name='l_plan')
+    path('lista_miplan', list_plan, name='l_plan'),
  
+    path('agr_socio', agregar_socio, name='a_socio'),
+    
  ]

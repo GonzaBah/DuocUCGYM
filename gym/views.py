@@ -32,3 +32,9 @@ def mantenedor_planes(request):
 
 def prepa_alumno(request):
     return render(request, 'duoc_gym/preparacion_alumno.html')
+
+def agregar_socio(request):
+    return render(request, 'duoc_gym/agregar_socio.html')
+
+def mantenedor_maquinas(request):
+    return render(request,'duoc_gym/inventario_maquinas.html')
