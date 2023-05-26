@@ -63,6 +63,9 @@ def lista_alumnos(request):
 
 def socio_reg(request):
     return render(request, 'duoc_gym/sociosRegistrarse.html')
+def fic_socio(request):
+    return render(request, 'duoc_gym/fichaSocio.html')
+
 
 def planes_alumnos(request):
     return render(request, 'duoc_gym/planesAlumnos.html')
