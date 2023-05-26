@@ -21,7 +21,7 @@ def login_view(request):
             return redirect('index')
         else:
             messages.error(request, "Error: Usuario o contraseña inválidos (╬ Ò﹏Ó)!")
-            return redirect('socios_registrarse')
+            return redirect('login')
 
     # messages.error(request, 'Formulario Invalido')
     return redirect('index')
