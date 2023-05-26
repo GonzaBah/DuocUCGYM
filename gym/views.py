@@ -51,6 +51,7 @@ def signup_view(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
 def socio_view(request):
     try:
         ficha_form = FormFichaUsuario(request.POST or None)
@@ -69,11 +70,9 @@ def socio_view(request):
             socio.save()
             user.fechaNacimiento = fechaNac
             user.save()
-
-            return redirect('docente')
-        return redirect('ficha_socio')
+        return redirect('lista')
     except:
-        return redirect('docente')
+        return redirect('lista')
 
 def index(request):
     return render(request, 'duoc_gym/index.html')
@@ -81,11 +80,16 @@ def index(request):
 def login_usuario(request):
     return render(request, 'duoc_gym/login.html')
 
+@login_required(login_url='login')
 def index_docente(request):
     return render(request, 'duoc_gym/indexDocente.html')
 
 def lista_alumnos(request):
-    return render(request, 'duoc_gym/listaAlumnos.html')
+    socios = Socio.objects.all()
+    contexto = {
+        "socios": socios
+    }
+    return render(request, 'duoc_gym/listaAlumnos.html', contexto)
 
 def socio_reg(request):
     return render(request, 'duoc_gym/sociosRegistrarse.html')
