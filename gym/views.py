@@ -49,6 +49,10 @@ def signup_view(request):
         login(request, user)
         return redirect('index')
 
+def logout_view(request):
+    logout(request)
+    return redirect('index')
+
 def index(request):
     return render(request, 'duoc_gym/index.html')
 
@@ -71,7 +75,7 @@ def desc_plan(request):
     return render(request, 'duoc_gym/descripcionPlan.html')
 
 def list_plan(request):
-    return render(request, 'duoc_gym/planesMiplan.html')
+    return render(request, 'duoc_gym/planesMiPlan.html')
 
 def mantenedor_planes(request):
     return render(request, 'duoc_gym/mantenedorPlanes.html' )

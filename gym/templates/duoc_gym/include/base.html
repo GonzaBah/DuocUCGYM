@@ -30,7 +30,11 @@
                                 </label>
                                 <div class="flex justify-end mr-5">
                                     {% if user.is_authenticated %}
-                                    <label class="flex text-lg items-center">{{ user.nombre }} {{ user.apellido1 }}</label>
+                                    <div>
+                                        <label class="flex text-lg items-center">{{ user.nombre }} {{ user.apellido1 }}</label>
+                                        <a href="{% url 'logout' %}">Cerrar Sesión</a>
+                                    </div>
+                                    
                                     <img class="ml-3 w-12 h-12" src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="">
                                     {% endif %}
                                 </div>

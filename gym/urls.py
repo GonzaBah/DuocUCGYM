@@ -20,6 +20,7 @@ urlpatterns = [
     path('', index, name='index'),
     path('logIn', login_usuario, name='login'),
     path('login_auth', login_view, name='login_auth'),
+    path('logout', logout_view, name='logout'),
     path('signup_auth', signup_view, name='signup_auth'),
     path('socios_reg', socio_reg, name='socios_registrarse'),
 
