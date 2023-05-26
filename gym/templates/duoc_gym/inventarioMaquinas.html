@@ -1,0 +1,100 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Lista de Alumnos</title>
+{% endblock titulo %}
+
+{% block tituloBar %}
+Gestión Maquinas
+{% endblock tituloBar %}
+
+{% block cuerpo %}
+<div class="container-fluid bg-gradient-to-t md:bg-gradient-to-b from-gray-500 to-gray-100 w-full h-full">
+
+    <!-- BARRA LATERAL -->
+
+    <div class="flex">
+        <div class="w-full flex flex-wrap">
+            <div class="flex justify-between w-full">
+                <div class="flex justify-end w-full">
+                    <div class="py-2 pl-40 text-l">
+                        <p>NOMBRE</p>
+                        <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" style="width: 45px;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid justify-items-center items-stretch bg-white mx-2 rounded-md">
+        <table class="border-collapse table-fixed w-4/6 text-sm bg-gray-500 mt-8 rounded-md">
+            <thead> 
+                <tr>
+                    <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-white dark:text-slate-400 text-left">
+                        Codigo
+                    </th>
+    
+                    <th class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-white dark:text-slate-400 text-left">
+                        Nombre
+                    </th>
+    
+                    <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-white dark:text-slate-400 text-left">
+                        Cantidad
+                    </th>
+
+                    <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-white dark:text-slate-400 text-left">
+                        Mantenedores
+                    </th>
+                </tr>
+            </thead>
+    
+            <tbody >
+                <tr class="bg-slate-200 dark:bg-silver-600">
+                    <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8">
+                        001
+                    </td>
+    
+                    <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
+                        Corredoras
+                    </td>
+    
+                    <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ">
+                        4
+                    </td>
+
+                    <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 "> 
+                        Editar
+                    </td>
+                </tr>
+                <tr class="bg-white dark:bg-silver-400">
+                    <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8">
+                        003
+                    </td>
+    
+                    <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
+                        Kettlebell
+                    </td>
+    
+                    <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ">
+                        3
+                    </td>
+                    <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 "> 
+                        Editar
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <div>
+            <button
+                class="bg-gray-400 hover:bg-gray-500 p-3 text-xl rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 my-8">
+                <a href="{% url 'docente' %}" class="texto_barra">Volver</a>
+            </button>
+        </div>
+    </div>
+
+    
+</div>
+{% endblock cuerpo %}

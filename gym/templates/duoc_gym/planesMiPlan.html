@@ -1,0 +1,38 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Menu Principal</title>
+{% endblock titulo %}
+
+{% block tituloBar %}
+Mi Plan
+{% endblock tituloBar %}
+
+{% block cuerpo %}
+<div class="flex flex-wrap w-full">
+    <div class="flex w-full">
+        <div class="flex flex-wrap w-full justify-between">
+            <div class="flex justify-start items-center">
+                <label class="text-sm">NOMBRE</label>
+                <img class="ml-3 w-12 h-12" src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="">
+            </div>
+            <div class="flex justify-end items-center">
+                <h4>Aún no tiene un plan. ¿Desea inscribirse?</h4>
+                <button
+                    class="ml-3 bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                    <a href="{% url 'plan' %}">Suscribirme</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div>
+    <button
+        class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+        <a href="{% url 'p_alumno' %}" class="texto_barra">Empecemos!</a>
+    </button>
+</div> -->
+{% endblock cuerpo %}

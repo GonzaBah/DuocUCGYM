@@ -1,6 +1,6 @@
-{% include "duoc_gym/include/tailWind.html" %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -8,15 +8,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block titulo %}{% endblock titulo %}
     <!-- CSS STYLES -->
-    <link href="{% static 'duoc_gym/css/estilo.css' %}" rel="stylesheet" type="text/css" />    
+    <link href="{% static 'duoc_gym/css/estilo.css' %}" rel="stylesheet" type="text/css" />
+    {% include "duoc_gym/include/tailWind.html" %}
 </head>
-<body>
-    <div class="flex flex-wrap h-screen">
-        {% include "duoc_gym/include/sideBar.html" %}
 
-        <div class="w-5/6 contenido">
-            {% block cuerpo %}{% endblock cuerpo %}
-        </div>
+<body>
+    <div class="w-screen h-screen">
+        <dh-component>
+            <div class="flex flex-no-wrap w-full h-full">
+                <div>
+                    {% include "duoc_gym/include/sideBar.html" %}
+                </div>
+                <!-- Sidebar ends -->
+                <div class="container xl:ml-60 sm:m-0 max-w-full bg-gray-200">
+                    <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
+                    <div class="flex flex-no-wrap">
+                        <div class="w-full flex flex-wrap">
+                            <div class="flex justify-between items-center w-full">
+                                <label class="bg-yellow-500 py-2 pl-40 font-bold pr-1 text-4xl sm:text-md mt-10">
+                                    {% block tituloBar %}{% endblock tituloBar %}
+                                </label>
+                                <div class="flex justify-end mr-5">
+                                    {% if user.is_authenticated %}
+                                    <label class="flex text-lg items-center">{{ user.nombre }} {{ user.apellido1 }}</label>
+                                    <img class="ml-3 w-12 h-12" src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap xl:m-10 my-5 mx-0 p-5 w-auto bg-gray-100 rounded-lg">
+                        {% block cuerpo %}{% endblock cuerpo %}
+                    </div>
+                </div>
+            </div>
+        </dh-component>
     </div>
 </body>
+
 </html>

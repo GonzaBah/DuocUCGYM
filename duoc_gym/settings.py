@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -63,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'gym.context_processors.login_form'
             ],
         },
     },
@@ -74,15 +76,15 @@ WSGI_APPLICATION = 'duoc_gym.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES={
+""" DATABASES={
     'default':
     {
     'ENGINE':'django.db.backends.oracle',
     'NAME':'wcct8xkg1dn2t4pc_high',
     'USER':'ADMIN', 
-    'PASSWORD': '8ENWFPhufhJbg9Jz' ,#Please provide the db password here
+    'PASSWORD': '8ENWFPhufhJbg9Jz' ,    #Please provide the db password here
     }
-}
+} """
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -124,3 +126,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTH_USER_MODEL = "gym.Usuario"

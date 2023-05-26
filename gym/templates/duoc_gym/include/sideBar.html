@@ -1,10 +1,27 @@
-<div class="w-1/6 bg-gray-700 p-2">
-    <div class="flex">
-        <div class="flex flex-wrap text-4xl">
-            <h2 class="text-white">Duoc</h2>
-            <h2 class="text-yellow-500">UC GYM</h2>
+<aside class="fixed inset-y-0 flex-wrap items-center justify-between block w-64 p-0 transition-all duration-200 ease-in-out -translate-x-full bg-gray-600 shadow-none dark:bg-slate-850 max-w-64 xl:translate-x-0" id="sidenav-main">
+    <div class="h-auto flex justify-center">
+        <a class="block py-4 m-0 whitespace-nowrap text-3xl text-slatse-700 dark:text-white" href="" target="_blank">
+            <label class="text-white">Duoc</label>
+            <label class="text-yellow-500">UC GYM</label>
+        </a>
+    </div>
+    <div class="items-center block w-full h-auto grow basis-full" id="sidenav-collapse-main">
+        <div class="w-full">
+            <ul class="pt-8">
+                <li
+                    class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                    <a class="capitalize text-1xl truncate" href="{% url 'l_plan' %}">Mi Plan</a>
+                </li>
+                <li
+                    class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                    <a class="capitalize text-1xl truncate" href="">Docentes</a>
+                </li>
+                <li
+                    class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
+                    <a class="capitalize text-1xl truncate" href="">Maquinas (no disponible)</a>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="flex flex-wrap">     
-    </div>
-</div>
+    
+</aside>
