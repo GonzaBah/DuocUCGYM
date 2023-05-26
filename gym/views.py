@@ -36,7 +36,6 @@ def signup_view(request):
         lastname2 = signup_form.cleaned_data.get('apellido2')
         password = signup_form.cleaned_data.get('password')
         
-        print(rut + email + name + lastname1 + lastname2)
         user = get_user_model().objects.create(
             rut=rut,
             correo=email,
@@ -52,6 +51,29 @@ def signup_view(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+def socio_view(request):
+    try:
+        ficha_form = FormFichaUsuario(request.POST or None)
+        if ficha_form.is_valid():
+            rut = ficha_form.cleaned_data.get('rut')
+            if not get_user_model().objects.get(rut=rut) and not get_user_model().objects.get(rut=rut).is_sub:
+                return redirect('ficha_socio')
+            user = get_user_model().objects.get(rut=rut)
+            socio = Socio.objects.get(usuario = user)
+            altura = ficha_form.cleaned_data.get('altura')
+            peso = ficha_form.cleaned_data.get('peso')
+            fechaNac = ficha_form.cleaned_data.get('fechaNac')
+            porcGrasa = ficha_form.cleaned_data.get('porcGrasa')
+            observaciones = ficha_form.cleaned_data.get('observaciones')
+            socio = Socio.objects.update(idSocio=socio.idSocio, usuario=user, altura=altura, peso=peso, porcGrasaCorporal=porcGrasa, observaciones=observaciones)
+            socio.save()
+            user.fechaNacimiento = fechaNac
+            user.save()
+
+            return redirect('docente')
+        return redirect('ficha_socio')
+    except:
+        return redirect('docente')
 
 def index(request):
     return render(request, 'duoc_gym/index.html')
@@ -69,7 +91,11 @@ def socio_reg(request):
     return render(request, 'duoc_gym/sociosRegistrarse.html')
 
 def fic_socio(request):
-    return render(request, 'duoc_gym/fichaSocio.html')
+    sucursales = Sucursal.objects.all()
+    contexto = {
+        "sucursales": sucursales
+    }
+    return render(request, 'duoc_gym/fichaSocio.html', contexto)
 
 def planes_alumnos(request):  
     contexto = {

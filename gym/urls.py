@@ -40,5 +40,5 @@ urlpatterns = [
     path('miplan/<str:user>', list_plan, name='l_plan'),
  
     path('agr_socio', agregar_socio, name='a_socio'),
-    
+    path('socio_auth', socio_view, name='socio_auth')
  ]
