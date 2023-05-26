@@ -14,7 +14,10 @@ tipoprofesor5.save()
 tipoprofesor5 = TipoProfesor(nombreTipoProfesor='Tenis de mesa')
 tipoprofesor5.save()
 
+from gym.models import TipoUsuario
 
+tipoAlumno = TipoUsuario(nombreTipo='Funcionario')
+tipoAlumno.save()
 
 from gym.models import Plan
 

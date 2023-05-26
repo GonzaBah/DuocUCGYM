@@ -81,7 +81,7 @@ DATABASES={
     'ENGINE':'django.db.backends.oracle',
     'NAME':'wcct8xkg1dn2t4pc_high',
     'USER':'ADMIN', 
-    'PASSWORD': '8ENWFPhufhJbg9Jz' ,#Please provide the db password here
+    'PASSWORD': '8ENWFPhufhJbg9Jz' ,    #Please provide the db password here
     }
 }
 
