@@ -64,17 +64,23 @@ def lista_alumnos(request):
 def socio_reg(request):
     return render(request, 'duoc_gym/sociosRegistrarse.html')
 
-def planes_alumnos(request):
+def planes_alumnos(request):  
     return render(request, 'duoc_gym/planesAlumnos.html')
 
 def desc_plan(request):
     return render(request, 'duoc_gym/descripcionPlan.html')
 
 def list_plan(request):
-    return render(request, 'duoc_gym/planesMiPlan.html')
+    return render(request, 'duoc_gym/planesMiplan.html')
 
 def mantenedor_planes(request):
-    return render(request, 'duoc_gym/mantenedoPlanes.html' )
+    return render(request, 'duoc_gym/mantenedorPlanes.html' )
 
 def prepa_alumno(request):
     return render(request, 'duoc_gym/preparacionAlumno.html')
+
+def agregar_socio(request):
+    return render(request, 'duoc_gym/agregarSocio.html')
+
+def mantenedor_maquinas(request):
+    return render(request,'duoc_gym/inventarioMaquinas.html')
