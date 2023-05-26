@@ -24,10 +24,17 @@
                     <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
                     <div class="flex flex-no-wrap">
                         <div class="w-full flex flex-wrap">
-                            <div class="flex justify-between w-full">
+                            <div class="flex justify-between items-center w-full">
                                 <label class="bg-yellow-500 py-2 pl-40 font-bold pr-1 text-4xl sm:text-md mt-10">
                                     {% block tituloBar %}{% endblock tituloBar %}
                                 </label>
+                                <div class="flex justify-end mr-5">
+                                    {% if user.is_authenticated %}
+                                    <label class="flex text-lg items-center">{{ user.nombre }} {{ user.apellido1 }}</label>
+                                    <img class="ml-3 w-12 h-12" src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
