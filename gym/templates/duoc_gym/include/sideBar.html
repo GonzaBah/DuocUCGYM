@@ -10,10 +10,10 @@
             <ul class="pt-8">
                 {% if user.is_authenticated %}
                     {% if user.tipoUsuario.idTipo == 3 %}
-                        {% if isSub %}
+                        {% if user.is_sub %}
                         <li
                             class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 w-full text-white hover:text-yellow-500">
-                            <a class="capitalize text-1xl truncate" href="{% url 'l_plan' %}">Mi Plan</a>
+                            <a class="capitalize text-1xl truncate" href="{% url 'l_plan' user %}">Mi Plan</a>
                         </li>
                         {% else %}
                         <li

@@ -46,6 +46,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=3)
     fechaNacimiento = models.DateField(verbose_name="Fecha de Nacimiento", null=True)
 
+    is_sub = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     
     # slug = models.SlugField(max_length=255, default="", null=False, unique=True)

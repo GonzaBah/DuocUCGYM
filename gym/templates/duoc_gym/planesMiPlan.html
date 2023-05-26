@@ -15,15 +15,31 @@ Mi Plan
     <div class="flex w-full">
         <div class="flex flex-wrap w-full justify-between">
             <div class="flex justify-start items-center">
-                <label class="text-sm">NOMBRE</label>
+                <label class="text-sm">{{ user.nombre }}</label>
                 <img class="ml-3 w-12 h-12" src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="">
             </div>
             <div class="flex justify-end items-center">
+                {% if user.is_sub %}
+                <div class="bg-gray-300 p-4 rounded-lg ">
+                    <div class="flex flex-wrap items-center">
+                        <img src="{% static 'duoc_gym/resources/ejercicio_custom.avif' %}" alt="Avatar"
+                        class="card-img-top">
+                        <div class="container">
+                            <div class="card-body">
+                                <label class="card-title text-lg font-bold">{{ miPlan.nombrePlan }}</label><br/>
+                                <label class="card-text text-md my-4">{{ miPlan.descripcionPlan }}</label><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {% else %}
                 <h4>Aún no tiene un plan. ¿Desea inscribirse?</h4>
                 <button
                     class="ml-3 bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
                     <a href="{% url 'plan' %}">Suscribirme</a>
                 </button>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -104,6 +104,11 @@ def mantenedor_maquinas(request):
 def suscribir_plan(request, user, plan):
     plan = Plan.objects.get(idPlan = plan)
     user = get_user_model().objects.get(correo = user)
-    socio = Socio.objects.create(plan=plan, usuario=user)
-    socio.save()
-    return render(request, 'duoc_gym/index.html')
+    if (user.is_sub == False):
+        user.is_sub = True
+        socio = Socio.objects.create(plan=plan, usuario=user)
+        socio.save()
+        user.save()
+        return redirect('index')
+    else:
+        return redirect('plan')
