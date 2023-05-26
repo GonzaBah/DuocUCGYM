@@ -22,6 +22,7 @@ class CustomAccountManager(BaseUserManager):
     def create_superuser(self, correo, nombre, apellido1, rut, password, **other_fields):
         rol_admin = TipoUsuario.objects.get(idTipo=1)
         other_fields.setdefault('tipoUsuario', rol_admin)
+        other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
 
         if other_fields.get('is_superuser') is not True:
@@ -45,6 +46,8 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=1)
     fechaNacimiento = models.DateField(verbose_name="Fecha de Nacimiento", null=True)
 
+    is_staff = models.BooleanField(default=False)
+    
     # slug = models.SlugField(max_length=255, default="", null=False, unique=True)
     
     foto = models.ImageField(null=True, upload_to="\img", default="\img\avatar-redondo.png", verbose_name="Foto del Usuario")
