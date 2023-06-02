@@ -73,12 +73,10 @@ class Funcionario(models.Model):
     cargo = models.CharField(max_length=20, verbose_name="Cargo del Funcionario")
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
     tipo = models.ForeignKey(TipoFuncionario, on_delete=models.SET_DEFAULT, default=1)
-
 class Sucursal(models.Model):
     idSucursal = models.AutoField(primary_key=True, verbose_name="ID de la Sucursal")
     nombreSucursal = models.CharField(max_length=30, verbose_name="Nombre del Sucursal")
     direccionSucursal = models.CharField(max_length=50, verbose_name="Dirección de la Sucursal")
-
 class Plan(models.Model):
     idPlan = models.AutoField(primary_key=True, verbose_name="ID del Plan")
     nombrePlan = models.CharField(max_length=30, verbose_name="Nombre del Plan")
@@ -86,7 +84,7 @@ class Plan(models.Model):
     descripcionPlan = models.CharField(max_length=500, verbose_name="Descripcion del Plan", null=True)
     sucursalLibre = models.BooleanField(verbose_name="Sucursal Libre")
     precio = models.IntegerField(verbose_name="Precio del plan", default=1)
-
+    inUse = models.BooleanField(default=True)
 class Socio(models.Model):
     idSocio = models.AutoField(primary_key=True, verbose_name="ID del Socio")
     altura = models.IntegerField(verbose_name="Altura del Socio", null=True)
@@ -97,38 +95,44 @@ class Socio(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=1)
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1, null=True)
     titularPlan = models.CharField(max_length=30, verbose_name="Titular del Plan", null=True)
-
 class Equipamiento(models.Model):
     idEquipamiento = models.AutoField(primary_key=True, verbose_name="ID del Equipamiento")
     nombreEquipamiento = models.CharField(max_length=30, verbose_name="Nombre del Equipamiento")
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
-
 class Reserva(models.Model):
     idReserva = models.AutoField(primary_key=True, verbose_name="ID de Reserva")
-    fechaReserva = models.DateField(verbose_name="Fecha de la Reserva")
-    horaReserva = models.TimeField(verbose_name="Hora de la Reserva")
     socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
-    equipamiento = models.ForeignKey(Equipamiento, on_delete=models.SET_DEFAULT, default=1)
-
-class TipoProfesor(models.Model):
-    idTipoProfesor = models.AutoField(primary_key=True, verbose_name="ID del Tipo de Profesor")
-    nombreTipoProfesor = models.CharField(max_length=30, verbose_name="Nombre del Tipo de Profesor")
-
+    fechaClase= models.DateField(verbose_name="Fecha de la Reserva")
+    horaClase = models.TimeField(verbose_name="Hora de la Reserva")
 class Profesor(models.Model):
     idProfesor = models.AutoField(primary_key=True, verbose_name="ID del Profesor")
     fechaIngreso = models.DateField(verbose_name="Fecha de Ingreso")
     fechaContrato = models.DateField(verbose_name="Fecha de Contrato")
-    tipo = models.ForeignKey(TipoProfesor, on_delete=models.SET_DEFAULT, default=1)
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
-
 class Deporte(models.Model):
     idDeporte = models.AutoField(primary_key=True, verbose_name="ID del Deporte")
     nombreDeporte = models.CharField(max_length=30, verbose_name="Nombre del Deporte")
-
 class DeporteProfesor(models.Model):
     profesor = models.ForeignKey(Profesor, on_delete=models.SET_DEFAULT, default=1)
     deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=1)
-
-class Sede(models.Model):
-    idSede = models.AutoField(primary_key=True, verbose_name="ID de la sede")
-    nombreSede = models.CharField(max_length=30, verbose_name="Nombre del sede")
+class Curso(models.Model):
+    idCurso = models.AutoField(primary_key=True, verbose_name="ID del curso")
+    nombreCurso = models.CharField(max_length=30, verbose_name="Nombre del curso")
+    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
+    profesor = models.ForeignKey(Profesor, on_delete=models.SET_DEFAULT, default=1)
+    deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=1)
+    cupo = models.IntegerField(verbose_name="tope de alumnos en la clase", default=30)
+    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
+class CursoReserva(models.Model):
+    idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
+    reserva = models.ForeignKey(Reserva, on_delete=models.SET_DEFAULT, default=1)
+    curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)
+class Cancha(models.Model):
+    idCancha = models.AutoField(primary_key=True, verbose_name="ID del cancha")
+    deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=1)
+    cupo = models.IntegerField(verbose_name="tope de alumnos en la cancha", default=30)    
+    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
+class CanchasReserva(models.Model):
+    idCanchareserva = models.AutoField(primary_key=True, verbose_name="ID del cancha reserva")
+    reserva = models.ForeignKey(Reserva, on_delete=models.SET_DEFAULT, default=1)
+    cancha = models.ForeignKey(Cancha, on_delete=models.SET_DEFAULT, default=1)
