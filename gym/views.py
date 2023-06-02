@@ -164,8 +164,12 @@ def prepa_alumno(request):
 def agregar_socio(request):
     return render(request, 'duoc_gym/agregarSocio.html')
 
+
 def mantenedor_maquinas(request):
-    return render(request,'duoc_gym/inventarioMaquinas.html')
+    contexto = {
+        "listaMaquinas": Equipamiento.objects.all()
+    }
+    return render(request,'duoc_gym/inventarioMaquinas.html', contexto)
 
 def suscribir_plan(request, user, plan):
     plan = Plan.objects.get(idPlan = plan)

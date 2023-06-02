@@ -13,7 +13,7 @@ def rand_slug():
 class CustomAccountManager(BaseUserManager):
     def create_user(self, correo, nombre, apellido1, rut, password, **other_fields):
         if not correo:
-            raise ValueError(_('Error: Falta un correo'))
+            raise ValueError(('Error: Falta un correo'))
         correo = self.normalize_email(correo)
         user = self.model(correo=correo, nombre=nombre, apellido1=apellido1, rut=rut, **other_fields)
         user.set_password(password)

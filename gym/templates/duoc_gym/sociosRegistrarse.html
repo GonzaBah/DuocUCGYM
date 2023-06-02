@@ -12,66 +12,88 @@ Registrarse
 
 {% block cuerpo %}
 <div class="flex flex-wrap justify-center w-full">
-    <form id="signup" action="{% url 'signup_auth' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="flex mx-2 rounded-md">
-            <div class="flex flex-wrap justify-start w-full">
-                <div class="text-2xl font-bold w-full">
-                    <label>Datos Personales</label>
+    <div class="flex flex-wrap justify-center justify-items-center bg-white rounded-md mt-4  ">
+        <form id="signup" action="{% url 'signup_auth' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="flex justify-items-center p-10">
+
+                <div class="flex  justify-center ">
+
+                    <div class="flex flex-wrap justify-start w-full mx-2 px-2">
+                         
+                        <div class="text-2xl font-bold">
+                            <label>Datos Personales</label>
+                        </div>
+                        <div class="flex-col flex-wrap justify-evenly w-full ">
+                            <div class="py-2">
+                                <label
+                                    class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">RUT</label>
+                                {{ signupForm.rut }}
+                            </div>
+                    
+                            <div class="py-2">
+                                <label
+                                    class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Nombre</label>
+                                {{ signupForm.nombre }}
+                            </div>
+                    
+                            <div class="py-2">
+                                <label
+                                    class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Primer Apellido</label>
+                                {{ signupForm.apellido1 }}
+                            </div>
+                    
+                            <div class="py-2">
+                                <label
+                                    class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Segundo Apellido</label>
+                                {{ signupForm.apellido2 }}
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+
+                    <div class="flex-col  flex-wrap justify-end w-full mx-2 px-2">
+                        <div class=" text-2xl font-bold  ">
+                            <label>Datos Inicio de Sesión</label>
+                        </div>
+                        <div class="flex-col flex-wrap justify-evenly w-full">
+                            <div class="py-2">
+                                <label
+                                class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                for="">Correo</label>
+                                {{ signupForm.correo }}
+                            </div>
+                            <div class="py-2">
+                                <label
+                                class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                for="">Contraseña</label>
+                                {{ signupForm.password }}
+                            </div>
+                    
+                            <div class="py-2">
+                                <label
+                                    class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Repetir Contraseña</label>
+                                {{ signupForm.password2 }}
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                  
+                    
                 </div>
-                <div class="flex flex-wrap justify-evenly w-full">
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">RUT</label>
-                        {{ signupForm.rut }}
-                    </div>
-            
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Nombre</label>
-                        {{ signupForm.nombre }}
-                    </div>
-            
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Primer Apellido</label>
-                        {{ signupForm.apellido1 }}
-                    </div>
-            
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Segundo Apellido</label>
-                        {{ signupForm.apellido2 }}
-                    </div>
-                </div>
-                <div class="text-2xl font-bold w-full mt-5">
-                    <label>Datos Inicio de Sesión</label>
-                </div>
-                <div class="flex flex-wrap justify-evenly w-full">
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Correo</label>
-                        {{ signupForm.correo }}
-                    </div>
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Contraseña</label>
-                        {{ signupForm.password }}
-                    </div>
-            
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Repetir Contraseña</label>
-                        {{ signupForm.password2 }}
-                    </div>
-                </div>
+
+               
+
+            </div>
+            <div class="flex justify-center mx-10">
                 <div class="flex justify-between w-full">
                     <button id='btnSubmit' type='submit'
                         class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
@@ -82,10 +104,17 @@ Registrarse
                         Borrar 
                     </button>
                 </div>
+
             </div>
-            
-        </div>
-    </form>
+         
+
+            <div class="pt-2">
+                
+            </div>
+        </form>
+    </div>
+
+    
 </div>
 {% comment %} <script>
     document.addEventListener("btnSubmit", function(event) {
