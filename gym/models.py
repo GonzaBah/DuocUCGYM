@@ -85,16 +85,39 @@ class Plan(models.Model):
     sucursalLibre = models.BooleanField(verbose_name="Sucursal Libre")
     precio = models.IntegerField(verbose_name="Precio del plan", default=1)
     inUse = models.BooleanField(default=True)
+
+
+
+
 class Socio(models.Model):
     idSocio = models.AutoField(primary_key=True, verbose_name="ID del Socio")
     altura = models.IntegerField(verbose_name="Altura del Socio", null=True)
     peso = models.FloatField(verbose_name="Peso del Socio", null=True)
-    porcGrasaCorporal = models.IntegerField(verbose_name="Porc. Grasa Corporal del Socio", default=0)
-    observaciones = models.CharField(max_length=500, verbose_name="Observaciones", null=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
     plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=1)
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1, null=True)
     titularPlan = models.CharField(max_length=30, verbose_name="Titular del Plan", null=True)
+    direccion = models.CharField(max_length=125, verbose_name="Direccion", null=True)
+    comuna = models.CharField(max_length=35, verbose_name="comuna", null=True)
+    ciudad = models.CharField(max_length=35, verbose_name="ciudad", null=True)
+    gSanguineo = models.CharField(max_length=3, verbose_name="Grupo sanguineo", null=True)
+    emergenciacontacto = models.CharField(max_length=35, verbose_name="Nombre de contacto a llamar en caso d emergencia", null=True)
+    emergenciacontactoTel = models.CharField(max_length=10, verbose_name="Telefono de contacto a llamar en caso d emergencia", null=True)
+    pLesion =  models.BooleanField(default=False, verbose_name="Posee lesiones?")
+    dLesion = models.CharField(max_length=200, verbose_name="Descripcion lesiones", null=True)
+    pEnfer =  models.BooleanField(default=False,verbose_name="Posee enfermedades prexistentes?")
+    dEnfer =  models.CharField(max_length=200, verbose_name="Descripcion enfermedades prexistentes", null=True)
+    pDArtic =  models.BooleanField(default=False,verbose_name="Posee dolores en las articulaciones?")
+    dDArtic =  models.CharField(max_length=200, verbose_name="Descripcion dolores en las articulaciones?", null=True)
+    pDeporte =  models.BooleanField(default=False,verbose_name="Practica algun deporte?")
+    nDeporte =  models.IntegerField(default=0, verbose_name="Veces a la semana que hace deportes", null=True)
+    diabetico =  models.BooleanField(default=False,verbose_name="es usted diabetico?")
+    asmatico =  models.BooleanField(default=False,verbose_name="es usted asmatico?")
+    epileptico =  models.BooleanField(default=False,verbose_name="es usted epiliptico?")
+    fumador =  models.BooleanField(default=False,verbose_name="es usted fumador?")
+
+
+
 class Equipamiento(models.Model):
     idEquipamiento = models.AutoField(primary_key=True, verbose_name="ID del Equipamiento")
     nombreEquipamiento = models.CharField(max_length=30, verbose_name="Nombre del Equipamiento")
