@@ -84,7 +84,6 @@ class Plan(models.Model):
     descripcionPlan = models.CharField(max_length=500, verbose_name="Descripcion del Plan", null=True)
     sucursalLibre = models.BooleanField(verbose_name="Sucursal Libre")
     precio = models.IntegerField(verbose_name="Precio del plan", default=1)
-    inUse = models.BooleanField(default=True)
 class Socio(models.Model):
     idSocio = models.AutoField(primary_key=True, verbose_name="ID del Socio")
     altura = models.IntegerField(verbose_name="Altura del Socio", null=True)

@@ -18,7 +18,10 @@ def login_view(request):
         user = authenticate(request, correo=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            if(user.tipoUsuario == 1 or user.tipoUsuario == 2):
+                return redirect('docente')
+            else:
+                return redirect('index')
         else:
             messages.error(request, "Error: Usuario o contraseña inválidos (╬ Ò﹏Ó)!")
             return redirect('login')
@@ -74,6 +77,12 @@ def socio_view(request):
     except:
         return redirect('lista')
 
+def borrar_socio(request, id):
+    socio = Socio.objects.get(idSocio=id)
+    socio.delete()
+
+    return redirect('lista')
+
 def index(request):
     return render(request, 'duoc_gym/index.html')
 
@@ -120,7 +129,34 @@ def list_plan(request, user):
     return render(request, 'duoc_gym/planesMiPlan.html', contexto)
 
 def mantenedor_planes(request):
-    return render(request, 'duoc_gym/mantenedorPlanes.html' )
+    contexto = {
+        "listaPlanes": Plan.objects.all()
+    }
+    return render(request, 'duoc_gym/mantenedorPlanes.html', contexto )
+
+def borrar_plan(request, id):
+    plan = Plan.objects.get(idPlan=id)
+    plan.delete()
+
+    return redirect('m_planes')
+
+def agregar_plan(request):
+    return render(request, 'duoc_gym/agregarPlan.html')
+
+def plan_view(request):
+    try:
+        plan_form = FormRegisPlan(request.POST or None)
+        if plan_form.is_valid():
+            nombre = plan_form.cleaned_data.get('nombre')
+            descripcion = plan_form.cleaned_data.get('descripcion')
+            sucursalLibre = plan_form.cleaned_data.get('sucursalLibre')
+            precio = plan_form.cleaned_data.get('precio')
+            
+            plan = Plan.objects.create(nombrePlan=nombre, estadoPlan=True, descripcionPlan=descripcion, sucursalLibre=sucursalLibre, precio=precio)
+            plan.save()
+        return redirect('m_planes')
+    except:
+        return redirect('agregar_p')
 
 def prepa_alumno(request):
     return render(request, 'duoc_gym/preparacionAlumno.html')

@@ -162,11 +162,42 @@ class FormFichaUsuario(forms.Form):
         )
     )
 
-
-
-
-
-
-
-
-
+class FormRegisPlan(forms.Form):
+    nombre = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'id': 'name',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    descripcion = forms.CharField(
+        max_length=200,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'desc',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    sucursalLibre = forms.BooleanField(
+        widget=forms.TextInput(
+            attrs={
+                'id': 'sucursalLibre',
+                'type': 'checkbox',
+                'class': "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            }
+        )
+    )
+    precio = forms.IntegerField(
+        widget=forms.TextInput(
+            attrs={
+                'id': 'precio',
+                'type': 'number',
+                'class': inputClass
+            }
+        )
+    )

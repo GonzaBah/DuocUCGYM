@@ -18,7 +18,7 @@ Selecciona un Plan
     <div class="flex flex-wrap">
         <div class="flex flex-wrap justify-between">
             {% for plan in listaPlanes %}
-            
+            {% if plan.estadoPlan %}
             <div class="card w-3/12 px-2">
                     {% if user.is_authenticated %}
                     <form action="{% url 'suscribir_plan' user plan.idPlan  %}" class="bg-gray-300 p-4 rounded-lg ">
@@ -38,13 +38,15 @@ Selecciona un Plan
                         </div>
                         
                         <button type="submit"
-                            class="bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-full focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                            class="bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-full focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"
+                        >
                             Suscribirse
                         <button>
-                        </form>
-                    </div>
-                {% endfor %}
-            </div>
+                    </form>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
     <!-- <input href="" type="button"  onclick="habilitarBoton();" value="Siguiente" disabled> -->
 </div>
