@@ -41,7 +41,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     rut = models.CharField(primary_key=True, max_length=12, verbose_name="Rut del Usuario")
     nombre = models.CharField(max_length=35, verbose_name="Nombre del Usuario")
     apellido1 = models.CharField(max_length=30, verbose_name="Primer apellido del Usuario")
-    apellido2 = models.CharField(max_length=30, verbose_name="Segundo apellido del Usuario", null=True)
+    apellido2 = models.CharField(max_length=30, verbose_name="Segundo apellido del Usuario", null=True )
     correo = models.EmailField(verbose_name="Correo del Usuario", unique=True)
     tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=3)
     fechaNacimiento = models.DateField(verbose_name="Fecha de Nacimiento", null=True)
@@ -121,7 +121,6 @@ class Curso(models.Model):
     profesor = models.ForeignKey(Profesor, on_delete=models.SET_DEFAULT, default=1)
     deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=1)
     cupo = models.IntegerField(verbose_name="tope de alumnos en la clase", default=30)
-    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
 class CursoReserva(models.Model):
     idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
     reserva = models.ForeignKey(Reserva, on_delete=models.SET_DEFAULT, default=1)

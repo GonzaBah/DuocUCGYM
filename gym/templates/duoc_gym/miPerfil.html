@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block titulo %}
-<title>Ficha de Ingreso</title>
+<title>Mi Perfil - {{ user.nombre }} {{ user.apellido1 }}</title>
 {% endblock titulo %}
 
 {% block tituloBar %}
-Ficha de Ingreso
+Mi Perfil
 {% endblock tituloBar %}
 
 {% block cuerpo %}
@@ -16,64 +16,34 @@ Ficha de Ingreso
         {% csrf_token %}
         <div class="flex mx-2 rounded-md">
             <div class="flex flex-wrap justify-start w-full">
-                <div class="text-2xl font-bold w-full p-5">
-                    <label>Medidas</label>
+                <div class="flex justify-center w-5/12 p-10">
+                    <img src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="" />
                 </div>
-                <div class="flex flex-wrap justify-evenly w-full">
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">RUT</label>
-                        {{ fichaForm.rut }}
+                <div class="flex justify-start w-7/12">
+                    <div class="font-bold w-full p-5">
+                        <label class="text-2xl">{{ user.nombre }} {{ user.apellido1 }} {{ user.apellido2 }}</label>
+                        <div class="flex flex-wrap justify-evenly w-full mt-5">
+                            <div class="w-full py-2">
+                                <label
+                                    class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">RUT</label>
+                                <label class="w-full">{{ user.rut }}</label>
+                            </div>
+                            <div class="w-full py-2">
+                                <label
+                                    class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Correo Electrónico</label>
+                                {{ user.correo }}
+                            </div>
+                    
+                            <div class="w-full py-2">
+                                <label
+                                    class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Fecha de Nacimiento</label>
+                                {{ user.fechaNacimiento }}
+                            </div>
+                        </div>
                     </div>
-            
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Altura</label>
-                        {{ fichaForm.altura }}
-                    </div>
-            
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Peso</label>
-                        {{ fichaForm.peso }}
-                    </div>
-            
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Porcentaje de grasa corporal</label>
-                        {{ fichaForm.porcGrasa }}
-                    </div>
-                </div>
-                <div class="flex flex-wrap justify-evenly w-full">
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Fecha de nacimiento</label>
-                        {{ fichaForm.fechaNac }}
-                    </div>
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Sucursal</label>
-                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="" selected disabled>Seleccione</option>
-                                {% for sucursal in sucursales %}
-                                <option value="{{sucursal.id}}">{{ sucursal.nombreSucursal }}</option>
-                                {% endfor %}
-                            </select>
-                    </div>
-                    <div class="py-2">
-                        <label
-                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Observaciones</label>
-                        {{ fichaForm.observaciones }}
-                    </div>
-                </div>
-            </div>         
                 </div>
                 <div class="flex justify-between w-full">
                     <button id='btnSubmit' type='submit'

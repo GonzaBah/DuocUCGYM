@@ -179,5 +179,10 @@ def suscribir_plan(request, user, plan):
     else:
         return redirect('plan')
 
-def mi_perfil(request):
-    return render(request,'duoc_gym/miPerfil.html' )
+@login_required(login_url='login')
+def mi_perfil(request, user):
+    usuario = Usuario.objects.get(correo=user)
+    contexto = {
+        "socioInfo": Socio.objects.get(usuario=usuario)
+    }
+    return render(request,'duoc_gym/miPerfil.html', contexto)
