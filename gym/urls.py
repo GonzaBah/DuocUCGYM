@@ -24,7 +24,7 @@ urlpatterns = [
     path('signup_auth', signup_view, name='signup_auth'),
     path('socios_reg', socio_reg, name='socios_registrarse'),
     path('suscribir_plan/<str:user>/<int:plan>', suscribir_plan, name='suscribir_plan'),
-    path('mi_perfil/<str:user>',mi_perfil, name='mi_perfil'),
+    path('mi_perfil',mi_perfil, name='mi_perfil'),
 
     path('docente', index_docente, name='docente'),
     path('lista_alumnos', lista_alumnos, name='lista'),
@@ -43,5 +43,8 @@ urlpatterns = [
 
     path('prepa_alumno',prepa_alumno, name='p_alumno'),
     path('descripcion_plan', desc_plan, name='d_plan'),
-    path('miplan/<str:user>', list_plan, name='l_plan')
+    path('miplan/<str:user>', list_plan, name='l_plan'),
+
+    path('m_alumno', mod_alumno, name='mAlumno'),
+    path('m_perfil_auth', mod_perfil_auth, name='m_perfil_auth'),
  ]

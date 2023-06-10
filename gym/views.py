@@ -7,6 +7,7 @@ from .forms import *
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.shortcuts import redirect, render
 import os
+from django.contrib import messages
 
 # Create your views here.
 
@@ -54,6 +55,10 @@ def signup_view(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+def eliminar(request,id):
+    messages.success(request, "desea eliminar nombreEntidad?")
+
 
 def socio_view(request):
     try:
@@ -184,9 +189,73 @@ def suscribir_plan(request, user, plan):
         return redirect('plan')
 
 @login_required(login_url='login')
-def mi_perfil(request, user):
-    usuario = Usuario.objects.get(correo=user)
+def mi_perfil(request):
+    usuario = Usuario.objects.get(correo=request.user)
+
+    try:
+        contexto = {
+            "socioInfo": Socio.objects.get(usuario=usuario)
+        }
+        return render(request,'duoc_gym/miPerfil.html', contexto)
+    except:
+        return render(request, 'duoc_gym/miPerfil.html')
+
+@login_required(login_url='login')
+def mod_alumno(request):
     contexto = {
-        "socioInfo": Socio.objects.get(usuario=usuario)
+        "userInfo": Usuario.objects.get(correo=request.user)
     }
-    return render(request,'duoc_gym/miPerfil.html', contexto)
+    return render(request, 'duoc_gym/frmAlumnosModificar.html', contexto)
+
+def mod_perfil_auth(request):
+
+    user = get_user_model().objects.get(rut=request.user.rut)
+  
+    user.rut = request.POST.get('user.rut')
+    user.email = request.POST.get('user.correo')
+    user.name = request.POST.get('user.nombre')
+    user.lastname1 = request.POST.get('user.apellido1')
+    user.lastname2 = request.POST.get('user.apellido2')
+    
+
+   
+    user.save()
+    return redirect('mi_perfil')
+
+def mod_plan_auth(request):
+    
+  
+    rut = request.POST.get('rut')
+    email = request.POST.get('correo')
+    name = request.POST.get('nombre')
+    lastname1 = request.POST.get('apellido1')
+    lastname2 = request.POST.get('apellido2')
+    
+    user = get_user_model().objects.update_or_create(
+        rut=rut,
+        correo=email,
+        nombre=name,
+        apellido1=lastname1,
+        apellido2=lastname2
+    )
+    user.save()
+    return redirect('mi_perfil')
+
+def mod_inventario_auth(request):
+    
+  
+    rut = request.POST.get('rut')
+    email = request.POST.get('correo')
+    name = request.POST.get('nombre')
+    lastname1 = request.POST.get('apellido1')
+    lastname2 = request.POST.get('apellido2')
+    
+    user = get_user_model().objects.update_or_create(
+        rut=rut,
+        correo=email,
+        nombre=name,
+        apellido1=lastname1,
+        apellido2=lastname2
+    )
+    user.save()
+    return redirect('miPerfil')

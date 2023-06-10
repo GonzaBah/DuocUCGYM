@@ -201,3 +201,47 @@ class FormRegisPlan(forms.Form):
             }
         )
     )
+
+# class FormModPerfil(forms.Form):
+#     rut = forms.CharField(
+#         max_length=12,
+#         widget=forms.TextInput(
+#             attrs={
+#                 'id': 'rut',
+#                 'type': 'text',
+#                 'class': inputClass
+#             }
+#         )
+#     )
+
+#     name = forms.CharField(
+#         max_length=12,
+#         widget=forms.TextInput(
+#             attrs={
+#                 'id': 'name',
+#                 'type': 'text',
+#                 'class': inputClass
+#             }
+#         )
+#     )
+
+#     lastname1 = forms.CharField(
+#         max_length=30,
+#         widget=forms.TextInput(
+#             attrs={
+#                 'id': 'apellido1',
+#                 'type': 'text',
+#                 'class': inputClass
+#             }
+#         )
+#     )
+
+#     correo = forms.EmailField(
+#         widget=forms.TextInput(
+#             attrs={
+#                 'id':'email',
+#                 'type': 'email',
+#                 'class': inputClass
+#             }
+#         )
+#     )
