@@ -47,4 +47,6 @@ urlpatterns = [
 
     path('m_alumno', mod_alumno, name='mAlumno'),
     path('m_perfil_auth', mod_perfil_auth, name='m_perfil_auth'),
+
+    path('rpt_planes', rpt_planes, name =  'rpt_planes'),
  ]

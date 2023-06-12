@@ -259,3 +259,9 @@ def mod_inventario_auth(request):
     )
     user.save()
     return redirect('miPerfil')
+
+def rpt_planes(request):
+    contexto = {
+        "listaPlanes": Plan.objects.all()
+    }
+    return render(request, 'duoc_gym/reportePlanes.html',contexto)
