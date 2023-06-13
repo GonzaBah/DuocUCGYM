@@ -20,7 +20,7 @@ class CustomAccountManager(BaseUserManager):
         user.save()
         return user
     def create_superuser(self, correo, nombre, apellido1, rut, password, **other_fields):
-        rol_admin = TipoUsuario.objects.get(idTipo=1)
+        rol_admin = TipoUsuario.objects.get(nombreTipo="Supervisor")
         other_fields.setdefault('tipoUsuario', rol_admin)
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
