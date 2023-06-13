@@ -12,8 +12,14 @@ admin.site.register(Plan)
 admin.site.register(Socio)
 admin.site.register(Equipamiento)
 admin.site.register(Reserva)
-admin.site.register(TipoProfesor)
 admin.site.register(Profesor)
 admin.site.register(Deporte)
 admin.site.register(DeporteProfesor)
-admin.site.register(Sede)
+admin.site.register(Curso)
+admin.site.register(CursoReserva)
+admin.site.register(Cancha)
+admin.site.register(CanchasReserva)
+
+
+
+

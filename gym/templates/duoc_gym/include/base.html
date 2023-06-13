@@ -20,9 +20,9 @@
                     {% include "duoc_gym/include/sideBar.html" %}
                 </div>
                 <!-- Sidebar ends -->
-                <div class="container xl:ml-60 sm:m-0 max-w-full bg-gray-200">
+                <div class="container  xl:ml-60 sm:m-0 max-w-full max-h-full bg-gray-200"><!-- Diseño fondo -->
                     <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
-                    <div class="flex flex-no-wrap">
+                    <div class="flex flex-no-wrap ">
                         <div class="w-full flex flex-wrap">
                             <div class="flex justify-between items-center w-full">
                                 <label class="bg-yellow-500 py-2 pl-40 font-bold pr-1 text-4xl sm:text-md mt-10">
@@ -30,7 +30,11 @@
                                 </label>
                                 <div class="flex justify-end mr-5">
                                     {% if user.is_authenticated %}
-                                    <label class="flex text-lg items-center">{{ user.nombre }} {{ user.apellido1 }}</label>
+                                    <div>
+                                        <label class="flex text-lg items-center">{{ user.nombre }} {{ user.apellido1 }}</label>
+                                        <a href="{% url 'logout' %}">Cerrar Sesión</a>
+                                    </div>
+                                    
                                     <img class="ml-3 w-12 h-12" src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="">
                                     {% endif %}
                                 </div>
@@ -38,8 +42,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap xl:m-10 my-5 mx-0 p-5 w-auto bg-gray-100 rounded-lg">
-                        {% block cuerpo %}{% endblock cuerpo %}
+                    <div  class="grid h-auto justify-items-center p-10">      <!-- post titulo y usuario configs (invisible) -->
+                        {% block cuerpo %}
+                        
+                        
+                        
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        {% if messages%}
+
+                            {% for m in messages %}
+
+                                <script>
+                                    Swal.fire({
+                                        "title": "EJEMPLO",
+                                        "text": "{{m}}",
+                                        "icon": "success"
+                                    })
+                                </script>
+
+                            {% endfor%}
+
+                        {% endif%}
+
+
+                        
+
+                        {% endblock cuerpo %}
                     </div>
                 </div>
             </div>

@@ -1,0 +1,44 @@
+{% extends "duoc_gym/include/base.html" %}
+{% extends "duoc_gym/include/mantenedores.html %"}
+{% load static %}
+
+{% block cuerpo %}
+
+<!--Sombreado Screen-->
+<div class="h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50">
+
+    <!--Modal-->
+    <div class="bg-white rounded sha w-1/3">
+        <!--Modal Header-->
+        <div class="border-b px-4 py-2">
+            <h3>Titulo</h3>
+        </div>
+        <!--Modal Body-->
+        <div class="p-3">
+            Mucho sexo
+        </div>
+
+        <div class="flex justify-end items-center w-100 border-t p-3">
+
+            <button class="bg-red-600 hover: bg-red-700 px-3 py-1 rounded text-white mr-1">Cancelar</button>
+
+            <button class="bg-blue-600 hover: bg-blue-700 px-3 py-1 rounded text-white ">Ok</button>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script>
+    const openModalButton = document.getElementById('open-modal-button');
+    const closeModalButton = document.getElementById('close-modal-button');
+    const modal = document.getElementById('modal');
+
+    openModalButton.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+    });
+
+    closeModalButton.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+</script>
+{% endblock %}

@@ -7,38 +7,53 @@
 {% endblock titulo %}
 
 {% block tituloBar %}
-Bienvenido NombreDocente
+Bienvenido {{ user.nombre }}
 {% endblock tituloBar %}
 
 {% block cuerpo %}
-<div class="container-fluid bg-gradient-to-t md:bg-gradient-to-b from-gray-500 to-gray-100 w-full h-full">
-    <div class="grid justify-items-center flex items-stretch bg-white mx-8 rounded-md">
-        
 
-        <div>
-            <button
-                class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
-                <a href="{% url 'lista' %}" class="texto_barra">Alumnos</a>
-            </button>
-        </div>
-        <div>
-            <button
-                class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
-                <a href="{% url 'm_planes' %}" class="texto_barra">Planes</a>
-            </button>
-        </div>
+<!-- container-fluid bg-gradient-to-t md:bg-gradient-to-b from-gray-500 to-gray-100 w-full h-full -->
 
-        <div>
-            <button
-                class="bg-gray-400 hover:bg-gray-500 p-3 text-xl my-2 rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
-                <a href="{% url 'm_maquinas' %}" class="texto_barra">Maquinas</a>
-            </button>
-        </div>
+<div class="flex flex-wrap justify-evenly max-h-80 w-full gap-8 mt-5 md:px-10 sm:px-2">
 
-        <label for="">Gestion de recintos</label>
-        <label for="">Gestion de Clases</label>
-        <label for="">Gestion de Rutinas</label>
+    <div class="w-96 justify-items-center bg-white rounded-lg transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 align-middle overflow-x-auto scroll-smooth" >
+      <a href="{% url 'lista' %}">
+        <!-- <img  src="../../static/duoc_gym/resources/carrusel/carrusel3.jpg" alt=""> -->
+        <div class="bg-local bg-auto bg-cover bg-center h-4/6 w-full rounded-md pt-10  " style="background-image: url(../../static/duoc_gym/resources/WALLPAPERS/docente/wDocenteAlumnos.jpg)">
+          <div class="mt-44 mb-5 bg-white h-auto">
+            <div class="p-5 flex justify-center whitespace-normal w-full font-bold text-2xl -pt-5">
+              Lista Alumnos
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
+  
+    <!-- <div class=" w-96 justify-items-center bg-white rounded-md transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 align-middle overflow-x-auto scroll-smooth">
+      <a href="{% url 'm_planes' %}">
+        <div class="bg-local bg-auto bg-cover bg-center h-4/6 w-full rounded-md pt-10  " style="background-image: url(../../static/duoc_gym/resources/carrusel/carrusel4.jpg)">
+          <div class="mt-44 mb-5 bg-white h-auto">
+            <div class="p-5 flex justify-center whitespace-normal w-full font-bold text-2xl -pt-5">
+              Lista Planes
+            </div>
+          </div>
+        </div>
+      </a>
+    </div> -->
 
-</div>
+    <div class=" w-96 justify-items-center bg-white rounded-md transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 align-middle overflow-x-auto scroll-smooth">
+        <a href="{% url 'm_maquinas' %}">
+          <!-- <img  src="../../static/duoc_gym/resources/carrusel/carrusel3.jpg" alt=""> -->
+          <div class="bg-local bg-auto bg-cover bg-center h-4/6 w-full rounded-md pt-10  " style="background-image: url(../../static/duoc_gym/resources/carrusel/carrusel1.jpg)">
+            <div class="mt-44 mb-5 bg-white h-auto">
+              <div class="p-5 flex justify-center whitespace-normal w-full font-bold text-2xl -pt-5">
+                Lista Maquinas
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+  </div>
+
+
 {% endblock cuerpo %}

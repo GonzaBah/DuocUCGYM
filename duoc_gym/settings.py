@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import cx_Oracle
+cx_Oracle.init_oracle_client(lib_dir=r"C:\oracle\instantclient_21_10")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,6 +28,9 @@ SECRET_KEY = 'django-insecure--1i05=)3@ck)8=3$$cb4hl^nkf-_q7)q@szj0g4g5jnjobj@y%
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+#Messages
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage" 
 
 
 # Application definition
@@ -76,7 +80,7 @@ WSGI_APPLICATION = 'duoc_gym.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-""" DATABASES={
+DATABASES={
     'default':
     {
     'ENGINE':'django.db.backends.oracle',
@@ -84,7 +88,7 @@ WSGI_APPLICATION = 'duoc_gym.wsgi.application'
     'USER':'ADMIN', 
     'PASSWORD': '8ENWFPhufhJbg9Jz' ,    #Please provide the db password here
     }
-} """
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -1,0 +1,68 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Agregar Plan</title>
+{% endblock titulo %}
+
+{% block tituloBar %}
+Agregar Plan
+{% endblock tituloBar %}
+
+{% block cuerpo %}
+<div class="flex flex-wrap justify-center w-full bg-gray-100">
+    <form id="planAuth" action="{% url 'plan_auth' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="flex mx-2 rounded-md">
+            <div class="flex flex-wrap justify-start w-full">
+                <div class="text-2xl font-bold w-full p-5">
+                    <label>Datos del Plan</label>
+                </div>
+                <div class="flex flex-wrap justify-evenly w-full">
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Nombre</label>
+                        {{ planForm.nombre }}
+                    </div>
+            
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Descripcion</label>
+                        {{ planForm.descripcion }}
+                    </div>
+            
+                    <div class="py-2">
+                        {{ planForm.sucursalLibre }}
+                        <label
+                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Sucural Libre</label>
+                    </div>
+            
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Precio</label>
+                        {{ planForm.precio }}
+                    </div>
+                </div>
+            </div>         
+                </div>
+                <div class="flex justify-between w-full">
+                    <button id='btnSubmit' type='submit'
+                        class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                        Enviar
+                    </button>
+                    <button type="reset"
+                        class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                        Borrar 
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+</div>
+{% endblock cuerpo %}

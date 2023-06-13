@@ -7,6 +7,7 @@ from .forms import *
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.shortcuts import redirect, render
 import os
+from django.contrib import messages
 
 # Create your views here.
 
@@ -18,10 +19,13 @@ def login_view(request):
         user = authenticate(request, correo=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            if(user.tipoUsuario == 1 or user.tipoUsuario == 2):
+                return redirect('docente')
+            else:
+                return redirect('index')
         else:
             messages.error(request, "Error: Usuario o contraseña inválidos (╬ Ò﹏Ó)!")
-            return redirect('socios_registrarse')
+            return redirect('login')
 
     # messages.error(request, 'Formulario Invalido')
     return redirect('index')
@@ -36,7 +40,6 @@ def signup_view(request):
         lastname2 = signup_form.cleaned_data.get('apellido2')
         password = signup_form.cleaned_data.get('password')
         
-        print(rut + email + name + lastname1 + lastname2)
         user = get_user_model().objects.create(
             rut=rut,
             correo=email,
@@ -49,35 +52,116 @@ def signup_view(request):
         login(request, user)
         return redirect('index')
 
+def logout_view(request):
+    logout(request)
+    return redirect('index')
+
+def eliminar(request,id):
+    messages.success(request, "desea eliminar nombreEntidad?")
+
+
+def socio_view(request):
+    try:
+        ficha_form = FormFichaUsuario(request.POST or None)
+        if ficha_form.is_valid():
+            rut = ficha_form.cleaned_data.get('rut')
+            if not get_user_model().objects.get(rut=rut) and not get_user_model().objects.get(rut=rut).is_sub:
+                return redirect('ficha_socio')
+            user = get_user_model().objects.get(rut=rut)
+            socio = Socio.objects.get(usuario = user)
+            altura = ficha_form.cleaned_data.get('altura')
+            peso = ficha_form.cleaned_data.get('peso')
+            fechaNac = ficha_form.cleaned_data.get('fechaNac')
+            porcGrasa = ficha_form.cleaned_data.get('porcGrasa')
+            observaciones = ficha_form.cleaned_data.get('observaciones')
+            socio = Socio.objects.update(idSocio=socio.idSocio, usuario=user, altura=altura, peso=peso, porcGrasaCorporal=porcGrasa, observaciones=observaciones)
+            socio.save()
+            user.fechaNacimiento = fechaNac
+            user.save()
+        return redirect('lista')
+    except:
+        return redirect('lista')
+
+def borrar_socio(request, id):
+    socio = Socio.objects.get(idSocio=id)
+    socio.delete()
+
+    return redirect('lista')
+
 def index(request):
     return render(request, 'duoc_gym/index.html')
 
 def login_usuario(request):
     return render(request, 'duoc_gym/login.html')
 
+@login_required(login_url='login')
 def index_docente(request):
     return render(request, 'duoc_gym/indexDocente.html')
 
 def lista_alumnos(request):
-    return render(request, 'duoc_gym/listaAlumnos.html')
+    socios = Socio.objects.all()
+    contexto = {
+        "socios": socios
+    }
+    return render(request, 'duoc_gym/listaAlumnos.html', contexto)
 
 def socio_reg(request):
     return render(request, 'duoc_gym/sociosRegistrarse.html')
-def fic_socio(request):
-    return render(request, 'duoc_gym/fichaSocio.html')
 
+def fic_socio(request):
+    sucursales = Sucursal.objects.all()
+    contexto = {
+        "sucursales": sucursales
+    }
+    return render(request, 'duoc_gym/fichaSocio.html', contexto)
 
 def planes_alumnos(request):  
-    return render(request, 'duoc_gym/planesAlumnos.html')
+    contexto = {
+        "listaPlanes": Plan.objects.all()
+    }
+    return render(request, 'duoc_gym/planesAlumnos.html', contexto)
 
 def desc_plan(request):
     return render(request, 'duoc_gym/descripcionPlan.html')
 
-def list_plan(request):
-    return render(request, 'duoc_gym/planesMiplan.html')
+@login_required(login_url='login')
+def list_plan(request, user):
+    user = get_user_model().objects.get(correo = user)
+    socio = Socio.objects.get(usuario=user)
+    contexto = {
+        "miPlan": Plan.objects.get(idPlan=socio.plan.idPlan)
+    }
+    return render(request, 'duoc_gym/planesMiPlan.html', contexto)
 
 def mantenedor_planes(request):
-    return render(request, 'duoc_gym/mantenedorPlanes.html' )
+    contexto = {
+        "listaPlanes": Plan.objects.all()
+    }
+    return render(request, 'duoc_gym/mantenedorPlanes.html', contexto )
+
+def borrar_plan(request, id):
+    plan = Plan.objects.get(idPlan=id)
+    plan.delete()
+
+    return redirect('m_planes')
+
+def agregar_plan(request):
+    return render(request, 'duoc_gym/agregarPlan.html')
+
+def plan_view(request):
+    try:
+        plan_form = FormRegisPlan(request.POST or None)
+        if plan_form.is_valid():
+            nombre = plan_form.cleaned_data.get('nombre')
+            descripcion = plan_form.cleaned_data.get('descripcion')
+            sucursalLibre = plan_form.cleaned_data.get('sucursalLibre')
+            precio = plan_form.cleaned_data.get('precio')
+            
+            plan = Plan.objects.create(nombrePlan=nombre, estadoPlan=True, descripcionPlan=descripcion, sucursalLibre=sucursalLibre, precio=precio)
+            plan.save()
+        return redirect('m_planes')
+    except:
+        return redirect('agregar_p')
 
 def prepa_alumno(request):
     return render(request, 'duoc_gym/preparacionAlumno.html')
@@ -85,5 +169,99 @@ def prepa_alumno(request):
 def agregar_socio(request):
     return render(request, 'duoc_gym/agregarSocio.html')
 
+
 def mantenedor_maquinas(request):
-    return render(request,'duoc_gym/inventarioMaquinas.html')
+    contexto = {
+        "listaMaquinas": Equipamiento.objects.all()
+    }
+    return render(request,'duoc_gym/inventarioMaquinas.html', contexto)
+
+def suscribir_plan(request, user, plan):
+    plan = Plan.objects.get(idPlan = plan)
+    user = get_user_model().objects.get(correo = user)
+    if (user.is_sub == False):
+        user.is_sub = True
+        socio = Socio.objects.create(plan=plan, usuario=user)
+        socio.save()
+        user.save()
+        return redirect('index')
+    else:
+        return redirect('plan')
+
+@login_required(login_url='login')
+def mi_perfil(request):
+    usuario = Usuario.objects.get(correo=request.user)
+
+    try:
+        contexto = {
+            "socioInfo": Socio.objects.get(usuario=usuario)
+        }
+        return render(request,'duoc_gym/miPerfil.html', contexto)
+    except:
+        return render(request, 'duoc_gym/miPerfil.html')
+
+@login_required(login_url='login')
+def mod_alumno(request):
+    contexto = {
+        "userInfo": Usuario.objects.get(correo=request.user)
+    }
+    return render(request, 'duoc_gym/frmAlumnosModificar.html', contexto)
+
+def mod_perfil_auth(request):
+
+    user = get_user_model().objects.get(rut=request.user.rut)
+  
+    user.rut = request.POST.get('user.rut')
+    user.email = request.POST.get('user.correo')
+    user.name = request.POST.get('user.nombre')
+    user.lastname1 = request.POST.get('user.apellido1')
+    user.lastname2 = request.POST.get('user.apellido2')
+    
+
+   
+    user.save()
+    return redirect('mi_perfil')
+
+def mod_plan_auth(request):
+    
+  
+    rut = request.POST.get('rut')
+    email = request.POST.get('correo')
+    name = request.POST.get('nombre')
+    lastname1 = request.POST.get('apellido1')
+    lastname2 = request.POST.get('apellido2')
+    
+    user = get_user_model().objects.update_or_create(
+        rut=rut,
+        correo=email,
+        nombre=name,
+        apellido1=lastname1,
+        apellido2=lastname2
+    )
+    user.save()
+    return redirect('mi_perfil')
+
+def mod_inventario_auth(request):
+    
+  
+    rut = request.POST.get('rut')
+    email = request.POST.get('correo')
+    name = request.POST.get('nombre')
+    lastname1 = request.POST.get('apellido1')
+    lastname2 = request.POST.get('apellido2')
+    
+    user = get_user_model().objects.update_or_create(
+        rut=rut,
+        correo=email,
+        nombre=name,
+        apellido1=lastname1,
+        apellido2=lastname2
+    )
+    user.save()
+    return redirect('miPerfil')
+
+def rpt_planes(request):
+    contexto = {
+        "listaPlanes": Plan.objects.all()
+    }
+    return render(request, 'duoc_gym/reportePlanes.html',contexto)

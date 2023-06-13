@@ -3,21 +3,21 @@
 {% load static %}
 
 {% block titulo %}
-<title>Registrarse</title>
+<title>Ficha de Ingreso</title>
 {% endblock titulo %}
 
 {% block tituloBar %}
-Registrarse
+Ficha de Ingreso
 {% endblock tituloBar %}
 
 {% block cuerpo %}
-<div class="flex flex-wrap justify-center w-full">
-    <form id="signup" action="{% url 'signup_auth' %}" method="POST" enctype="multipart/form-data">
+<div class="flex flex-wrap justify-center w-full bg-gray-100">
+    <form id="signup" action="{% url 'socio_auth' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="flex mx-2 rounded-md">
             <div class="flex flex-wrap justify-start w-full">
-                <div class="text-2xl font-bold w-full">
-                    <label>Datos Personales</label>
+                <div class="text-2xl font-bold w-full p-5">
+                    <label>Medidas</label>
                 </div>
                 <div class="flex flex-wrap justify-evenly w-full">
                     <div class="py-2">
@@ -48,11 +48,30 @@ Registrarse
                         {{ fichaForm.porcGrasa }}
                     </div>
                 </div>
-                <div class="py-2">
-                    <label
-                        class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                        for="">Fecha de nacimiento</label>
-                    {{ fichaForm.fechaNac }}
+                <div class="flex flex-wrap justify-evenly w-full">
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Fecha de nacimiento</label>
+                        {{ fichaForm.fechaNac }}
+                    </div>
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Sucursal</label>
+                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="" selected disabled>Seleccione</option>
+                                {% for sucursal in sucursales %}
+                                <option value="{{sucursal.id}}">{{ sucursal.nombreSucursal }}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Observaciones</label>
+                        {{ fichaForm.observaciones }}
+                    </div>
                 </div>
             </div>         
                 </div>
