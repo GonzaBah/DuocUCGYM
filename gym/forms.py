@@ -27,6 +27,11 @@ class FormLoginUsuario(forms.Form):
         )
     )
 
+class PictureForm(forms.Form):
+    CHOICES = [
+        ('1', 'Si'),
+        ('2', 'No'),
+    ]
 
 #Este es el formulario de registro
 class FormRegisUsuario(forms.Form):
@@ -151,11 +156,65 @@ class FormFichaUsuario(forms.Form):
             }
         )
     )
-    observaciones = forms.CharField(
-        max_length=500,
+    direccion = forms.CharField(
+        max_length=125,
         widget=forms.Textarea(
             attrs={
-                'id': 'obs',
+                'id': 'direccion',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    comuna = forms.CharField(
+        max_length=35,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'comuna',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    ciudad = forms.CharField(
+        max_length=35,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'ciudad',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    gSanguineo = forms.CharField(
+        max_length=3,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'gSanguineo',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    emergenciacontacto = forms.CharField(
+        max_length=35,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'emergenciacontacto',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    pLesion = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=CHOICES
+    )
+    dLesion = forms.CharField(
+        max_length=120,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'dLesion',
                 'type': 'text',
                 'class': inputClass
             }
