@@ -7,7 +7,7 @@
 {% endblock titulo %}
 
 {% block tituloBar %}
-Lista Planes
+Planes
 {% endblock tituloBar %}
 
 {% block cuerpo %}
@@ -76,11 +76,19 @@ Lista Planes
                         </td>
         
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ">
-                            {{ plan.estadoPlan }}
+                            {% if plan.estadoPlan %}
+                            Activo
+                            {% else %}
+                            Inactivo
+                            {% endif %}
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ">
-                            {{ plan.sucursalLibre }}
+          {% if plan.sucursalLibre %}
+          Si
+                            {% else %}
+                            No
+                            {% endif %}
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ">
