@@ -15,3 +15,11 @@ admin.site.register(Reserva)
 admin.site.register(Profesor)
 admin.site.register(Deporte)
 admin.site.register(DeporteProfesor)
+admin.site.register(Curso)
+admin.site.register(CursoReserva)
+admin.site.register(Cancha)
+admin.site.register(CanchasReserva)
+
+
+
+
