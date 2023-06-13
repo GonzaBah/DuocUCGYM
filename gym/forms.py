@@ -110,6 +110,10 @@ class FormRegisUsuario(forms.Form):
 
 #Este es el formulario de ficha
 class FormFichaUsuario(forms.Form):
+    CHOICES = [
+        ('1', 'Si'),
+        ('2', 'No'),
+    ]
     rut = forms.CharField(
         max_length=10,
         widget=forms.TextInput(
