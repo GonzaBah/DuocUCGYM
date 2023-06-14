@@ -1,0 +1,44 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Mis Reservas</title>
+{% endblock titulo %}
+
+{% block tituloBar %}
+Mis Reservas
+{% endblock tituloBar %}
+
+{% block cuerpo %}
+<div class="flex flex-wrap justify-center w-full bg-gray-100">
+    <form action="">
+        {% csrf_token %}
+        <div class="flex mx-2 rounded-md">
+            <div class="flex flex-wrap justify-start w-full">
+                <div class="flex justify-center">
+                    <a class="capitalize text-1xl truncate" href="{% url 'a_reserva' %}">
+                        Agregar Reserva
+                    </a>
+                </div>
+                <div class="text-2xl font-bold w-full p-5">
+                    {% if reservas %}
+                        {% for reserva in reservas %}
+                            <label>{{ reserva.idCursoReserva }}</label>
+                        {% endfor %}
+                    {% else %}
+                        <label>No hay reservas</label>
+                    {% endif %}
+                </div>
+            </div>            
+        </div>
+    </form>
+</div>
+{% comment %} <script>
+    document.addEventListener("btnSubmit", function(event) {
+        // Todo lo que vaya aqui se ejecutará cuando cargue la página
+        console.log("{{.cleaned_data.get('nombre')}}")
+    });
+    
+</script> {% endcomment %}
+{% endblock cuerpo %}

@@ -191,7 +191,6 @@ def suscribir_plan(request, user, plan):
 @login_required(login_url='login')
 def mi_perfil(request):
     usuario = Usuario.objects.get(correo=request.user)
-
     try:
         contexto = {
             "socioInfo": Socio.objects.get(usuario=usuario)
@@ -208,23 +207,23 @@ def mod_alumno(request):
     return render(request, 'duoc_gym/frmAlumnosModificar.html', contexto)
 
 def mod_perfil_auth(request):
-
     user = get_user_model().objects.get(rut=request.user.rut)
-  
-    user.rut = request.POST.get('user.rut')
-    user.email = request.POST.get('user.correo')
-    user.name = request.POST.get('user.nombre')
-    user.lastname1 = request.POST.get('user.apellido1')
-    user.lastname2 = request.POST.get('user.apellido2')
-    
 
-   
+    rut = request.POST.get('rut')
+    email = request.POST.get('correo')
+    name = request.POST.get('nombre')
+    lastname1 = request.POST.get('apellido1')
+    lastname2 = request.POST.get('apellido2')
+    
+    user.rut = rut
+    user.correo=email
+    user.nombre=name
+    user.apellido1=lastname1
+    user.apellido2=lastname2
     user.save()
     return redirect('mi_perfil')
 
 def mod_plan_auth(request):
-    
-  
     rut = request.POST.get('rut')
     email = request.POST.get('correo')
     name = request.POST.get('nombre')
@@ -241,22 +240,20 @@ def mod_plan_auth(request):
     user.save()
     return redirect('mi_perfil')
 
+@login_required(login_url="login")
 def mod_inventario_auth(request):
-    
-  
     rut = request.POST.get('rut')
     email = request.POST.get('correo')
     name = request.POST.get('nombre')
     lastname1 = request.POST.get('apellido1')
     lastname2 = request.POST.get('apellido2')
     
-    user = get_user_model().objects.update_or_create(
-        rut=rut,
-        correo=email,
-        nombre=name,
-        apellido1=lastname1,
-        apellido2=lastname2
-    )
+    user = get_user_model().objects.get(rut=request.user.rut)
+    user.rut = rut
+    user.correo=email
+    user.nombre=name
+    user.apellido1=lastname1
+    user.apellido2=lastname2
     user.save()
     return redirect('miPerfil')
 
@@ -265,3 +262,19 @@ def rpt_planes(request):
         "listaPlanes": Plan.objects.all()
     }
     return render(request, 'duoc_gym/reportePlanes.html',contexto)
+
+@login_required(login_url="login")
+def reservas(request):
+    try:
+        contexto = {
+            "reservas": CursoReserva.objects.get(socio=Socio.objects.get(usuario=request.user))
+        }
+        return render(request, "duoc_gym/misReservas.html", contexto)
+    except:
+        return render(request, "duoc_gym/misReservas.html")
+    
+def agregar_reserva(request):
+    return render(request, 'duoc_gym/agregarReserva.html')
+
+def reserva_view(request):
+    pass

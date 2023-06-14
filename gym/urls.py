@@ -49,4 +49,7 @@ urlpatterns = [
     path('m_perfil_auth', mod_perfil_auth, name='m_perfil_auth'),
 
     path('rpt_planes', rpt_planes, name =  'rpt_planes'),
+    path('m_reservas', reservas, name='m_reservas'),
+    path('agr_reserva', agregar_reserva, name='a_reserva'),
+    path('reserva_auth', reserva_view, name='reserva_auth')
  ]

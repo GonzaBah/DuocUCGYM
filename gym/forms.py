@@ -8,6 +8,7 @@ sucursales = Sucursal.objects.all()
 
 class FormLoginUsuario(forms.Form):
     correo = forms.EmailField(
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'id':'email',
@@ -18,6 +19,7 @@ class FormLoginUsuario(forms.Form):
     )
 
     password = forms.CharField(
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'id': 'password',
@@ -37,17 +39,18 @@ class PictureForm(forms.Form):
 class FormRegisUsuario(forms.Form):
     rut = forms.CharField(
         max_length=10,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'id': 'rut',
                 'type': 'text',
                 'class': inputClass,
-                'pattern': '[]'
             }
         )
     )
     nombre = forms.CharField(
         max_length=100,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'id': 'name',
@@ -58,6 +61,7 @@ class FormRegisUsuario(forms.Form):
     )
     apellido1 = forms.CharField(
         max_length=100,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'id': 'lastname1',
@@ -68,6 +72,7 @@ class FormRegisUsuario(forms.Form):
     )
     apellido2 = forms.CharField(
         max_length=100,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 'id': 'lastname2',
@@ -77,6 +82,7 @@ class FormRegisUsuario(forms.Form):
         )
     )
     correo = forms.EmailField(
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'id': 'email',
@@ -86,6 +92,7 @@ class FormRegisUsuario(forms.Form):
         )
     )
     password = forms.CharField(
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'id': 'password',
@@ -95,6 +102,7 @@ class FormRegisUsuario(forms.Form):
         ))
 
     password2 = forms.CharField(
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'id': 'password2',

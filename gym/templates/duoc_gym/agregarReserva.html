@@ -1,0 +1,100 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Agregar Reserva</title>
+{% endblock titulo %}
+
+{% block tituloBar %}
+Agregar Reserva
+{% endblock tituloBar %}
+
+{% block cuerpo %}
+<div class="flex flex-wrap justify-center w-full bg-gray-100">
+    <form id="signup" action="{% url 'reserva_auth' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="flex mx-2 rounded-md">
+            <div class="flex flex-wrap justify-start w-full">
+                <div class="text-2xl font-bold w-full p-5">
+                    <label>Medidas</label>
+                </div>
+                <div class="flex flex-wrap justify-evenly w-full">
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">RUT</label>
+                        {{ fichaForm.rut }}
+                    </div>
+            
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Altura</label>
+                        {{ fichaForm.altura }}
+                    </div>
+            
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Peso</label>
+                        {{ fichaForm.peso }}
+                    </div>
+            
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Porcentaje de grasa corporal</label>
+                        {{ fichaForm.porcGrasa }}
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-evenly w-full">
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Fecha de nacimiento</label>
+                        {{ fichaForm.fechaNac }}
+                    </div>
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Sucursal</label>
+                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="" selected disabled>Seleccione</option>
+                                {% for sucursal in sucursales %}
+                                <option value="{{sucursal.id}}">{{ sucursal.nombreSucursal }}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <div class="py-2">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Observaciones</label>
+                        {{ fichaForm.observaciones }}
+                    </div>
+                </div>
+            </div>         
+                </div>
+                <div class="flex justify-between w-full">
+                    <button type="reset"
+                        class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                        Borrar 
+                    </button>
+                    <button id='btnSubmit' type='submit'
+                        class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                        Enviar
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+</div>
+{% comment %} <script>
+    document.addEventListener("btnSubmit", function(event) {
+        // Todo lo que vaya aqui se ejecutará cuando cargue la página
+        console.log("{{.cleaned_data.get('nombre')}}")
+    });
+    
+</script> {% endcomment %}
+{% endblock cuerpo %}
