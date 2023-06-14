@@ -41,7 +41,8 @@ class FormRegisUsuario(forms.Form):
             attrs={
                 'id': 'rut',
                 'type': 'text',
-                'class': inputClass
+                'class': inputClass,
+                'pattern': '[]'
             }
         )
     )

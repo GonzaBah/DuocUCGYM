@@ -47,7 +47,7 @@ def signup_view(request):
             apellido1=lastname1,
             password=make_password(password),
             apellido2=lastname2,
-            tipoUsuario = TipoUsuario.objects.get(idTipo = 3)
+            tipoUsuario = TipoUsuario.objects.get(nombreTipo="Socio")
         )
         login(request, user)
         return redirect('index')
