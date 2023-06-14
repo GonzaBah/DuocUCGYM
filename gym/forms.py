@@ -124,24 +124,7 @@ class FormFichaUsuario(forms.Form):
             }
         )
     )
-    altura = forms.IntegerField(
-        widget=forms.NumberInput(
-            attrs={
-                'id': 'altura',
-                'type': 'number',
-                'class': inputClass
-            }
-        )
-    )
-    peso = forms.IntegerField(
-        widget=forms.NumberInput(
-            attrs={
-                'id': 'peso',
-                'type': 'number',
-                'class': inputClass
-            }
-        )
-    )
+   
     fechaNac = forms.DateField(
         widget=forms.DateInput(
             attrs={
@@ -151,10 +134,10 @@ class FormFichaUsuario(forms.Form):
             }
         )
     )
-    porcGrasa = forms.IntegerField(
+    edad = forms.IntegerField(
         widget=forms.NumberInput(
             attrs={
-                'id': 'porcGrasa',
+                'id': 'edad',
                 'type': 'number',
                 'class': inputClass
             }
@@ -210,6 +193,35 @@ class FormFichaUsuario(forms.Form):
             }
         )
     )
+    emergenciacontactoNumero = forms.CharField(
+        max_length=9,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'emergenciacontactoNumero',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+
+    estatura = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'id': 'estatura',
+                'type': 'number',
+                'class': inputClass
+            }
+        )
+    )
+    peso = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'id': 'peso',
+                'type': 'number',
+                'class': inputClass
+            }
+        )
+    )
     pLesion = forms.ChoiceField(
         widget=forms.RadioSelect,
         choices=CHOICES
@@ -223,6 +235,73 @@ class FormFichaUsuario(forms.Form):
                 'class': inputClass
             }
         )
+    )
+    pEnfermedad = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=CHOICES
+    )
+    dEnfermedad = forms.CharField(
+        max_length=120,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'dEnfermedad',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    pArt = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=CHOICES
+    )
+    dArt = forms.CharField(
+        max_length=120,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'dArt',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    pDep = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=CHOICES
+    )
+    dDep = forms.CharField(
+        max_length=120,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'dDep',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
+    )
+    fDeportes = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'id': 'fDeportes',
+                'type': 'number',
+                'class': inputClass
+            }
+        )
+    )
+    asmatico = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=CHOICES
+    )
+    diabetico = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=CHOICES
+    )
+    epileptico = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=CHOICES
+    )
+    fumador = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=CHOICES
     )
 
 class FormRegisPlan(forms.Form):

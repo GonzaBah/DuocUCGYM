@@ -67,7 +67,6 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
 class TipoFuncionario(models.Model):
     idTipoFuncionario = models.IntegerField(primary_key=True, verbose_name="ID del Tipo Funcionario")
-
 class Funcionario(models.Model):
     idFuncionario = models.AutoField(primary_key=True, verbose_name="ID del Funcionario")
     cargo = models.CharField(max_length=20, verbose_name="Cargo del Funcionario")
@@ -77,7 +76,6 @@ class Sucursal(models.Model):
     idSucursal = models.AutoField(primary_key=True, verbose_name="ID de la Sucursal")
     nombreSucursal = models.CharField(max_length=30, verbose_name="Nombre del Sucursal")
     direccionSucursal = models.CharField(max_length=50, verbose_name="Dirección de la Sucursal")
-
 class Plan(models.Model):
     idPlan = models.AutoField(primary_key=True, verbose_name="ID del Plan")
     nombrePlan = models.CharField(max_length=30, verbose_name="Nombre del Plan")
@@ -85,11 +83,11 @@ class Plan(models.Model):
     descripcionPlan = models.CharField(max_length=500, verbose_name="Descripcion del Plan", null=True)
     sucursalLibre = models.BooleanField(verbose_name="Sucursal Libre")
     precio = models.IntegerField(verbose_name="Precio del plan", default=1)
-
 class Socio(models.Model):
     idSocio = models.AutoField(primary_key=True, verbose_name="ID del Socio")
-    altura = models.IntegerField(verbose_name="Altura del Socio", null=True)
-    peso = models.FloatField(verbose_name="Peso del Socio", null=True)
+    edad = models.IntegerField(verbose_name="edad del Socio", null=True)
+    altura = models.IntegerField(verbose_name="altura del Socio", null=True)
+    peso = models.IntegerField(verbose_name="peso del Socio", null=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
     plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=1)
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1, null=True)
@@ -107,11 +105,12 @@ class Socio(models.Model):
     pDArtic =  models.BooleanField(default=False,verbose_name="Posee dolores en las articulaciones?")
     dDArtic =  models.CharField(max_length=200, verbose_name="Descripcion dolores en las articulaciones?", null=True)
     pDeporte =  models.BooleanField(default=False,verbose_name="Practica algun deporte?")
+    dDeporte =  models.CharField(max_length=200, verbose_name="Cuales?", null=True)
     nDeporte =  models.IntegerField(default=0, verbose_name="Veces a la semana que hace deportes", null=True)
     diabetico =  models.BooleanField(default=False,verbose_name="es usted diabetico?")
     asmatico =  models.BooleanField(default=False,verbose_name="es usted asmatico?")
     epileptico =  models.BooleanField(default=False,verbose_name="es usted epiliptico?")
-    fumador =  models.BooleanField(default=False,verbose_name="es usted fumador?")
+    fumador =  models.BooleanField(default=False,verbose_name="fuma?")
 
 class Equipamiento(models.Model):
     idEquipamiento = models.AutoField(primary_key=True, verbose_name="ID del Equipamiento")
