@@ -119,8 +119,6 @@ class Equipamiento(models.Model):
 class Reserva(models.Model):
     idReserva = models.AutoField(primary_key=True, verbose_name="ID de Reserva")
     socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
-    fechaClase= models.DateField(verbose_name="Fecha de la Reserva")
-    horaClase = models.TimeField(verbose_name="Hora de la Reserva")
 class Profesor(models.Model):
     idProfesor = models.AutoField(primary_key=True, verbose_name="ID del Profesor")
     fechaIngreso = models.DateField(verbose_name="Fecha de Ingreso")
@@ -138,17 +136,27 @@ class Curso(models.Model):
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
     profesor = models.ForeignKey(Profesor, on_delete=models.SET_DEFAULT, default=1)
     deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=1)
-    cupo = models.IntegerField(verbose_name="tope de alumnos en la clase", default=30)
-class CursoReserva(models.Model):
-    idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
-    reserva = models.ForeignKey(Reserva, on_delete=models.SET_DEFAULT, default=1)
-    curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)
+
 class Cancha(models.Model):
     idCancha = models.AutoField(primary_key=True, verbose_name="ID del cancha")
     deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=1)
     cupo = models.IntegerField(verbose_name="tope de alumnos en la cancha", default=30)    
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
+
 class CanchasReserva(models.Model):
     idCanchareserva = models.AutoField(primary_key=True, verbose_name="ID del cancha reserva")
     reserva = models.ForeignKey(Reserva, on_delete=models.SET_DEFAULT, default=1)
     cancha = models.ForeignKey(Cancha, on_delete=models.SET_DEFAULT, default=1)
+
+class claseCurso(models.Model):
+    idClase = models.AutoField(primary_key=True, verbose_name="ID del clase reserva")
+    fechaClase= models.DateField(verbose_name="Fecha de la Reserva")
+    horaClase = models.TimeField(verbose_name="Hora de la Reserva")
+    curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)
+    cupo = models.IntegerField(verbose_name="tope de alumnos en la clase", default=30)
+
+class CursoReserva(models.Model):
+    idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
+    socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1) 
+    curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)    
+    clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1) 
