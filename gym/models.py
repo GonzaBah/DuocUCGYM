@@ -20,7 +20,7 @@ class CustomAccountManager(BaseUserManager):
         user.save()
         return user
     def create_superuser(self, correo, nombre, apellido1, rut, password, **other_fields):
-        rol_admin = TipoUsuario.objects.get(nombreTipo="Supervisor")
+        rol_admin = TipoUsuario.objects.get(nombreTipo="Administrador del sistema")
         other_fields.setdefault('tipoUsuario', rol_admin)
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
@@ -43,7 +43,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     apellido1 = models.CharField(max_length=30, verbose_name="Primer apellido del Usuario")
     apellido2 = models.CharField(max_length=30, verbose_name="Segundo apellido del Usuario", null=True )
     correo = models.EmailField(verbose_name="Correo del Usuario", unique=True)
-    tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=3)
+    tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=6)
     fechaNacimiento = models.DateField(verbose_name="Fecha de Nacimiento", null=True)
 
     is_sub = models.BooleanField(default=False)
@@ -90,7 +90,7 @@ class Socio(models.Model):
     peso = models.IntegerField(verbose_name="peso del Socio", null=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
     plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=1)
-    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1, null=True)
+    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_NULL, null=True)
     titularPlan = models.CharField(max_length=30, verbose_name="Titular del Plan", null=True)
     direccion = models.CharField(max_length=125, verbose_name="Direccion", null=True)
     comuna = models.CharField(max_length=35, verbose_name="comuna", null=True)
@@ -124,6 +124,7 @@ class Profesor(models.Model):
     fechaIngreso = models.DateField(verbose_name="Fecha de Ingreso")
     fechaContrato = models.DateField(verbose_name="Fecha de Contrato")
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
+    usuario = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
 class Deporte(models.Model):
     idDeporte = models.AutoField(primary_key=True, verbose_name="ID del Deporte")
     nombreDeporte = models.CharField(max_length=30, verbose_name="Nombre del Deporte")
@@ -157,6 +158,5 @@ class claseCurso(models.Model):
 
 class CursoReserva(models.Model):
     idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
-    socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1) 
-    curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)    
+    socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
     clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1) 

@@ -24,7 +24,11 @@ Mis Reservas
                 <div class="text-2xl font-bold w-full p-5">
                     {% if reservas %}
                         {% for reserva in reservas %}
-                            <label>{{ reserva.idCursoReserva }}</label>
+                            <div class="flex flex-wrap justify-center w-full">
+                                <label>{{ reserva.curso.nombreCurso }}</label>
+                                <label>{{ reserva.clase.fechaClase }}</label>
+                                <label>{{ reserva.clase.horaClase }}</label>
+                            </div>
                         {% endfor %}
                     {% else %}
                         <label>No hay reservas</label>

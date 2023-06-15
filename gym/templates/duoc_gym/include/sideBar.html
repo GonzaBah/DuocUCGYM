@@ -15,7 +15,7 @@
                     </li>
                 </a>
                 {% if user.is_authenticated %}
-                    {% if user.tipoUsuario.idTipo == 3 %}
+                    {% if user.tipoUsuario.idTipo == 6 %}
                         {% if user.is_sub %}
                         <a class="capitalize text-1xl truncate" href="{% url 'l_plan' user %}">
                             <li

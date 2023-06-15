@@ -265,16 +265,34 @@ def rpt_planes(request):
 
 @login_required(login_url="login")
 def reservas(request):
+    user = get_user_model().objects.get(correo = request.user)
     try:
+        socio = Socio.objects.get(usuario=user)
+        print(CursoReserva.objects.get(socio=socio).idCursoReserva)
         contexto = {
-            "reservas": CursoReserva.objects.get(socio=Socio.objects.get(usuario=request.user))
+            "reservas": [CursoReserva.objects.get(socio=socio)]
         }
         return render(request, "duoc_gym/misReservas.html", contexto)
     except:
         return render(request, "duoc_gym/misReservas.html")
     
 def agregar_reserva(request):
-    return render(request, 'duoc_gym/agregarReserva.html')
+    try:
+        contexto = {
+            "cursos": Curso.objects.all(),
+            "clases": claseCurso.objects.all()
+        }
+        return render(request, 'duoc_gym/agregarReserva.html', contexto)
+    except:
+        return render(request, 'duoc_gym/agregarReserva.html')
 
 def reserva_view(request):
-    pass
+    if(request.POST):
+        user = get_user_model().objects.get(correo = request.user)
+        print(request.POST.get('claseSelect'))
+        socio = Socio.objects.get(usuario=user)
+        clase = claseCurso.objects.get(idClase = request.POST.get("claseSelect"))
+        
+        cursoReserva = CursoReserva.objects.create(socio=socio, clase=clase)
+        cursoReserva.save()
+    return redirect('m_reservas')
