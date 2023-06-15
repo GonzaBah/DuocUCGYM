@@ -51,5 +51,6 @@ urlpatterns = [
     path('rpt_planes', rpt_planes, name =  'rpt_planes'),
     path('m_reservas', reservas, name='m_reservas'),
     path('agr_reserva', agregar_reserva, name='a_reserva'),
-    path('reserva_auth', reserva_view, name='reserva_auth')
+    path('reserva_auth', reserva_view, name='reserva_auth'),
+    path('b_reserva/<int:id>', borrar_reserva, name='b_reserva')
  ]

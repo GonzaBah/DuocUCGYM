@@ -16,8 +16,8 @@ Mis Reservas
         {% csrf_token %}
         <div class="flex mx-2 rounded-md">
             <div class="flex flex-wrap justify-start w-full">
-                <div class="flex justify-center">
-                    <a class="capitalize text-1xl truncate" href="{% url 'a_reserva' %}">
+                <div class="flex justify-center w-full">
+                    <a class="capitalize text-1xl truncate bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" href="{% url 'a_reserva' %}">
                         Agregar Reserva
                     </a>
                 </div>
@@ -25,9 +25,12 @@ Mis Reservas
                     {% if reservas %}
                         {% for reserva in reservas %}
                             <div class="flex flex-wrap justify-center w-full">
-                                <label>{{ reserva.curso.nombreCurso }}</label>
-                                <label>{{ reserva.clase.fechaClase }}</label>
-                                <label>{{ reserva.clase.horaClase }}</label>
+                                <div>
+                                    <label>{{ reserva.clase.curso.nombreCurso }}</label>
+                                    <label>{{ reserva.clase.fechaClase }}</label>
+                                    <label>{{ reserva.clase.horaClase }}</label>
+                                    <a href="{% url 'b_reserva' reserva.idCursoReserva %}">Eliminar</a>
+                                </div>
                             </div>
                         {% endfor %}
                     {% else %}

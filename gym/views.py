@@ -268,9 +268,8 @@ def reservas(request):
     user = get_user_model().objects.get(correo = request.user)
     try:
         socio = Socio.objects.get(usuario=user)
-        print(CursoReserva.objects.get(socio=socio).idCursoReserva)
         contexto = {
-            "reservas": [CursoReserva.objects.get(socio=socio)]
+            "reservas": CursoReserva.objects.filter(socio=socio)
         }
         return render(request, "duoc_gym/misReservas.html", contexto)
     except:
@@ -295,4 +294,9 @@ def reserva_view(request):
         
         cursoReserva = CursoReserva.objects.create(socio=socio, clase=clase)
         cursoReserva.save()
+    return redirect('m_reservas')
+
+def borrar_reserva(request, id):
+    CursoReserva.objects.get(idCursoReserva = id).delete()
+
     return redirect('m_reservas')
