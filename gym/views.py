@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.shortcuts import redirect, render
 import os
 from django.contrib import messages
+import datetime
+
 
 # Create your views here.
 
@@ -275,7 +277,38 @@ def reservas(request):
         return render(request, "duoc_gym/misReservas.html", contexto)
     except:
         return render(request, "duoc_gym/misReservas.html")
-    
+
+@login_required(login_url="login")
+def reporteProfesor(request):
+
+    month = datetime.datetime.now().month
+    try:
+        clases = claseCurso.objects.all()
+        clasesHoy = list(filter(lambda x: x.mes() == month, clases))
+        print(clasesHoy)
+        contexto = {
+            
+            "cursos": Curso.objects.all() 
+        }
+        return render(request, "duoc_gym/reporteProfesor.html", contexto)
+    except:
+        return render(request, "duoc_gym/reporteProfesor.html")
+@login_required(login_url="login")
+def reporteSocioMes(request):
+    month = datetime.datetime.now().month
+    try:
+
+        socio = Socio.objects.all()
+
+
+        contexto = {
+            "socios": socio
+        }
+        return render(request, "duoc_gym/reporteSocioMes.html", contexto)
+    except:
+        return render(request, "duoc_gym/reporteSocioMes.html")
+
+
 def agregar_reserva(request):
     try:
         contexto = {
