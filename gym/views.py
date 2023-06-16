@@ -287,14 +287,25 @@ def reporteProfesor(request):
         print(clasesHoy)
         contexto = {
             
-            "cursos": Curso.objects.all()
-     
-
-            
+            "cursos": Curso.objects.all() 
         }
         return render(request, "duoc_gym/reporteProfesor.html", contexto)
     except:
         return render(request, "duoc_gym/reporteProfesor.html")
+@login_required(login_url="login")
+def reporteSocioMes(request):
+    month = datetime.datetime.now().month
+    try:
+
+        socio = Socio.objects.all()
+
+
+        contexto = {
+            "socios": socio
+        }
+        return render(request, "duoc_gym/reporteSocioMes.html", contexto)
+    except:
+        return render(request, "duoc_gym/reporteSocioMes.html")
 
 
 def agregar_reserva(request):

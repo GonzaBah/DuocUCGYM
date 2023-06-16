@@ -111,7 +111,12 @@ class Socio(models.Model):
     asmatico =  models.BooleanField(default=False,verbose_name="es usted asmatico?")
     epileptico =  models.BooleanField(default=False,verbose_name="es usted epiliptico?")
     fumador =  models.BooleanField(default=False,verbose_name="fuma?")
-
+    def count_socioMes(self):
+        month = datetime.datetime.now().month
+        clases = CursoReserva.objects.all()
+        clasesMes = list(filter(lambda x: x.clase.mes() == month, clases))
+        return len(list(filter(lambda x: x.socio == self, clasesMes)))
+    
 class Equipamiento(models.Model):
     idEquipamiento = models.AutoField(primary_key=True, verbose_name="ID del Equipamiento")
     nombreEquipamiento = models.CharField(max_length=30, verbose_name="Nombre del Equipamiento")
