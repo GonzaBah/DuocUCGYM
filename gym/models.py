@@ -148,7 +148,7 @@ class Curso(models.Model):
         month = datetime.datetime.now().month
         clases = claseCurso.objects.filter( curso = self)
         return len(list(filter(lambda x: x.mes() == month, clases)))
-    
+
 
 class Cancha(models.Model):
     idCancha = models.AutoField(primary_key=True, verbose_name="ID del cancha")

@@ -18,12 +18,11 @@
     </script>
 
     {% block titulo %}
-    <title>    Reporte Clases
-    </title>
+    <title>Lista de reservas </title>
     {% endblock titulo %}
 
     {% block tituloBar %}
-    Reporte Clases
+    Cantidad de reservas en el mes
     {% endblock tituloBar %}
 
     {% block cuerpo %}
@@ -39,12 +38,12 @@
 
                         <th
                             class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-white dark:text-slate-400 text-left">
-                            Profesor
+                            Curso
                         </th>
 
                         <th
                             class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-white dark:text-slate-400 text-left">
-                            Cantidad de clases en el mes
+                            Cantidad de reservas en el mes
                         </th>
 
                     </tr>
@@ -58,7 +57,7 @@
                     <tr class=" bg-slate-200 dark:bg-silver-600  ">
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
-                            {{ p.profesor.usuario.nombre }}
+                            {{ p.nombreCurso }}
                         </td>
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-center">
                             {{ p.count_profeMes }}

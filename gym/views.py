@@ -201,6 +201,13 @@ def mi_perfil(request):
     except:
         return render(request, 'duoc_gym/miPerfil.html')
 
+
+@login_required(login_url='login')
+def reportes(request):
+        return render(request, 'duoc_gym/reportes.html')
+
+
+
 @login_required(login_url='login')
 def mod_alumno(request):
     contexto = {
@@ -294,7 +301,6 @@ def reporteProfesor(request):
         return render(request, "duoc_gym/reporteProfesor.html")
 @login_required(login_url="login")
 def reporteSocioMes(request):
-    month = datetime.datetime.now().month
     try:
 
         socio = Socio.objects.all()
@@ -306,6 +312,17 @@ def reporteSocioMes(request):
         return render(request, "duoc_gym/reporteSocioMes.html", contexto)
     except:
         return render(request, "duoc_gym/reporteSocioMes.html")
+
+def reporteReservasMes(request):
+    try:
+
+        cursos = Curso.objects.all()
+        contexto = {
+            "cursos": cursos
+        }
+        return render(request, "duoc_gym/reporteReservasMes.html", contexto)
+    except:
+        return render(request, "duoc_gym/reporteReservasMes.html")
 
 
 def agregar_reserva(request):

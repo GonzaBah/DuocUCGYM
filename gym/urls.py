@@ -54,5 +54,8 @@ urlpatterns = [
     path('reserva_auth', reserva_view, name='reserva_auth'),
     path('b_reserva/<int:id>', borrar_reserva, name='b_reserva'),
     path('reporte_profesor', reporteProfesor, name='reporte_profesor'),
-    path('reporte_socio_mes', reporteSocioMes, name='reporte_socio_mes')
+    path('reporte_socio_mes', reporteSocioMes, name='reporte_socio_mes'),
+    path('reporte_reservas_mes', reporteReservasMes, name='reporte_reservas_mes'),
+        path('reportes', reportes, name='reportes')
+
  ]
