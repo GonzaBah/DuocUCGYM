@@ -172,11 +172,9 @@ class claseCurso(models.Model):
         return CursoReserva.objects.filter(clase_id = self.idClase).count()
     def is_available(self):
         return CursoReserva.objects.filter(clase_id = self.idClase).count() <= self.cupo
-
+    def mes(self):
+        return self.fechaClase.month
 class CursoReserva(models.Model):
     idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
     socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
     clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1)
-    def mes(self):
-        return self.fechaClase.month
-    

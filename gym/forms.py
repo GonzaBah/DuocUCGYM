@@ -34,7 +34,6 @@ class PictureForm(forms.Form):
         ('1', 'Si'),
         ('2', 'No'),
     ]
-
 #Este es el formulario de registro
 class FormRegisUsuario(forms.Form):
     rut = forms.CharField(

@@ -287,7 +287,6 @@ def reservas(request):
 
 @login_required(login_url="login")
 def reporteProfesor(request):
-
     month = datetime.datetime.now().month
     try:
         clases = claseCurso.objects.all()
@@ -303,10 +302,10 @@ def reporteProfesor(request):
 @login_required(login_url="login")
 def reporteSocioMes(request):
     try:
-
         socio = Socio.objects.all()
-
-
+        for i in socio:
+            print(i.count_socioMes)
+            print(i.usuario.nombre)
         contexto = {
             "socios": socio
         }
