@@ -15,62 +15,154 @@ Ficha de Ingreso
     <form id="signup" action="{% url 'socio_auth' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="flex mx-2 rounded-md">
-            <div class="flex flex-wrap justify-start w-full">
+            <div class="flex flex-wrap justify-between w-full">
                 <div class="text-2xl font-bold w-full p-5">
-                    <label>Medidas</label>
+                    <label>Ficha de Socio</label>
                 </div>
-                <div class="flex flex-wrap justify-evenly w-full">
-                    <div class="py-2">
+                <div class="flex flex-wrap justify-center w-full">
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
                         <label
                             class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                             for="">RUT</label>
                         {{ fichaForm.rut }}
                     </div>
             
-                    <div class="py-2">
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
                         <label
                             class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                             for="">Altura</label>
-                        {{ fichaForm.altura }}
+                        {{ fichaForm.estatura }}
                     </div>
             
-                    <div class="py-2">
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
                         <label
                             class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                             for="">Peso</label>
                         {{ fichaForm.peso }}
                     </div>
             
-                    <div class="py-2">
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
                         <label
                             class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Porcentaje de grasa corporal</label>
-                        {{ fichaForm.porcGrasa }}
+                            for="">Edad</label>
+                        {{ fichaForm.edad }}
                     </div>
-                </div>
-                <div class="flex flex-wrap justify-evenly w-full">
-                    <div class="py-2">
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
                         <label
                             class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Fecha de nacimiento</label>
+                            for="">Fecha de Nacimiento</label>
                         {{ fichaForm.fechaNac }}
                     </div>
-                    <div class="py-2">
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
                         <label
                             class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                             for="">Sucursal</label>
-                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="" selected disabled>Seleccione</option>
-                                {% for sucursal in sucursales %}
-                                <option value="{{sucursal.id}}">{{ sucursal.nombreSucursal }}</option>
-                                {% endfor %}
-                            </select>
+                        {{ fichaForm.sucursal }}
                     </div>
-                    <div class="py-2">
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
                         <label
                             class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Observaciones</label>
-                        {{ fichaForm.observaciones }}
+                            for="">Dirección</label>
+                        {{ fichaForm.direccion }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Comuna</label>
+                        {{ fichaForm.comuna }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Ciudad</label>
+                        {{ fichaForm.ciudad }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Grupo Sanguíneo</label>
+                        {{ fichaForm.gSanguineo }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Nombre Contacto de Emergencia</label>
+                        {{ fichaForm.emergenciacontacto }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Numero Contacto de Emergencia</label>
+                        {{ fichaForm.emergenciacontactoNumero }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">¿Ha tenido o tiene alguna lesión?</label>
+                        {{ fichaForm.pLesion }}
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Describa brevemente</label>
+                        {{ fichaForm.dLesion }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">¿Padece de alguna enfermedad?</label>
+                        {{ fichaForm.pEnfermedad }}
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Describa brevemente</label>
+                        {{ fichaForm.dEnfermedad }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">¿Tiene dolores en las articulaciones?</label>
+                        {{ fichaForm.pArt }}
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Describa brevemente</label>
+                        {{ fichaForm.dArt }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">¿Práctica de manera habitual algún deporte?</label>
+                        {{ fichaForm.pDep }}
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">¿Con que frecuencia practica deporte? Indique cantidad en semanas</label>
+                        {{ fichaForm.fDeportes }}
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Especifique cual(es):</label>
+                        {{ fichaForm.dDep }}
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">¿Es usted?</label>
+                        <div class="py-2">
+                            {{ fichaForm.asmatico }} Asmático
+                        </div>
+                        <div class="py-2">
+                            {{ fichaForm.diabetico }} Diabético
+                        </div>
+                        <div class="py-2">
+                            {{ fichaForm.epileptico }} Epiléptico
+                        </div>
+                        <div class="py-2">
+                            {{ fichaForm.fumador }} Fumador
+                        </div>
+                    </div>
+                    <div class="py-2 px-2 xl:w-2/6 md:w-6/6">
+                        <label
+                            class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                            for="">Titular del Plan</label>
+                        {{ fichaForm.titularPlan }}
+                        <input id="plan-individual" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="plan-individual" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Plan Individual</label>
                     </div>
                 </div>
             </div>         

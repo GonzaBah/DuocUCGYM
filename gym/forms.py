@@ -4,6 +4,8 @@ from .models import Sucursal
 #Este es el formulario del login
 
 inputClass = 'px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500'
+checkClass = 'w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+selectClass = 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 sucursales = Sucursal.objects.all()
 
 class FormLoginUsuario(forms.Form):
@@ -31,8 +33,8 @@ class FormLoginUsuario(forms.Form):
 
 class PictureForm(forms.Form):
     CHOICES = [
-        ('1', 'Si'),
-        ('2', 'No'),
+        ('1', 'Huechuraba'),
+        ('2', 'Providencia'),
     ]
 #Este es el formulario de registro
 class FormRegisUsuario(forms.Form):
@@ -119,9 +121,12 @@ class FormRegisUsuario(forms.Form):
 #Este es el formulario de ficha
 class FormFichaUsuario(forms.Form):
     CHOICES = [
-        ('1', 'Si'),
-        ('2', 'No'),
+        ('1', 'Huechuraba'),
+        ('2', 'Providencia'),
     ]
+    listaSucursal = Sucursal.objects.all()
+    SUCURSALES = list(map(lambda x: (x.idSucursal, x.nombreSucursal ), listaSucursal))
+
     rut = forms.CharField(
         max_length=10,
         widget=forms.TextInput(
@@ -151,9 +156,18 @@ class FormFichaUsuario(forms.Form):
             }
         )
     )
+    sucursal = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                'id': 'sucursalSelect',
+                'class': selectClass
+            }
+        ),
+        choices=SUCURSALES,
+    )
     direccion = forms.CharField(
         max_length=125,
-        widget=forms.Textarea(
+        widget=forms.TextInput(
             attrs={
                 'id': 'direccion',
                 'type': 'text',
@@ -161,19 +175,18 @@ class FormFichaUsuario(forms.Form):
             }
         )
     )
-    comuna = forms.CharField(
-        max_length=35,
-        widget=forms.Textarea(
+    comuna = forms.ChoiceField(
+        widget=forms.Select(
             attrs={
                 'id': 'comuna',
-                'type': 'text',
-                'class': inputClass
+                'class': selectClass
             }
-        )
+        ),
+        choices=CHOICES
     )
     ciudad = forms.CharField(
         max_length=35,
-        widget=forms.Textarea(
+        widget=forms.TextInput(
             attrs={
                 'id': 'ciudad',
                 'type': 'text',
@@ -183,7 +196,7 @@ class FormFichaUsuario(forms.Form):
     )
     gSanguineo = forms.CharField(
         max_length=3,
-        widget=forms.Textarea(
+        widget=forms.TextInput(
             attrs={
                 'id': 'gSanguineo',
                 'type': 'text',
@@ -193,7 +206,7 @@ class FormFichaUsuario(forms.Form):
     )
     emergenciacontacto = forms.CharField(
         max_length=35,
-        widget=forms.Textarea(
+        widget=forms.TextInput(
             attrs={
                 'id': 'emergenciacontacto',
                 'type': 'text',
@@ -203,7 +216,7 @@ class FormFichaUsuario(forms.Form):
     )
     emergenciacontactoNumero = forms.CharField(
         max_length=9,
-        widget=forms.Textarea(
+        widget=forms.TextInput(
             attrs={
                 'id': 'emergenciacontactoNumero',
                 'type': 'text',
@@ -231,8 +244,13 @@ class FormFichaUsuario(forms.Form):
         )
     )
     pLesion = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=CHOICES
+        widget=forms.CheckboxInput(
+            attrs={
+                'id': 'pLesion',
+                'type': 'checkbox',
+                'class': checkClass
+            }
+        )
     )
     dLesion = forms.CharField(
         max_length=120,
@@ -244,9 +262,14 @@ class FormFichaUsuario(forms.Form):
             }
         )
     )
-    pEnfermedad = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=CHOICES
+    pEnfermedad = forms.BooleanField(
+        widget=forms.CheckboxInput(
+            attrs={
+                'id': 'pEnfermedad',
+                'type': 'checkbox',
+                'class': checkClass
+            }
+        )
     )
     dEnfermedad = forms.CharField(
         max_length=120,
@@ -259,8 +282,13 @@ class FormFichaUsuario(forms.Form):
         )
     )
     pArt = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=CHOICES
+        widget=forms.CheckboxInput(
+            attrs={
+                'id': 'pArt',
+                'type': 'checkbox',
+                'class': checkClass
+            }
+        )
     )
     dArt = forms.CharField(
         max_length=120,
@@ -273,8 +301,13 @@ class FormFichaUsuario(forms.Form):
         )
     )
     pDep = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=CHOICES
+        widget=forms.CheckboxInput(
+            attrs={
+                'id': 'pDep',
+                'type': 'checkbox',
+                'class': checkClass
+            }
+        )
     )
     dDep = forms.CharField(
         max_length=120,
@@ -296,20 +329,50 @@ class FormFichaUsuario(forms.Form):
         )
     )
     asmatico = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=CHOICES
+        widget=forms.CheckboxInput(
+            attrs={
+                'id': 'asmatico',
+                'type': 'checkbox',
+                'class': checkClass
+            }
+        )
     )
     diabetico = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=CHOICES
+        widget=forms.CheckboxInput(
+            attrs={
+                'id': 'diabetico',
+                'type': 'checkbox',
+                'class': checkClass
+            }
+        )
     )
     epileptico = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=CHOICES
+        widget=forms.CheckboxInput(
+            attrs={
+                'id': 'epileptico',
+                'type': 'checkbox',
+                'class': checkClass
+            }
+        )
     )
     fumador = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=CHOICES
+        widget=forms.CheckboxInput(
+            attrs={
+                'id': 'fumador',
+                'type': 'checkbox',
+                'class': checkClass
+            }
+        )
+    )
+    titularPlan = forms.CharField(
+        max_length=120,
+        widget=forms.TextInput(
+            attrs={
+                'id': 'titularPlan',
+                'type': 'text',
+                'class': inputClass
+            }
+        )
     )
 
 class FormRegisPlan(forms.Form):
