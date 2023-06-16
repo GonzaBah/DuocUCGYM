@@ -13,7 +13,7 @@ Modificar Cursos
 {% block cuerpo %}
 <div class="flex flex-wrap justify-center w-full">
     <div class="flex flex-wrap justify-center justify-items-center bg-white rounded-md mt-4  ">
-        <form id="signup" action="{% url 'm_perfil_auth' %}" method="POST" enctype="multipart/form-data">
+        <form id="signup" action="{% url 'mod_perfil_auth' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="flex justify-items-center p-10">
 
