@@ -23,20 +23,20 @@ Mi Perfil
                     <div class="font-bold w-full p-5">
                         <label class="text-2xl">{{ user.nombre }} {{ user.apellido1 }} {{ user.apellido2 }}</label>
                         <div class="flex flex-wrap justify-evenly w-full mt-5">
-                            <div class="w-full py-2">
+                            <div class="w-auto py-2">
                                 <label
                                     class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                                     for="">RUT</label>
                                 <label class="w-full">{{ user.rut }}</label>
                             </div>
-                            <div class="w-full py-2">
+                            <div class="w-auto py-2">
                                 <label
                                     class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                                     for="">Correo Electrónico</label>
                                 <label class="w-full">{{ user.correo }}</label>
                             </div>
                     
-                            <div class="w-full py-2">
+                            <div class="w-auto py-2">
                                 <label
                                     class=" w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                                     for="">Fecha de Nacimiento</label>
@@ -55,17 +55,8 @@ Mi Perfil
                         </div>
                     </div>
                 </div>
-                
             </div>
-            
         </div>
     </form>
 </div>
-{% comment %} <script>
-    document.addEventListener("btnSubmit", function(event) {
-        // Todo lo que vaya aqui se ejecutará cuando cargue la página
-        console.log("{{.cleaned_data.get('nombre')}}")
-    });
-    
-</script> {% endcomment %}
 {% endblock cuerpo %}
