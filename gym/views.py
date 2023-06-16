@@ -174,17 +174,19 @@ def suscribir_plan(request, user, plan):
     else:
         return redirect('plan')
 
+
 @login_required(login_url='login')
 def mi_perfil(request):
-    usuario = Usuario.objects.get(correo=request.user)
+    # usuario = Usuario.objects.get(correo=request.user)
 
-    try:
-        contexto = {
-            "socioInfo": Socio.objects.get(usuario=usuario)
-        }
-        return render(request,'duoc_gym/miPerfil.html', contexto)
-    except:
-        return render(request, 'duoc_gym/miPerfil.html')
+    # try:
+    #     contexto = {
+    #         "socioInfo": Socio.objects.get(usuario=usuario)
+    #     }
+    #     return render(request,'duoc_gym/miPerfil.html', contexto)
+    # except:
+    #     return render(request, 'duoc_gym/miPerfil.html')
+    return render(request, 'duoc_gym/miPerfil.html')
 
 def mod_perfil_auth(request):
 
@@ -284,8 +286,6 @@ def mtn_profesores(request):
         "profesores": profesores
     }
     return render(request, 'duoc_gym/frmMantenedorProfesores.html', contexto)
-
-
 
 @login_required(login_url='login')
 def mod_alumno(request):

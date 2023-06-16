@@ -103,11 +103,12 @@ Lista Cursos
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
-                            {{ curso.sucursal }} 
+                            {{ claseCurso.sucursal.nombreSucursal }} 
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
-                            {{ curso.profesor }} 
+                            {{ curso.profesor.usuario.nombre }} <!-- REVISAR -->
+                            <!--  {{ curso.profesor.usuario.apellido1 }}  {{ curso.profesor.usuario.apellido2 }}  -->
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
