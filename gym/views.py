@@ -9,8 +9,8 @@ from django.shortcuts import redirect, render
 import os
 from django.contrib import messages
 import datetime
-from reportlab.pdfgen import canvas
-import io
+
+
 # Create your views here.
 
 def login_view(request):
@@ -279,8 +279,7 @@ def reservas(request):
 
 @login_required(login_url="login")
 def reporteProfesor(request):
-    buffer = io.BytesIO()
-    p = canvas.Canvas(buffer)
+
     month = datetime.datetime.now().month
     try:
         clases = claseCurso.objects.all()
