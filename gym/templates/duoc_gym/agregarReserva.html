@@ -1,0 +1,57 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Agregar Reserva</title>
+{% endblock titulo %}
+
+{% block tituloBar %}
+Agregar Reserva
+{% endblock tituloBar %}
+
+{% block cuerpo %}
+<div class="flex flex-wrap justify-center w-full bg-gray-100">
+    <form id="reservaAuth" action="{% url 'reserva_auth' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="flex mx-2 rounded-md">
+            <div class="flex flex-wrap justify-start w-full">
+                <div class="flex flex-wrap justify-normal w-full">
+                    <div class="w-6/12 p-2">
+                        <label for="cursoSelect" class="py-2 text-md font-bond">Cursos</label>
+                        <select class="pr-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                            name="cursoSelect" id="cursoSelect" required>
+                            <option selected disabled value="">Selecciona un curso</option>
+                            {% for curso in cursos %}
+                            <option value="{{ curso.idCurso }}">{{ curso.nombreCurso }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% if clases %}
+                    <div class="w-6/12 p-2">
+                        <label for="claseSelect" class="py-2 text-md font-bond">Clases</label>
+                        <select class="pr-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                        name="claseSelect" id="claseSelect" required>
+                            <option selected disabled value="">Selecciona una clase</option>
+                            {% for clase in clases %}
+                            <option value="{{ clase.idClase }}">{{ clase.fechaClase }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between w-full">
+            <button type="reset"
+                class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                Borrar
+            </button>
+            <button id='btnSubmit' type='submit'
+                class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                Enviar
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock cuerpo %}

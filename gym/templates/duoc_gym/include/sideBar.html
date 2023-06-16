@@ -15,7 +15,7 @@
                     </li>
                 </a>
                 {% if user.is_authenticated %}
-                    {% if user.tipoUsuario.idTipo == 3 %}
+                    {% if user.tipoUsuario.idTipo == 6 %}
                         {% if user.is_sub %}
                         <a class="capitalize text-1xl truncate" href="{% url 'l_plan' user %}">
                             <li
@@ -31,7 +31,7 @@
                             </li>
                         </a>
                         {% endif %}
-                    <a class="capitalize text-1xl truncate" href="{% url 'index' %}">
+                    <a class="capitalize text-1xl truncate" href="{% url 'm_reservas' %}">
                         <li
                         class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                             Mis Reservas
@@ -84,6 +84,11 @@
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_inventario' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Inventario
+                            </li>
+                        </a>
+                        <a class="capitalize text-1xl truncate" href="{% url 'reportes' %}">
+                            <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
+                                Reportes
                             </li>
                         </a>
                         {% endif %}

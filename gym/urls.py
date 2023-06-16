@@ -59,4 +59,13 @@ urlpatterns = [
     path('mod_perfil_auth', mod_perfil_auth, name='mod_perfil_auth'),
 
     path('rpt_planes', rpt_planes, name =  'rpt_planes'),
+    path('m_reservas', reservas, name='m_reservas'),
+    path('agr_reserva', agregar_reserva, name='a_reserva'),
+    path('reserva_auth', reserva_view, name='reserva_auth'),
+    path('b_reserva/<int:id>', borrar_reserva, name='b_reserva'),
+    path('reporte_profesor', reporteProfesor, name='reporte_profesor'),
+    path('reporte_socio_mes', reporteSocioMes, name='reporte_socio_mes'),
+    path('reporte_reservas_mes', reporteReservasMes, name='reporte_reservas_mes'),
+        path('reportes', reportes, name='reportes')
+
  ]

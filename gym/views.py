@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.shortcuts import redirect, render
 import os
 from django.contrib import messages
+import datetime
+
 
 # Create your views here.
 
@@ -47,7 +49,7 @@ def signup_view(request):
             apellido1=lastname1,
             password=make_password(password),
             apellido2=lastname2,
-            tipoUsuario = TipoUsuario.objects.get(idTipo = 3)
+            tipoUsuario = TipoUsuario.objects.get(nombreTipo="Socio")
         )
         login(request, user)
         return redirect('index')
@@ -177,35 +179,48 @@ def suscribir_plan(request, user, plan):
 
 @login_required(login_url='login')
 def mi_perfil(request):
-    # usuario = Usuario.objects.get(correo=request.user)
+    usuario = Usuario.objects.get(correo=request.user)
+    try:
+        contexto = {
+            "socioInfo": Socio.objects.get(usuario=usuario)
+        }
+        return render(request,'duoc_gym/miPerfil.html', contexto)
+    except:
+        return render(request, 'duoc_gym/miPerfil.html')
 
-    # try:
-    #     contexto = {
-    #         "socioInfo": Socio.objects.get(usuario=usuario)
-    #     }
-    #     return render(request,'duoc_gym/miPerfil.html', contexto)
-    # except:
-    #     return render(request, 'duoc_gym/miPerfil.html')
-    return render(request, 'duoc_gym/miPerfil.html')
 
+@login_required(login_url='login')
+def reportes(request):
+        return render(request, 'duoc_gym/reportes.html')
+
+
+
+@login_required(login_url='login')
+def mod_alumno(request):
+    contexto = {
+        "userInfo": Usuario.objects.get(correo=request.user)
+    }
+    return render(request, 'duoc_gym/frmAlumnosModificar.html', contexto)
+
+@login_required(login_url='login')
 def mod_perfil_auth(request):
-
     user = get_user_model().objects.get(rut=request.user.rut)
-  
-    user.rut = request.POST.get('user.rut')
-    user.email = request.POST.get('user.correo')
-    user.name = request.POST.get('user.nombre')
-    user.lastname1 = request.POST.get('user.apellido1')
-    user.lastname2 = request.POST.get('user.apellido2')
-    
 
-   
+    rut = request.POST.get('rut')
+    email = request.POST.get('correo')
+    name = request.POST.get('nombre')
+    lastname1 = request.POST.get('apellido1')
+    lastname2 = request.POST.get('apellido2')
+    
+    user.rut = rut
+    user.correo=email
+    user.nombre=name
+    user.apellido1=lastname1
+    user.apellido2=lastname2
     user.save()
     return redirect('mi_perfil')
 
 def mod_plan_auth(request):
-    
-  
     rut = request.POST.get('rut')
     email = request.POST.get('correo')
     name = request.POST.get('nombre')
@@ -222,6 +237,7 @@ def mod_plan_auth(request):
     user.save()
     return redirect('mi_perfil')
 
+@login_required(login_url="login")
 def mod_inventario_auth(request):
   
     rut = request.POST.get('rut')
@@ -230,13 +246,12 @@ def mod_inventario_auth(request):
     lastname1 = request.POST.get('apellido1')
     lastname2 = request.POST.get('apellido2')
     
-    user = get_user_model().objects.update_or_create(
-        rut=rut,
-        correo=email,
-        nombre=name,
-        apellido1=lastname1,
-        apellido2=lastname2
-    )
+    user = get_user_model().objects.get(rut=request.user.rut)
+    user.rut = rut
+    user.correo=email
+    user.nombre=name
+    user.apellido1=lastname1
+    user.apellido2=lastname2
     user.save()
     return redirect('miPerfil')
 
@@ -323,4 +338,87 @@ def rpt_planes(request):
     contexto = {
         "listaPlanes": Plan.objects.all()
     }
-    return render(request, 'duoc_gym/rptPlanes.html',contexto)
+    return render(request, 'duoc_gym/reportePlanes.html',contexto)
+
+@login_required(login_url="login")
+def reservas(request):
+    user = get_user_model().objects.get(correo = request.user)
+    try:
+        socio = Socio.objects.get(usuario=user)
+        contexto = {
+            "reservas": CursoReserva.objects.filter(socio=socio)
+        }
+        return render(request, "duoc_gym/misReservas.html", contexto)
+    except:
+        return render(request, "duoc_gym/misReservas.html")
+
+@login_required(login_url="login")
+def reporteProfesor(request):
+    month = datetime.datetime.now().month
+    try:
+        clases = claseCurso.objects.all()
+        clasesHoy = list(filter(lambda x: x.mes() == month, clases))
+        print(clasesHoy)
+        contexto = {
+            
+            "cursos": Curso.objects.all() 
+        }
+        return render(request, "duoc_gym/reporteProfesor.html", contexto)
+    except:
+        return render(request, "duoc_gym/reporteProfesor.html")
+@login_required(login_url="login")
+def reporteSocioMes(request):
+    try:
+        socio = Socio.objects.all()
+        for i in socio:
+            print(i.count_socioMes)
+            print(i.usuario.nombre)
+        contexto = {
+            "socios": socio
+        }
+        return render(request, "duoc_gym/reporteSocioMes.html", contexto)
+    except:
+        return render(request, "duoc_gym/reporteSocioMes.html")
+
+def reporteReservasMes(request):
+    try:
+
+        cursos = Curso.objects.all()
+        contexto = {
+            "cursos": cursos
+        }
+        return render(request, "duoc_gym/reporteReservasMes.html", contexto)
+    except:
+        return render(request, "duoc_gym/reporteReservasMes.html")
+
+
+def agregar_reserva(request):
+    try:
+        contexto = {
+            "cursos": Curso.objects.all(),
+            "clases": claseCurso.objects.all()
+        }
+    except:
+        contexto = {
+            "cursos": Curso.objects.all()
+        }
+    return render(request, 'duoc_gym/agregarReserva.html', contexto)
+    
+def reserva_view(request):
+    if(request.POST):
+        user = get_user_model().objects.get(correo = request.user)
+        socio = Socio.objects.get(usuario=user)
+        clase = claseCurso.objects.get(idClase = request.POST.get("claseSelect"))
+        
+        if clase.is_available() == True and CursoReserva.objects.filter(socio=socio, clase=clase).count() == 0:
+            cursoReserva = CursoReserva.objects.create(socio=socio, clase=clase)
+            cursoReserva.save()
+            messages.success(request, "Reserva creada exitosamente")
+        else:
+            messages.error(request, "Curso no tiene cupos o ya lo tomaste")
+    return redirect('m_reservas')
+
+def borrar_reserva(request, id):
+    CursoReserva.objects.get(idCursoReserva = id).delete()
+
+    return redirect('m_reservas')

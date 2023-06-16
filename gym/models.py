@@ -4,7 +4,7 @@ from django.utils.text import slugify
 import random
 import string
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager, PermissionsMixin)
-
+import datetime
 # Create your models here.
 
 def rand_slug():
@@ -20,7 +20,7 @@ class CustomAccountManager(BaseUserManager):
         user.save()
         return user
     def create_superuser(self, correo, nombre, apellido1, rut, password, **other_fields):
-        rol_admin = TipoUsuario.objects.get(nombreTipo="Supervisor")
+        rol_admin = TipoUsuario.objects.get(nombreTipo="Administrador del sistema")
         other_fields.setdefault('tipoUsuario', rol_admin)
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
@@ -43,7 +43,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     apellido1 = models.CharField(max_length=30, verbose_name="Primer apellido del Usuario")
     apellido2 = models.CharField(max_length=30, verbose_name="Segundo apellido del Usuario", null=True )
     correo = models.EmailField(verbose_name="Correo del Usuario", unique=True)
-    tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=3)
+    tipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.SET_DEFAULT, default=6)
     fechaNacimiento = models.DateField(verbose_name="Fecha de Nacimiento", null=True)
 
     is_sub = models.BooleanField(default=False)
@@ -90,7 +90,7 @@ class Socio(models.Model):
     peso = models.IntegerField(verbose_name="peso del Socio", null=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
     plan = models.ForeignKey(Plan, on_delete=models.SET_DEFAULT, default=1)
-    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1, null=True)
+    sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_NULL, null=True)
     titularPlan = models.CharField(max_length=30, verbose_name="Titular del Plan", null=True)
     direccion = models.CharField(max_length=125, verbose_name="Direccion", null=True)
     comuna = models.CharField(max_length=35, verbose_name="comuna", null=True)
@@ -111,7 +111,12 @@ class Socio(models.Model):
     asmatico =  models.BooleanField(default=False,verbose_name="es usted asmatico?")
     epileptico =  models.BooleanField(default=False,verbose_name="es usted epiliptico?")
     fumador =  models.BooleanField(default=False,verbose_name="fuma?")
-
+    def count_socioMes(self):
+        month = datetime.datetime.now().month
+        clases = CursoReserva.objects.all()
+        clasesMes = list(filter(lambda x: x.clase.mes() == month, clases))
+        return len(list(filter(lambda x: x.socio == self, clasesMes)))
+    
 class Equipamiento(models.Model):
     idEquipamiento = models.AutoField(primary_key=True, verbose_name="ID del Equipamiento")
     nombreEquipamiento = models.CharField(max_length=30, verbose_name="Nombre del Equipamiento")
@@ -124,6 +129,9 @@ class Profesor(models.Model):
     fechaIngreso = models.DateField(verbose_name="Fecha de Ingreso")
     fechaContrato = models.DateField(verbose_name="Fecha de Contrato")
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
+    usuario = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
+
+
 class Deporte(models.Model):
     idDeporte = models.AutoField(primary_key=True, verbose_name="ID del Deporte")
     nombreDeporte = models.CharField(max_length=30, verbose_name="Nombre del Deporte")
@@ -136,6 +144,11 @@ class Curso(models.Model):
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
     profesor = models.ForeignKey(Profesor, on_delete=models.SET_DEFAULT, default=1)
     deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=1)
+    def count_profeMes(self):
+        month = datetime.datetime.now().month
+        clases = claseCurso.objects.filter( curso = self)
+        return len(list(filter(lambda x: x.mes() == month, clases)))
+
 
 class Cancha(models.Model):
     idCancha = models.AutoField(primary_key=True, verbose_name="ID del cancha")
@@ -155,8 +168,13 @@ class claseCurso(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)
     cupo = models.IntegerField(verbose_name="tope de alumnos en la clase", default=30)
 
+    def cupos(self):
+        return CursoReserva.objects.filter(clase_id = self.idClase).count()
+    def is_available(self):
+        return CursoReserva.objects.filter(clase_id = self.idClase).count() <= self.cupo
+    def mes(self):
+        return self.fechaClase.month
 class CursoReserva(models.Model):
     idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
-    socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1) 
-    curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)    
-    clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1) 
+    socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
+    clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1)
