@@ -71,27 +71,21 @@ Lista Socios
 
                         <th
                             class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-white dark:text-slate-400 text-left">
-                            Altura
+                            Direccion
                         </th>
 
                         <th
                             class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-white dark:text-slate-400 text-left">
-                            Peso
-                        </th>
-
-                        <th
-                            class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-white dark:text-slate-400 text-left">
-                            Porc. Grasa Corporal
-                        </th>
-
-                        <th
-                            class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-white dark:text-slate-400 text-left">
                             Sede
                         </th>
+
                         <th
                             class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-white dark:text-slate-400 text-left">
                             Plan
                         </th>
+
+                      
+                        
                         <th
                             class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-white dark:text-slate-400 text-left">
                             Mantenedores
@@ -112,28 +106,22 @@ Lista Socios
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
-                            {{ socio.altura }} cm
+                            {{socio.direccion}}, {{socio.comuna}}, {{socio.ciudad}}
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
-                            {{ socio.peso }} KG
-                        </td>
-
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-center">
-                            {{ socio.porcGrasaCorporal }}%
-                        </td>
-
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ">
                             {{ socio.sucursal.nombreSucursal }}
                         </td>
 
-                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ">
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-center">
                             {{ socio.plan.nombrePlan }}
                         </td>
 
+                       
+
                         <td class=" border-b border-slate-100 dark:border-slate-700  p-4 pr-12 ">
                             <div class="flex justify-evenly">
-                                <a href="{% url 'mAlumno' %}">
+                                <a href="{% url 'mod_alumnos' %}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 showModal" >
                                     <path stroke-linecap="round" stroke-linejoin="round"

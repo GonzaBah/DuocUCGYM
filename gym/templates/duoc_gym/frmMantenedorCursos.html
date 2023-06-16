@@ -56,7 +56,7 @@ Lista Cursos
             </div>
         </div>
         <div class="flex justify-center w-full h-auto">
-            <table class="border-collapse table-fixed w-6/6 text-sm bg-gray-500 mt-2 rounded-md">
+            <table class="border-collapse table-fixed w-3/6 text-sm bg-gray-500 mt-2 rounded-md">
                 <thead>
                     <tr>
                         <th
@@ -103,16 +103,17 @@ Lista Cursos
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
-                            {{ claseCurso.sucursal.nombreSucursal }} 
+                            {{ curso.sucursal.nombreSucursal }} 
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
-                            {{ curso.profesor.usuario.nombre }} <!-- REVISAR -->
-                            <!--  {{ curso.profesor.usuario.apellido1 }}  {{ curso.profesor.usuario.apellido2 }}  -->
+                            {{ curso.profesor.usuario.nombre }}
+                            {{ curso.profesor.usuario.apellido1 }} 
+                            <!-- {{ curso.profesor.usuario.apellido2 }}  --> 
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
-                            {{ curso.deporte }} 
+                            {{ curso.deporte.nombreDeporte }} 
                         </td>
 
                         <td class=" border-b border-slate-100 dark:border-slate-700  p-4 pr-12 ">

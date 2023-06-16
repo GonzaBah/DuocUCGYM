@@ -57,8 +57,9 @@ urlpatterns = [
     path('mod_profesores', mod_profesores, name='mod_profesores'),
     path('mod_alumno', mod_alumno, name='mod_alumnos'),
     path('mod_perfil_auth', mod_perfil_auth, name='mod_perfil_auth'),
+    path('mod_perfil', mod_perfil,name = 'mod_perfil'),
 
-    path('rpt_planes', rpt_planes, name =  'rpt_planes'),
+    # path('mtn_fichas', mtn_fichas, name =  'mtn_fichas'),
     path('m_reservas', reservas, name='m_reservas'),
     path('agr_reserva', agregar_reserva, name='a_reserva'),
     path('reserva_auth', reserva_view, name='reserva_auth'),

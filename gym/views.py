@@ -203,6 +203,25 @@ def mod_alumno(request):
     return render(request, 'duoc_gym/frmAlumnosModificar.html', contexto)
 
 @login_required(login_url='login')
+def mod_perfil(request):
+    user = get_user_model().objects.get(rut=request.user.rut)
+
+    rut = request.POST.get('rut')
+    email = request.POST.get('correo')
+    name = request.POST.get('nombre')
+    lastname1 = request.POST.get('apellido1')
+    lastname2 = request.POST.get('apellido2')
+    
+    user.rut = id
+    user.correo=email
+    user.nombre=name
+    user.apellido1=lastname1
+    user.apellido2=lastname2
+    user.save()
+    return redirect('mi_perfil')
+
+
+@login_required(login_url='login')
 def mod_perfil_auth(request):
     user = get_user_model().objects.get(rut=request.user.rut)
 
@@ -334,11 +353,11 @@ def mod_usuarios(request):
 def mod_profesores(request): 
     return render(request, 'duoc_gym/frmModificarProfesores.html')
 
-def rpt_planes(request):
+def mtn_fichas(request):
     contexto = {
-        "listaPlanes": Plan.objects.all()
+        "fichas": Socio.objects.all()
     }
-    return render(request, 'duoc_gym/reportePlanes.html',contexto)
+    return render(request, 'duoc_gym/frmMantenedorFichas.html',contexto)
 
 @login_required(login_url="login")
 def reservas(request):
