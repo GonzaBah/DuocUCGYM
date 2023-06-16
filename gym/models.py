@@ -4,7 +4,7 @@ from django.utils.text import slugify
 import random
 import string
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager, PermissionsMixin)
-
+import datetime
 # Create your models here.
 
 def rand_slug():
@@ -125,6 +125,8 @@ class Profesor(models.Model):
     fechaContrato = models.DateField(verbose_name="Fecha de Contrato")
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
     usuario = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
+
+
 class Deporte(models.Model):
     idDeporte = models.AutoField(primary_key=True, verbose_name="ID del Deporte")
     nombreDeporte = models.CharField(max_length=30, verbose_name="Nombre del Deporte")
@@ -137,6 +139,11 @@ class Curso(models.Model):
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
     profesor = models.ForeignKey(Profesor, on_delete=models.SET_DEFAULT, default=1)
     deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=1)
+    def count_profeMes(self):
+        month = datetime.datetime.now().month
+        clases = claseCurso.objects.filter( curso = self)
+        return len(list(filter(lambda x: x.mes() == month, clases)))
+    
 
 class Cancha(models.Model):
     idCancha = models.AutoField(primary_key=True, verbose_name="ID del cancha")
@@ -155,8 +162,12 @@ class claseCurso(models.Model):
     horaClase = models.TimeField(verbose_name="Hora de la Reserva")
     curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)
     cupo = models.IntegerField(verbose_name="tope de alumnos en la clase", default=30)
-
+    def mes(self):
+        return self.fechaClase.month
+ 
 class CursoReserva(models.Model):
     idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
     socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
-    clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1) 
+    clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1)    
+
+        

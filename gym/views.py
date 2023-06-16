@@ -8,7 +8,9 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.shortcuts import redirect, render
 import os
 from django.contrib import messages
-
+import datetime
+from reportlab.pdfgen import canvas
+import io
 # Create your views here.
 
 def login_view(request):
@@ -274,7 +276,28 @@ def reservas(request):
         return render(request, "duoc_gym/misReservas.html", contexto)
     except:
         return render(request, "duoc_gym/misReservas.html")
-    
+
+@login_required(login_url="login")
+def reporteProfesor(request):
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+    month = datetime.datetime.now().month
+    try:
+        clases = claseCurso.objects.all()
+        clasesHoy = list(filter(lambda x: x.mes() == month, clases))
+        print(clasesHoy)
+        contexto = {
+            
+            "cursos": Curso.objects.all()
+     
+
+            
+        }
+        return render(request, "duoc_gym/reporteProfesor.html", contexto)
+    except:
+        return render(request, "duoc_gym/reporteProfesor.html")
+
+
 def agregar_reserva(request):
     try:
         contexto = {
