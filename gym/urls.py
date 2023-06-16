@@ -27,12 +27,10 @@ urlpatterns = [
     path('mi_perfil',mi_perfil, name='mi_perfil'),
 
     path('docente', index_docente, name='docente'),
-    path('lista_alumnos', lista_alumnos, name='lista'),
-    
-    path('mantener_planes', mantenedor_planes, name='m_planes'),
+   
     path('agregar_plan', agregar_plan, name='agregar_p'),
     path('plan_auth', plan_view, name='plan_auth'),
-    path('mantener_maquinas', mantenedor_maquinas, name='m_maquinas'),
+  
     path('borrar_plan/<int:id>', borrar_plan, name='borrar_p'),
     path('planes_alumnos', planes_alumnos, name='plan'),
     path('borrar_socio/<int:id>', borrar_socio, name='borrar_socio'),
@@ -45,18 +43,20 @@ urlpatterns = [
     path('descripcion_plan', desc_plan, name='d_plan'),
     path('miplan/<str:user>', list_plan, name='l_plan'),
 
-    path('m_alumno', mod_alumno, name='mAlumno'),
-    path('m_perfil_auth', mod_perfil_auth, name='m_perfil_auth'),
-
-    path('rpt_planes', rpt_planes, name =  'rpt_planes'),
-
+    path('mtn_inventario', mtn_inventario, name='mtn_inventario'),
+    path('mtn_alumnos', mtn_alumnos, name='mtn_alumnos'),
+    path('mtn_planes', mtn_planes, name='mtn_planes'),
     path('mtn_clases', mtn_clases, name='mtn_clases'),
     path('mtn_cursos', mtn_cursos, name='mtn_cursos'),
     path('mtn_usuarios', mtn_usuarios, name='mtn_usuarios'),
     path('mtn_profesores', mtn_profesores, name='mtn_profesores'),
 
-    path('mod_clases', mod_clases, name='modClases'),
+    path('mod_clases', mod_clases, name='mod_clases'),
     path('mod_cursos', mod_cursos, name='mod_cursos'),
     path('mod_usuarios', mod_usuarios, name='mod_usuarios'),
     path('mod_profesores', mod_profesores, name='mod_profesores'),
+    path('mod_alumno', mod_alumno, name='mod_alumnos'),
+    path('mod_perfil_auth', mod_perfil_auth, name='mod_perfil_auth'),
+
+    path('rpt_planes', rpt_planes, name =  'rpt_planes'),
  ]
