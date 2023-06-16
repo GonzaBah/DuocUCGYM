@@ -156,7 +156,12 @@ class claseCurso(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)
     cupo = models.IntegerField(verbose_name="tope de alumnos en la clase", default=30)
 
+    def cupos(self):
+        return CursoReserva.objects.filter(clase_id = self.idClase).count()
+    def is_available(self):
+        return CursoReserva.objects.filter(clase_id = self.idClase).count() <= self.cupo
+
 class CursoReserva(models.Model):
     idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
     socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
-    clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1) 
+    clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1)

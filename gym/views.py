@@ -206,6 +206,7 @@ def mod_alumno(request):
     }
     return render(request, 'duoc_gym/frmAlumnosModificar.html', contexto)
 
+@login_required(login_url='login')
 def mod_perfil_auth(request):
     user = get_user_model().objects.get(rut=request.user.rut)
 
@@ -281,19 +282,24 @@ def agregar_reserva(request):
             "cursos": Curso.objects.all(),
             "clases": claseCurso.objects.all()
         }
-        return render(request, 'duoc_gym/agregarReserva.html', contexto)
     except:
-        return render(request, 'duoc_gym/agregarReserva.html')
-
+        contexto = {
+            "cursos": Curso.objects.all()
+        }
+    return render(request, 'duoc_gym/agregarReserva.html', contexto)
+    
 def reserva_view(request):
     if(request.POST):
         user = get_user_model().objects.get(correo = request.user)
-        print(request.POST.get('claseSelect'))
         socio = Socio.objects.get(usuario=user)
         clase = claseCurso.objects.get(idClase = request.POST.get("claseSelect"))
         
-        cursoReserva = CursoReserva.objects.create(socio=socio, clase=clase)
-        cursoReserva.save()
+        if clase.is_available() == True and CursoReserva.objects.filter(socio=socio, clase=clase).count() == 0:
+            cursoReserva = CursoReserva.objects.create(socio=socio, clase=clase)
+            cursoReserva.save()
+            messages.success(request, "Reserva creada exitosamente")
+        else:
+            messages.error(request, "Curso no tiene cupos o ya lo tomaste")
     return redirect('m_reservas')
 
 def borrar_reserva(request, id):

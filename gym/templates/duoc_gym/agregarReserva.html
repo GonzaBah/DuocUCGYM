@@ -16,8 +16,8 @@ Agregar Reserva
         {% csrf_token %}
         <div class="flex mx-2 rounded-md">
             <div class="flex flex-wrap justify-start w-full">
-                <div class="flex flex-wrap justify-evenly w-full">
-                    <div class="p-2">
+                <div class="flex flex-wrap justify-normal w-full">
+                    <div class="w-6/12 p-2">
                         <label for="cursoSelect" class="py-2 text-md font-bond">Cursos</label>
                         <select class="pr-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                             name="cursoSelect" id="cursoSelect" required>
@@ -27,8 +27,8 @@ Agregar Reserva
                             {% endfor %}
                         </select>
                     </div>
-
-                    <div class="p-2">
+                    {% if clases %}
+                    <div class="w-6/12 p-2">
                         <label for="claseSelect" class="py-2 text-md font-bond">Clases</label>
                         <select class="pr-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                         name="claseSelect" id="claseSelect" required>
@@ -38,6 +38,7 @@ Agregar Reserva
                             {% endfor %}
                         </select>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
