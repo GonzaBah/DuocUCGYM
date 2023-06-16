@@ -49,4 +49,14 @@ urlpatterns = [
     path('m_perfil_auth', mod_perfil_auth, name='m_perfil_auth'),
 
     path('rpt_planes', rpt_planes, name =  'rpt_planes'),
+
+    path('mtn_clases', mtn_clases, name='mtn_clases'),
+    path('mtn_cursos', mtn_cursos, name='mtn_cursos'),
+    path('mtn_usuarios', mtn_usuarios, name='mtn_usuarios'),
+    path('mtn_profesores', mtn_profesores, name='mtn_profesores'),
+
+    path('mod_clases', mod_clases, name='modClases'),
+    path('mod_cursos', mod_cursos, name='mod_cursos'),
+    path('mod_usuarios', mod_usuarios, name='mod_usuarios'),
+    path('mod_profesores', mod_profesores, name='mod_profesores'),
  ]

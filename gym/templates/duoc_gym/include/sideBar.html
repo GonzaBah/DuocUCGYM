@@ -50,12 +50,32 @@
                         </li>
                     </a>
                     {% else %}
+                        <a class="capitalize text-1xl truncate" href="{% url 'mtn_clases' %}">
+                            <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
+                                Clases
+                            </li>
+                        </a>
+                        {% if user.tipoUsuario.idTipo == 1 %}
+                        <a class="capitalize text-1xl truncate" href="{% url 'mtn_cursos' %}">
+                            <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
+                                Cursos
+                            </li>
+                        </a>
+                        <a class="capitalize text-1xl truncate" href="{% url 'mtn_usuarios' %}">
+                            <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
+                                Usuarios
+                            </li>
+                        </a>
+                        <a class="capitalize text-1xl truncate" href="{% url 'mtn_profesores' %}">
+                            <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
+                                Profesores
+                            </li>
+                        </a>
                         <a class="capitalize text-1xl truncate" href="{% url 'lista' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Fichas
                             </li>
                         </a>
-                        {% if user.tipoUsuario.idTipo == 1 %}
                         <a class="capitalize text-1xl truncate" href="{% url 'm_planes' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Planes

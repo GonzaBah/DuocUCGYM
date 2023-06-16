@@ -201,6 +201,7 @@ def mi_perfil(request):
         return render(request, 'duoc_gym/miPerfil.html')
 
 @login_required(login_url='login')
+
 def mod_alumno(request):
     contexto = {
         "userInfo": Usuario.objects.get(correo=request.user)
@@ -242,7 +243,6 @@ def mod_plan_auth(request):
     return redirect('mi_perfil')
 
 def mod_inventario_auth(request):
-    
   
     rut = request.POST.get('rut')
     email = request.POST.get('correo')
@@ -265,3 +265,59 @@ def rpt_planes(request):
         "listaPlanes": Plan.objects.all()
     }
     return render(request, 'duoc_gym/reportePlanes.html',contexto)
+
+
+
+def mtn_clases(request):
+    clases = claseCurso.objects.all()
+    contexto = {
+        "clases": clases
+    }
+    return render(request, 'duoc_gym/frmMantenedorClases.html',contexto)
+
+def mtn_cursos(request):
+    cursos = Curso.objects.all()
+    contexto = {
+        "cursos": cursos
+    }
+    return render(request, 'duoc_gym/frmMantenedorCursos.html',contexto)
+
+def mtn_usuarios(request):
+    usuarios = Usuario.objects.all()
+    contexto = {
+        "usuarios": usuarios
+    }
+    return render(request, 'duoc_gym/frmMantenedorUsuarios.html', contexto)
+
+def mtn_profesores(request):
+    profesores = Profesor.objects.all()
+    contexto = {
+        "profesores": profesores
+    }
+    return render(request, 'duoc_gym/frmMantenedorProfesores.html', contexto)
+
+
+def mod_clases(request):
+    # if(request.POST):
+    #     user = get_user_model().objects.get(correo = request.user)
+
+    #     clase = claseCurso.objects.get(idClase = user)
+
+    #     if clase.is_available:
+    #         claseCurso.objects.create(clase=clase)
+    #         claseCurso.save()
+        
+    #     else:
+    #         pass
+
+    # return redirect('mtn_clases')
+        return render(request, 'duoc_gym/frmModificarClases.html')
+
+def mod_cursos(request):
+    return render(request, 'duoc_gym/frmModificarCursos.html')
+
+def mod_usuarios(request):
+    return render(request, 'duoc_gym/frmModificarUsuarios.html')
+
+def mod_profesores(request): 
+    return render(request, 'duoc_gym/frmModificarProfesores.html')
