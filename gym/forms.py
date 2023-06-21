@@ -7,6 +7,11 @@ inputClass = 'px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-s
 checkClass = 'w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
 selectClass = 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 sucursales = Sucursal.objects.all()
+COMUNAS = [
+        ('1', 'Huechuraba'),
+        ('2', 'Providencia'),
+]
+SUCURSALES =[('', 'Seleccione')]+ list(map(lambda x: (x.idSucursal, x.nombreSucursal ), sucursales))
 
 class FormLoginUsuario(forms.Form):
     correo = forms.EmailField(
@@ -120,13 +125,6 @@ class FormRegisUsuario(forms.Form):
 
 #Este es el formulario de ficha
 class FormFichaUsuario(forms.Form):
-    CHOICES = [
-        ('1', 'Huechuraba'),
-        ('2', 'Providencia'),
-    ]
-    listaSucursal = Sucursal.objects.all()
-    SUCURSALES = list(map(lambda x: (x.idSucursal, x.nombreSucursal ), listaSucursal))
-
     rut = forms.CharField(
         max_length=10,
         widget=forms.TextInput(
@@ -182,7 +180,7 @@ class FormFichaUsuario(forms.Form):
                 'class': selectClass
             }
         ),
-        choices=CHOICES
+        choices=COMUNAS
     )
     ciudad = forms.CharField(
         max_length=35,
@@ -243,7 +241,9 @@ class FormFichaUsuario(forms.Form):
             }
         )
     )
-    pLesion = forms.ChoiceField(
+    pLesion = forms.BooleanField(
+        initial=False,
+        required=False,
         widget=forms.CheckboxInput(
             attrs={
                 'id': 'pLesion',
@@ -260,16 +260,19 @@ class FormFichaUsuario(forms.Form):
                 'type': 'text',
                 'class': inputClass
             }
-        )
+        ),
+        required=False
     )
     pEnfermedad = forms.BooleanField(
+        initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'id': 'pEnfermedad',
                 'type': 'checkbox',
                 'class': checkClass
             }
-        )
+        ),
+        required=False
     )
     dEnfermedad = forms.CharField(
         max_length=120,
@@ -279,16 +282,19 @@ class FormFichaUsuario(forms.Form):
                 'type': 'text',
                 'class': inputClass
             }
-        )
+        ),
+        required=False
     )
-    pArt = forms.ChoiceField(
+    pArt = forms.BooleanField(
+        initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'id': 'pArt',
                 'type': 'checkbox',
                 'class': checkClass
             }
-        )
+        ),
+        required=False
     )
     dArt = forms.CharField(
         max_length=120,
@@ -298,16 +304,19 @@ class FormFichaUsuario(forms.Form):
                 'type': 'text',
                 'class': inputClass
             }
-        )
+        ),
+        required=False
     )
-    pDep = forms.ChoiceField(
+    pDep = forms.BooleanField(
+        initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'id': 'pDep',
                 'type': 'checkbox',
                 'class': checkClass
             }
-        )
+        ),
+        required=False
     )
     dDep = forms.CharField(
         max_length=120,
@@ -317,52 +326,63 @@ class FormFichaUsuario(forms.Form):
                 'type': 'text',
                 'class': inputClass
             }
-        )
+        ),
+        required=False
     )
     fDeportes = forms.IntegerField(
         widget=forms.NumberInput(
             attrs={
                 'id': 'fDeportes',
                 'type': 'number',
-                'class': inputClass
+                'class': inputClass,
+                'value': 0
             }
-        )
+        ),
+        required=False
     )
-    asmatico = forms.ChoiceField(
+    asmatico = forms.BooleanField(
+        initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'id': 'asmatico',
                 'type': 'checkbox',
                 'class': checkClass
             }
-        )
+        ),
+        required=False
     )
-    diabetico = forms.ChoiceField(
+    diabetico = forms.BooleanField(
+        initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'id': 'diabetico',
                 'type': 'checkbox',
                 'class': checkClass
             }
-        )
+        ),
+        required=False
     )
-    epileptico = forms.ChoiceField(
+    epileptico = forms.BooleanField(
+        initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'id': 'epileptico',
                 'type': 'checkbox',
                 'class': checkClass
             }
-        )
+        ),
+        required=False
     )
-    fumador = forms.ChoiceField(
+    fumador = forms.BooleanField(
+        initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'id': 'fumador',
                 'type': 'checkbox',
                 'class': checkClass
             }
-        )
+        ),
+        required=False
     )
     titularPlan = forms.CharField(
         max_length=120,
@@ -372,7 +392,8 @@ class FormFichaUsuario(forms.Form):
                 'type': 'text',
                 'class': inputClass
             }
-        )
+        ),
+        required=False
     )
 
 class FormRegisPlan(forms.Form):

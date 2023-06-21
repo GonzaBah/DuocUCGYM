@@ -12,7 +12,7 @@ Ficha de Ingreso
 
 {% block cuerpo %}
 <div class="flex flex-wrap justify-center w-full bg-gray-100">
-    <form id="signup" action="{% url 'socio_auth' %}" method="POST" enctype="multipart/form-data">
+    <form id="socio_auth" action="{% url 'socio_auth' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="flex mx-2 rounded-md">
             <div class="flex flex-wrap justify-between w-full">

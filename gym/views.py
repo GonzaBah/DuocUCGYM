@@ -63,18 +63,19 @@ def eliminar(request,id):
 
 
 def socio_view(request):
-    try:
+    if(request.POST):
         ficha_form = FormFichaUsuario(request.POST or None)
         if ficha_form.is_valid():
             rut = ficha_form.cleaned_data.get('rut')
-            if not get_user_model().objects.get(rut=rut) and not get_user_model().objects.get(rut=rut).is_sub:
-                return redirect('ficha_socio')
             user = get_user_model().objects.get(rut=rut)
+
+            if not user and not user.is_sub:
+                return redirect('ficha_socio')
             socio = Socio.objects.get(usuario = user)
-            
-            socio.altura = ficha_form.cleaned_data.get('altura')
+
+            socio.altura = ficha_form.cleaned_data.get('estatura')
             socio.peso = ficha_form.cleaned_data.get('peso')
-            socio.sucursal = Sucursal.objects.get(idSucursal = ficha_form.cleaned_data.get('sucursalSelect'))
+            socio.sucursal = Sucursal.objects.get(idSucursal = ficha_form.cleaned_data.get('sucursal'))
             socio.titularPlan = ficha_form.cleaned_data.get('titularPlan')
             socio.direccion = ficha_form.cleaned_data.get('direccion')
             socio.comuna = ficha_form.cleaned_data.get('comuna')
@@ -95,10 +96,10 @@ def socio_view(request):
             socio.asmatico =  ficha_form.cleaned_data.get('asmatico')
             socio.epileptico =  ficha_form.cleaned_data.get('epileptico')
             socio.fumador =  ficha_form.cleaned_data.get('fumador')
-
+            
+            print(socio)
             socio.save()
-        return redirect('lista')
-    except:
+
         return redirect('lista')
 
 def borrar_socio(request, id):
