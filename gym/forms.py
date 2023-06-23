@@ -146,6 +146,7 @@ class FormFichaUsuario(forms.Form):
         )
     )
     edad = forms.IntegerField(
+        min_value=18,
         widget=forms.NumberInput(
             attrs={
                 'id': 'edad',

@@ -17,7 +17,7 @@
                 {% if user.is_authenticated %}
                     {% if user.tipoUsuario.nombreTipo == "Socio" %}
                         {% if user.is_sub %}
-                        <a class="capitalize text-1xl truncate" href="{% url 'l_plan' user %}">
+                        <a class="capitalize text-1xl truncate" href="{% url 'l_plan' %}">
                             <li
                             class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Mi Plan
@@ -34,7 +34,13 @@
                     <a class="capitalize text-1xl truncate" href="{% url 'm_reservas' %}">
                         <li
                         class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
-                            Mis Reservas
+                            Reservas - Clases
+                        </li>
+                    </a>
+                    <a class="capitalize text-1xl truncate" href="{% url 'm_reservas_canchas' %}">
+                        <li
+                        class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
+                            Reservas - Canchas
                         </li>
                     </a>
                     <a class="capitalize text-1xl truncate" href="{% url 'mi_perfil' %}">
