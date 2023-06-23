@@ -101,7 +101,7 @@ def socio_view(request):
 
             socio.save()
 
-        return redirect('lista')
+        return redirect('mtn_alumnos')
 
 def borrar_socio(request, id):
     socio = Socio.objects.get(idSocio=id)
@@ -129,9 +129,11 @@ def fic_socio(request):
     }
     return render(request, 'duoc_gym/fichaSocio.html', contexto)
 
-def planes_alumnos(request):  
+def planes_alumnos(request):
+    sucursales = Sucursal.objects.all()
     contexto = {
-        "listaPlanes": Plan.objects.all()
+        "listaPlanes": Plan.objects.all(),
+        "sucursales": sucursales
     }
     return render(request, 'duoc_gym/planesAlumnos.html', contexto)
 
@@ -182,16 +184,18 @@ def agregar_socio(request):
 
 @login_required(login_url='login')
 def suscribir_plan(request, plan):
-    plan = Plan.objects.get(idPlan = plan)
-    user = get_user_model().objects.get(correo = request.user)
-    if (user.is_sub == False):
-        user.is_sub = True
-        socio = Socio.objects.create(plan=plan, usuario=user)
-        socio.save()
-        user.save()
-        return redirect('index')
-    else:
-        return redirect('plan')
+    if request.method == 'POST':
+        plan = Plan.objects.get(idPlan = plan)
+        sucursal = Sucursal.objects.get(idSucursal = request.POST.get('sucursalId'))
+        user = get_user_model().objects.get(correo = request.user)
+        if (user.is_sub == False):
+            user.is_sub = True
+            socio = Socio.objects.create(plan=plan, usuario=user, sucursal=sucursal)
+            socio.save()
+            user.save()
+            return redirect('index')
+        else:
+            return redirect('plan')
 
 
 @login_required(login_url='login')
