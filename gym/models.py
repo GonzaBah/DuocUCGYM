@@ -171,7 +171,6 @@ class claseCurso(models.Model):
     horaClase = models.TimeField(verbose_name="Hora de la Reserva")
     curso = models.ForeignKey(Curso, on_delete=models.SET_DEFAULT, default=1)
     cupo = models.IntegerField(verbose_name="tope de alumnos en la clase", default=30)
-
     def cupos(self):
         return CursoReserva.objects.filter(clase_id = self.idClase).count()
     def is_available(self):
