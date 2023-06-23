@@ -316,7 +316,7 @@ def mod_curso_auth(request, id):
         curso.deporte.nombreDeporte = deporte
 
         curso.save()
-        
+
     return redirect('mtn_cursos')
 
 # @login_required(login_url="login")

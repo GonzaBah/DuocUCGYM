@@ -51,7 +51,17 @@ Modificar Cursos
                         </div>
                         <div class="flex-col flex-wrap justify-evenly w-full">
                         
-                    
+                            <div class="py-2">
+                                <!-- The second value will be selected initially -->
+                                <select name="select">
+                            
+                                        <option value="{{ cursoInfo.profesor.usuario.nombre }}"></option>
+
+       
+                                    
+                                </select>
+                            </div>
+
                             <div class="py-2">
                                 <label
                                     class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
