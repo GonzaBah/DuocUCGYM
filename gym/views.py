@@ -135,8 +135,10 @@ def list_plan(request, user):
 def borrar_plan(request, id):
     plan = Plan.objects.get(idPlan=id)
     plan.delete()
-
+    
     return redirect('m_planes')
+    
+    
 
 def agregar_plan(request):
     return render(request, 'duoc_gym/agregarPlan.html')
