@@ -56,7 +56,9 @@
                         </li>
                     </a>
                     {% else %}
-                        {% if user.tipoUsuario.nombreTipo != "Socio" %}
+                        {% if user.tipoUsuario.idTipo ==  1  or  user.tipoUsuario.idTipo ==  2 or  user.tipoUsuario.idTipo ==  3 or  user.tipoUsuario.idTipo ==  4 or  user.tipoUsuario.idTipo ==  5 %}
+                        {% if user.tipoUsuario.idTipo ==  1  or  user.tipoUsuario.idTipo ==  2 or  user.tipoUsuario.idTipo ==  3 or  user.tipoUsuario.idTipo ==  4 %}
+
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_cursos' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Cursos
@@ -77,11 +79,18 @@
                                 Profesores
                             </li>
                         </a>
+                        {% endif %}
+
+                        {% if user.tipoUsuario.idTipo ==  1  or  user.tipoUsuario.idTipo ==  2 or  user.tipoUsuario.idTipo ==  3 or  user.tipoUsuario.idTipo ==  4 or  user.tipoUsuario.idTipo ==  5 %}
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_alumnos' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Fichas
                             </li>
                         </a>
+                        {% endif %}
+
+                        {% if user.tipoUsuario.idTipo ==  1  or  user.tipoUsuario.idTipo ==  2 or  user.tipoUsuario.idTipo ==  3 or  user.tipoUsuario.idTipo ==  4 %}
+
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_planes' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Planes
@@ -97,6 +106,8 @@
                                 Reportes
                             </li>
                         </a>
+                        {% endif %}
+
                         {% endif %}
                         <a class="capitalize text-1xl truncate" href="{% url 'logout' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">

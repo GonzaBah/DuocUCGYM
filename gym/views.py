@@ -216,7 +216,7 @@ def mod_alumno(request, id):
     contexto = {
         "socioInfo": Socio.objects.get(idSocio = id)
     }
-    return render(request, 'duoc_gym/frmAlumnosModificar.html', contexto)
+    return render(request, 'duoc_gym/frmModificarAlumnos.html', contexto)
 
 @login_required(login_url='login')
 def mod_perfil(request):
@@ -339,7 +339,11 @@ def mod_curso_auth(request, id):
 
 @login_required(login_url='login')
 def mtn_alumnos(request):
-    socios = Socio.objects.all()
+    profesor = Profesor.objects.get(usuario_id = request.user.rut)
+    if profesor.usuario.tipoUsuario.nombreTipo == 'Coordinador de sucursal':
+        socios = Socio.objects.filter(sucursal = profesor.sucursal)
+    else:
+        socios = Socio.objects.all()
     contexto = {
         "socios": socios
     }
@@ -468,6 +472,27 @@ def reporteProfesor(request):
         return render(request, "duoc_gym/reporteProfesor.html", contexto)
     except:
         return render(request, "duoc_gym/reporteProfesor.html")
+    
+
+@login_required(login_url="login")
+def reporteProfesorTalleres(request):
+    user = get_user_model().objects.get(correo = request.user)
+    profesor = Profesor.objects.filter(usuario = user)
+    month = datetime.datetime.now().month
+    try:
+        clases = claseCurso.objects.all()
+        clasesHoy = list(filter(lambda x: x.mes() == month, clases))
+        clasesProfe = list(filter(lambda x: x.curso.profesor == profesor, clases))
+
+        print(clasesHoy)
+        contexto = {
+            "cursos": Curso.objects.get(profesor = profesor)
+        }
+        return render(request, "duoc_gym/profesorTalleres.html", contexto)
+    except:
+        return render(request, "duoc_gym/profesorTalleres.html")
+    
+
 @login_required(login_url="login")
 def reporteSocioMes(request):
     try:
