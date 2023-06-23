@@ -61,18 +61,18 @@ Lista Maquinas
                 </thead>
         
                 <tbody>
-                    {% for Equipamiento in listaMaquinas %}
+                    {% for equipamiento in listaMaquinas %}
                     <tr class=" bg-slate-200 dark:bg-silver-600  " >
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8">
-                            {{ Equipamiento.idEquipamiento }}
+                            {{ equipamiento.idEquipamiento }}
                         </td>
         
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
-                            {{ Equipamiento.nombreEquipamiento }}
+                            {{ equipamiento.nombreEquipamiento }}
                         </td>
         
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ">
-                            {{ Equipamiento.sucursal.nombreSucursal }}
+                            {{ equipamiento.sucursal.nombreSucursal }}
                         </td>
 
                         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 ">

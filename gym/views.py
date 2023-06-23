@@ -118,12 +118,7 @@ def login_usuario(request):
 def index_docente(request):
     return render(request, 'duoc_gym/indexDocente.html')
 
-def lista_alumnos(request):
-    socios = Socio.objects.all()
-    contexto = {
-        "socios": socios
-    }
-    return render(request, 'duoc_gym/listaAlumnos.html', contexto)
+
 
 def socio_reg(request):
     return render(request, 'duoc_gym/sociosRegistrarse.html')
@@ -153,11 +148,7 @@ def list_plan(request, user):
     }
     return render(request, 'duoc_gym/planesMiPlan.html', contexto)
 
-def mantenedor_planes(request):
-    contexto = {
-        "listaPlanes": Plan.objects.all()
-    }
-    return render(request, 'duoc_gym/mantenedorPlanes.html', contexto )
+
 
 def borrar_plan(request, id):
     plan = Plan.objects.get(idPlan=id)
@@ -190,11 +181,6 @@ def agregar_socio(request):
     return render(request, 'duoc_gym/agregarSocio.html')
 
 
-def mantenedor_maquinas(request):
-    contexto = {
-        "listaMaquinas": Equipamiento.objects.all()
-    }
-    return render(request,'duoc_gym/inventarioMaquinas.html', contexto)
 
 def suscribir_plan(request, user, plan):
     plan = Plan.objects.get(idPlan = plan)
@@ -207,6 +193,7 @@ def suscribir_plan(request, user, plan):
         return redirect('index')
     else:
         return redirect('plan')
+
 
 @login_required(login_url='login')
 def mi_perfil(request):
@@ -232,6 +219,25 @@ def mod_alumno(request):
         "userInfo": Usuario.objects.get(correo=request.user)
     }
     return render(request, 'duoc_gym/frmAlumnosModificar.html', contexto)
+
+@login_required(login_url='login')
+def mod_perfil(request):
+    user = get_user_model().objects.get(rut=request.user.rut)
+
+    rut = request.POST.get('rut')
+    email = request.POST.get('correo')
+    name = request.POST.get('nombre')
+    lastname1 = request.POST.get('apellido1')
+    lastname2 = request.POST.get('apellido2')
+    
+    user.rut = id
+    user.correo=email
+    user.nombre=name
+    user.apellido1=lastname1
+    user.apellido2=lastname2
+    user.save()
+    return redirect('mi_perfil')
+
 
 @login_required(login_url='login')
 def mod_perfil_auth(request):
@@ -270,6 +276,7 @@ def mod_plan_auth(request):
 
 @login_required(login_url="login")
 def mod_inventario_auth(request):
+  
     rut = request.POST.get('rut')
     email = request.POST.get('correo')
     name = request.POST.get('nombre')
@@ -285,11 +292,90 @@ def mod_inventario_auth(request):
     user.save()
     return redirect('miPerfil')
 
-def rpt_planes(request):
+def mtn_alumnos(request):
+    socios = Socio.objects.all()
+    contexto = {
+        "socios": socios
+    }
+    return render(request, 'duoc_gym/frmMantenedorAlumnos.html', contexto)
+
+def mtn_clases(request):
+    clases = claseCurso.objects.all()
+    contexto = {
+        "clases": clases
+    }
+    return render(request, 'duoc_gym/frmMantenedorClases.html',contexto)
+
+def mtn_cursos(request):
+    cursos = Curso.objects.all()
+    contexto = {
+        "cursos": cursos
+    }
+    return render(request, 'duoc_gym/frmMantenedorCursos.html',contexto)
+
+def mtn_inventario(request):
+    contexto = {
+        "listaMaquinas": Equipamiento.objects.all()
+    }
+    return render(request,'duoc_gym/frmMantenedorInventario.html', contexto)
+
+def mtn_planes(request):
     contexto = {
         "listaPlanes": Plan.objects.all()
     }
-    return render(request, 'duoc_gym/reportePlanes.html',contexto)
+    return render(request, 'duoc_gym/frmMantenedorPlanes.html', contexto )
+
+def mtn_usuarios(request):
+    usuarios = Usuario.objects.all()
+    contexto = {
+        "usuarios": usuarios
+    }
+    return render(request, 'duoc_gym/frmMantenedorUsuarios.html', contexto)
+
+def mtn_profesores(request):
+    profesores = Profesor.objects.all()
+    contexto = {
+        "profesores": profesores
+    }
+    return render(request, 'duoc_gym/frmMantenedorProfesores.html', contexto)
+
+@login_required(login_url='login')
+def mod_alumno(request):
+    contexto = {
+        "userInfo": Usuario.objects.get(correo=request.user)
+    }
+    return render(request, 'duoc_gym/frmModificarAlumnos.html', contexto)
+
+def mod_clases(request):
+    # if(request.POST):
+    #     user = get_user_model().objects.get(correo = request.user)
+
+    #     clase = claseCurso.objects.get(idClase = user)
+
+    #     if clase.is_available:
+    #         claseCurso.objects.create(clase=clase)
+    #         claseCurso.save()
+        
+    #     else:
+    #         pass
+
+    # return redirect('mtn_clases')
+    return render(request, 'duoc_gym/frmModificarClases.html')
+
+def mod_cursos(request):
+    return render(request, 'duoc_gym/frmModificarCursos.html')
+
+def mod_usuarios(request):
+    return render(request, 'duoc_gym/frmModificarUsuarios.html')
+
+def mod_profesores(request): 
+    return render(request, 'duoc_gym/frmModificarProfesores.html')
+
+def mtn_fichas(request):
+    contexto = {
+        "fichas": Socio.objects.all()
+    }
+    return render(request, 'duoc_gym/frmMantenedorFichas.html',contexto)
 
 @login_required(login_url="login")
 def reservas(request):

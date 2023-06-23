@@ -1,0 +1,121 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Modificar Cursos</title>
+{% endblock titulo %}
+
+{% block tituloBar %}
+Modificar Cursos
+{% endblock tituloBar %}
+
+{% block cuerpo %}
+<div class="flex flex-wrap justify-center w-full">
+    <div class="flex flex-wrap justify-center justify-items-center bg-white rounded-md mt-4  ">
+        <form id="signup" action="{% url 'mod_perfil_auth' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="flex justify-items-center p-10">
+
+                <div class="flex  justify-center ">
+
+                    <div class="flex flex-wrap justify-start w-full mx-2 px-2">
+                         
+                        <div class="text-2xl font-bold">
+                            <label>Datos Personales</label>
+                        </div>
+                        <div class="flex-col flex-wrap justify-evenly w-full ">
+                            <div class="py-2">
+                                <label 
+                                    class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Codigo</label>
+                                <input name="user.rut" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.rut }}" />
+                                
+                            </div>
+                    
+                            <div class="py-2">
+                                <label 
+                                    class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Nombre</label>
+                                <input name="user.nombre" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.nombre }}" />
+                            </div>
+                    
+                            <div class="py-2">
+                                <label
+                                    class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Sucursal</label>
+                                <input name="user.apellido1" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.apellido1 }}" />
+                            </div>
+                        </div>
+
+                       
+                        
+                    </div>
+
+                    <div class="flex-col  flex-wrap justify-end w-full mx-2 px-2">
+                        <div class=" text-2xl font-bold ">
+                            <label>Datos de Servicio</label>
+                        </div>
+                        <div class="flex-col flex-wrap justify-evenly w-full">
+                        
+                    
+                            <div class="py-2">
+                                <label
+                                    class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                    for="">Profesor</label>
+                                    <input name="user.apellido2" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.apellido2 }}" />
+                            </div>
+                            <div class="py-2">
+                                <label
+                                class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                for="">Deporte</label>
+                                <input name="user.correo" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.correo }}" />
+                            </div>
+
+                            
+                            
+                          
+                        </div>
+                    </div>
+
+                   
+
+                  
+                    
+                </div>
+
+               
+
+            </div>
+            <div class="flex justify-center mx-10">
+                <div class="flex justify-between w-full">
+                    
+                    <button type="reset"
+                        class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                        Cancelar 
+                    </button>
+                    <button id='btnSubmit' type='submit'
+                        class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                        Guardar
+                    </button>
+                </div>
+
+            </div>
+         
+
+            <div class="pt-2">
+                
+            </div>
+        </form>
+    </div>
+
+    
+</div>
+{% comment %} <script>
+    document.addEventListener("btnSubmit", function(event) {
+        // Todo lo que vaya aqui se ejecutará cuando cargue la página
+        console.log("{{signupForm.cleaned_data.get('nombre')}}")
+    });
+    
+</script> {% endcomment %}
+{% endblock cuerpo %}
