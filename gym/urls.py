@@ -74,6 +74,7 @@ urlpatterns = [
     path('reporte_profesor', reporteProfesor, name='reporte_profesor'),
     path('reporte_socio_mes', reporteSocioMes, name='reporte_socio_mes'),
     path('reporte_reservas_mes', reporteReservasMes, name='reporte_reservas_mes'),
-    path('reportes', reportes, name='reportes')
+    path('reportes', reportes, name='reportes'),
 
+    path('mod_curso/<int:id>', mod_curso_auth, name='mod_curso_auth')
  ]
