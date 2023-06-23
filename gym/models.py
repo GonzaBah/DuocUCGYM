@@ -111,6 +111,8 @@ class Socio(models.Model):
     asmatico =  models.BooleanField(default=False,verbose_name="es usted asmatico?")
     epileptico =  models.BooleanField(default=False,verbose_name="es usted epiliptico?")
     fumador =  models.BooleanField(default=False,verbose_name="fuma?")
+
+    rutina = models.CharField(max_length=1000, verbose_name="Rutina de ejercicios")
     def count_socioMes(self):
         month = datetime.datetime.now().month
         clases = CursoReserva.objects.all()

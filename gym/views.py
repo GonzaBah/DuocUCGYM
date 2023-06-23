@@ -97,6 +97,7 @@ def socio_view(request):
             socio.asmatico =  ficha_form.cleaned_data.get('asmatico')
             socio.epileptico =  ficha_form.cleaned_data.get('epileptico')
             socio.fumador =  ficha_form.cleaned_data.get('fumador')
+            socio.rutina = ficha_form.cleaned_data.get('rutina')
 
             socio.save()
 

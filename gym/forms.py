@@ -396,7 +396,17 @@ class FormFichaUsuario(forms.Form):
         ),
         required=False
     )
-
+    rutina = forms.CharField(
+        max_length=1000,
+        widget=forms.Textarea(
+            attrs={
+                'id': 'rutina',
+                'type': 'text',
+                'class': inputClass
+            }
+        ),
+        required=True
+    )
 class FormRegisPlan(forms.Form):
     nombre = forms.CharField(
         max_length=50,
