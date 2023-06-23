@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block titulo %}
-<title>Mis Reservas</title>
+<title>Mis Reservas - Canchas</title>
 {% endblock titulo %}
 
 {% block tituloBar %}
-Mis Reservas de Clases
+Mis Reservas de Canchas
 {% endblock tituloBar %}
 
 {% block cuerpo %}
@@ -18,7 +18,7 @@ Mis Reservas de Clases
             <div class="flex flex-wrap justify-center w-full">
                 <div class="flex justify-start w-full">
                     <a class="capitalize text-1xl truncate bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl ml-10 my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"
-                        href="{% url 'a_reserva' %}">
+                        href="{% url 'a_reserva_cancha' %}">
                         Agregar
                     </a>
                 </div>
@@ -30,11 +30,11 @@ Mis Reservas de Clases
                     <div class="flex min-w-full p-5 mx-[20%] transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
                         <div class="flex flex-wrap justify-center w-full">
                             <div class="flex flex-wrap w-full bg-white p-4">
-                                <label class="w-full text-2xl">{{ reserva.clase.curso.nombreCurso }}</label>
-                                <label class="w-full text-md">{{ reserva.clase.fechaClase }}</label>
-                                <label >{{ reserva.clase.horaClase }}</label>
+                                <label class="w-full text-2xl">{{ reserva.cancha.deporte.nombreDeporte }}</label>
+                                <label class="w-full text-md">{{ reserva.cancha.fechaCancha }}</label>
+                                <label >{{ reserva.cancha.horaCancha }}</label>
                                 <a class="mt-4 text-red-600 hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-2.5 py-1 text-center dark:border-red-400 dark:text-red-400 dark:hover:text-white dark:hover:bg-red-500 dark:focus:ring-red-600"
-                                    href="{% url 'b_reserva' reserva.idCursoReserva %}">Eliminar</a>
+                                    href="{% url 'b_reserva_cancha' reserva.idCanchareserva %}">Eliminar</a>
                             </div>
                         </div>
                     </div>

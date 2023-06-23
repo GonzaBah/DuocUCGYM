@@ -121,16 +121,13 @@ class Equipamiento(models.Model):
     idEquipamiento = models.AutoField(primary_key=True, verbose_name="ID del Equipamiento")
     nombreEquipamiento = models.CharField(max_length=30, verbose_name="Nombre del Equipamiento")
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
-class Reserva(models.Model):
-    idReserva = models.AutoField(primary_key=True, verbose_name="ID de Reserva")
-    socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
+
 class Profesor(models.Model):
     idProfesor = models.AutoField(primary_key=True, verbose_name="ID del Profesor")
     fechaIngreso = models.DateField(verbose_name="Fecha de Ingreso")
     fechaContrato = models.DateField(verbose_name="Fecha de Contrato")
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
     usuario = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
-
 
 class Deporte(models.Model):
     idDeporte = models.AutoField(primary_key=True, verbose_name="ID del Deporte")
@@ -155,10 +152,17 @@ class Cancha(models.Model):
     deporte = models.ForeignKey(Deporte, on_delete=models.SET_DEFAULT, default=1)
     cupo = models.IntegerField(verbose_name="tope de alumnos en la cancha", default=30)    
     sucursal = models.ForeignKey(Sucursal, on_delete=models.SET_DEFAULT, default=1)
+    fechaCancha = models.DateField(verbose_name="Fecha de la Reserva")
+    horaCancha = models.TimeField(verbose_name="Hora de la Reserva")
+
+    def cupos(self):
+        return CanchasReserva.objects.filter(cancha_id = self.idCancha).count()
+    def is_available(self):
+        return CanchasReserva.objects.filter(cancha_id = self.idCancha).count() <= self.cupo
 
 class CanchasReserva(models.Model):
     idCanchareserva = models.AutoField(primary_key=True, verbose_name="ID del cancha reserva")
-    reserva = models.ForeignKey(Reserva, on_delete=models.SET_DEFAULT, default=1)
+    socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
     cancha = models.ForeignKey(Cancha, on_delete=models.SET_DEFAULT, default=1)
 
 class claseCurso(models.Model):
