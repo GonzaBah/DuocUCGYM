@@ -15,16 +15,16 @@ Registrarse
     <div class="flex flex-wrap justify-center justify-items-center bg-white rounded-md mt-4  ">
         <form id="signup" action="{% url 'signup_auth' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="flex justify-items-center p-10">
+            <div class="flex justify-items-center">
 
-                <div class="flex  justify-center ">
+                <div class="flex flex-wrap justify-normal w-full p-8">
 
-                    <div class="flex flex-wrap justify-start w-full mx-2 px-2">
+                    <div class="flex flex-wrap justify-start lg:w-6/12 sm:w-12/12">
                          
                         <div class="text-2xl font-bold">
                             <label>Datos Personales</label>
                         </div>
-                        <div class="flex-col flex-wrap justify-evenly w-full ">
+                        <div class="flex-col flex-wrap justify-evenly w-full px-4">
                             <div class="py-2">
                                 <label
                                     class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
@@ -57,11 +57,11 @@ Registrarse
                         
                     </div>
 
-                    <div class="flex-col  flex-wrap justify-end w-full mx-2 px-2">
+                    <div class="flex-col flex-wrap justify-end w-auto lg:w-6/12 sm:w-12/12">
                         <div class=" text-2xl font-bold  ">
                             <label>Datos Inicio de Sesión</label>
                         </div>
-                        <div class="flex-col flex-wrap justify-evenly w-full">
+                        <div class="flex-col flex-wrap justify-evenly w-full px-4">
                             <div class="py-2">
                                 <label
                                 class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"

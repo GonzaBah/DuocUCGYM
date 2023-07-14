@@ -1,0 +1,43 @@
+{% extends "duoc_gym/include/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Agregar Reserva</title>
+{% endblock titulo %}
+
+{% block tituloBar %}
+Agregar Reserva
+{% endblock tituloBar %}
+
+{% block cuerpo %}
+<div class="flex flex-wrap justify-center w-full bg-gray-100">
+    <form id="reservaAuth" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="flex mx-2 rounded-md">
+            <div class="flex flex-wrap justify-start w-full">
+                <div class="flex flex-wrap w-full">
+                    {% if canchas %}
+                        {% for cancha in canchas %}
+                        <div class="flex min-w-full p-5 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                            <div class="flex flex-wrap justify-center w-full">
+                                <div class="flex flex-wrap w-full bg-white p-4">
+                                    <label class="w-full text-xl">{{ cancha.deporte.nombreDeporte }}</label>
+                                    <label class="w-full text-md">{{ cancha.fechaCancha }}</label>
+                                    <label class="w-full text-md">{{ cancha.horaCancha }}</label>
+                                    <label class="w-full text-md">{{ cancha.sucursal.nombreSucursal }}</label>
+                                    <a class="mt-4 text-green-600 hover:text-white border border-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-2.5 py-1 text-center dark:border-green-400 dark:text-green-400 dark:hover:text-white dark:hover:bg-green-500 dark:focus:ring-green-600"
+                                        href="{% url 'reserva_cancha_auth' cancha.idCancha %}">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <label>No hay canchas disponibles</label>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock cuerpo %}

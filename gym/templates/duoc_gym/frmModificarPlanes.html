@@ -3,16 +3,16 @@
 {% load static %}
 
 {% block titulo %}
-<title>Agregar Plan</title>
+<title>Modificar {{ planInfo.nombrePlan }}</title>
 {% endblock titulo %}
 
 {% block tituloBar %}
-Agregar Plan
+Modificar Plan
 {% endblock tituloBar %}
 
 {% block cuerpo %}
 <div class="flex flex-wrap justify-center w-full bg-gray-100">
-    <form id="planAuth" action="{% url 'plan_auth' %}" method="POST" enctype="multipart/form-data">
+    <form id="planAuth" action="{% url 'mod_plan_auth' planInfo.idPlan %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="flex mx-2 rounded-md">
             <div class="flex flex-wrap justify-start w-full">
@@ -24,28 +24,28 @@ Agregar Plan
                         <label
                             class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                             for="">Nombre</label>
-                        {{ planForm.nombre }}
+                        <input name="nombre" id="nombre" type="text" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" value="{{ planInfo.nombrePlan }}">
                     </div>
             
                     <div class="py-2">
                         <label
                             class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                             for="">Descripcion</label>
-                        {{ planForm.descripcion }}
+                        <textarea name="desc" id="desc" type="text" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" value="{{ planInfo.descripcionPlan }}" ></textarea>
                     </div>
             
                     <div class="py-2">
                         <label
                             class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                            for="">Sucural Libre</label>
-                        {{ planForm.sucursalLibre }}
+                            for="">Sucursal Libre</label>
+                        <input name="sucursalLibre" id="sucursalLibre" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" checked="{% if planInfo.sucursalLibre == True %}'true'{% endif %}">
                     </div>
             
                     <div class="py-2">
                         <label
                             class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                             for="">Precio</label>
-                        {{ planForm.precio }}
+                        <input name="precio" id="precio" type="number" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" value="{{ planInfo.precio }}">
                     </div>
                 </div>
             </div>         
@@ -58,7 +58,7 @@ Agregar Plan
                     </button>
                     <button id='btnSubmit' type='submit'
                         class="bg-amber-400 hover:bg-amber-500 p-3 px-2 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
-                        Enviar
+                        Guardar
                     </button>
                 </div>
             </div>

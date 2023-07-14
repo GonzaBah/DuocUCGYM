@@ -22,7 +22,7 @@ Mi Perfil
                 <div class="flex justify-start w-7/12">
                     <div class="font-bold w-full p-5">
                         <label class="text-2xl">{{ user.nombre }} {{ user.apellido1 }} {{ user.apellido2 }}</label>
-                        <div class="flex flex-wrap justify-evenly w-full mt-5">
+                        <div class="flex flex-wrap justify-between w-full mt-5">
                             <div class="w-auto py-2">
                                 <label
                                     class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
@@ -42,27 +42,57 @@ Mi Perfil
                                     for="">Fecha de Nacimiento</label>
                                 <label class="w-full">{{ user.fechaNacimiento }}</label>
                             </div>
+                            <div class="w-auto py-2">
+                                <a class="flex justify-start" href="{% url 'mod_perfil' %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6" >
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                    </svg>
+
+                                    <label class="ml-1">Editar</label>
+                                </a>
+                            </div>
                         </div>
-                        <div class="flex justify-start w-full">
-                            <a href="{% url 'mod_perfil' %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6" >
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                </svg>
-                                <label>Editar</label>
-                            </a>
+                        <div class="flex flex-wrap justify-start w-full mt-5">
+                            <label class="text-2xl mb-2">Información de Socio</label>
+                            {% if socioInfo.altura == None %}    
+                            <div class="flex flex-wrap justify-center w-full">
+                                <label>Aún no llenas tu ficha de Socio, consulta con un Profesor del Gimnasio</label>
+                            </div>
+                            {% else %}
+                            <div class="flex flex-wrap justify-start">
+                                <label class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700">
+                                    Altura: <label class="font-bold">{{ socioInfo.altura }}</label> mts
+                                </label>
+                                <label class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700">
+                                    Peso: <label class="font-bold">{{ socioInfo.peso }}</label> kg
+                                </label>
+                                <label class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700">
+                                    Edad: <label class="font-bold">{{ socioInfo.edad }}</label> años
+                                </label>
+                                <label class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700">
+                                    Plan: <label class="font-bold">{{ socioInfo.plan.nombrePlan }}</label>
+                                </label>
+                                <label class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700">
+                                    Sucursal: <label class="font-bold">{{ socioInfo.sucursal.nombreSucursal }}</label>
+                                </label>
+                                <label class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700">
+                                    Dirección: <label class="font-bold">{{ socioInfo.direccion }}</label>
+                                </label>
+                            </div>
+                            <label class="text-xl my-2 w-full">Contacto de Emergencia</label>
+                            <div class="flex flex-wrap justify-start">
+                                <label class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700">
+                                    Nombre: <label class="font-bold">{{ socioInfo.emergenciacontacto }}</label>
+                                </label>
+                                <label class="w-full border-gray-900 after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700">
+                                    Número: <label class="font-bold">+56 {{ socioInfo.emergenciacontactoTel }}</label>
+                                </label>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
-                </div>
-                <div class="flex justify-between w-full">
-                    <a href="{% url 'mod_perfil' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6 showModal" >
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                        </svg>
-                    </a>
                 </div>
             </div>
         </div>

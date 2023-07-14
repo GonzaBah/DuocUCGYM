@@ -1,0 +1,96 @@
+{% extends "duoc_gym/include/base.html" %}
+{% extends "duoc_gym/include/mantenedores.html %"}
+{% load static %}
+<% from datetime import * %>
+
+    <script>
+        function eliminarAlumno(id) {
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "esta accion no se puede deshacer",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No",
+                "confirmButtonText": "Si",
+                "reverseButtons": true
+            })
+        }
+    </script>
+
+    {% block titulo %}
+    <title>    Reporte Clases
+    </title>
+    {% endblock titulo %}
+
+    {% block tituloBar %}
+    Reporte Clases
+    {% endblock tituloBar %}
+
+    {% block cuerpo %}
+
+    <div class="flex flex-wrap w-full h-full">
+        <div class="flex flex-wrap w-full">
+        </div>
+        <div class="flex justify-center w-full h-auto">
+            <table class="border-collapse table-fixed w-6/6 text-sm bg-gray-500 mt-2 rounded-md">
+                <thead>
+                    <tr>
+
+
+                        <th
+                            class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-white dark:text-slate-400 text-left">
+                            Profesor
+                        </th>
+
+                        <th
+                            class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-white dark:text-slate-400 text-left">
+                            Cantidad de clases en el mes
+                        </th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+
+
+                    {% for p in cursos %}
+                    <tr class=" bg-slate-200 dark:bg-silver-600  ">
+
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 ">
+                            {{ p.profesor.usuario.nombre }}
+                        </td>
+                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-center">
+                            {{ p.count_profeMes }}
+                        </td>
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <button class="btn btn-open"></button>
+
+        <div class="flex justify-center w-full">
+            <div class="flex justify-center h-28">
+                <button
+                    class="bg-amber-400 hover:bg-amber-500 p-3 text-xl rounded-md shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 my-8">
+                    <a href="{% url 'docente' %}" class="">Volver</a>
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    {% endblock cuerpo %}

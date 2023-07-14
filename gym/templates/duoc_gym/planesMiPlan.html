@@ -35,13 +35,19 @@ Mi Plan
                         </div>
                     </div>
 
+                    <div class=" bg-amber-400 hover:bg-red-500 hover:text-white p-3 text-xl my-2 rounded-b-lg focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  duration-300">
+                        <a href="{% url 'desuscribir' %}">
+                            Cancelar Suscripcion
+                        </a>
+                    </div>
+                   
                 </div>
 
 
                 {% else %}
                 <h4>Aún no tiene un plan. ¿Desea inscribirse?</h4>
                 <button
-                    class="ml-3 bg-amber-400 hover:bg-amber-500 p-3 text-xl my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
+                    class="ml-3 bg-amber-400 hover:bg-amber-500 p-3 text-xl  my-2 rounded-md focus:ring-2 ring-yellow-200 shadow-lg shadow-gray-500/40  transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300">
                     <a href="{% url 'plan' %}">Suscribirme</a>
                 </button>
                 {% endif %}

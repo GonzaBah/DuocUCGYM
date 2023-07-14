@@ -21,7 +21,7 @@ Iniciar Sesión
         <div class="grid bg-white  rounded-md">
             <!-- <img src="{% static 'duoc_gym/resources/Logo_DuocUC.svg' %}" alt="" style=""> -->
             
-            <div class="flex justify-items-center flex items-stretch mx-40 my-10 ">
+            <div class="flex justify-items-center flex items-stretch xl:mx-40 mx-20 my-10 ">
                
                 <div class="grid justify-center m">
                     <div class="text-5xl"> 
@@ -31,14 +31,14 @@ Iniciar Sesión
                     <div class="py-5">
                         <div class=" flex flex-col py-2">
                             <label
-                                class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-2xl font-medium text-slate-700"
+                                class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700"
                                 for="usuario">Usuario</label>
                             {{ loginForm.correo }}
                         </div>
         
                         <div class="  flex flex-col">
                             <label
-                                class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-2xl font-medium text-slate-700"
+                                class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-md font-medium text-slate-700"
                                 for="pass">Contraseña</label>
                             {{ loginForm.password }}
                         </div>

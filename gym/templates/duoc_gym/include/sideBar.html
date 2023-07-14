@@ -17,7 +17,7 @@
                 {% if user.is_authenticated %}
                     {% if user.tipoUsuario.nombreTipo == "Socio" %}
                         {% if user.is_sub %}
-                        <a class="capitalize text-1xl truncate" href="{% url 'l_plan' user %}">
+                        <a class="capitalize text-1xl truncate" href="{% url 'l_plan' %}">
                             <li
                             class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Mi Plan
@@ -31,12 +31,20 @@
                             </li>
                         </a>
                         {% endif %}
+                    {% if user.is_sub %}
                     <a class="capitalize text-1xl truncate" href="{% url 'm_reservas' %}">
                         <li
                         class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
-                            Mis Reservas
+                            Reservas - Clases
                         </li>
                     </a>
+                    <a class="capitalize text-1xl truncate" href="{% url 'm_reservas_canchas' %}">
+                        <li
+                        class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
+                            Reservas - Canchas
+                        </li>
+                    </a>
+                    {% endif %}
                     <a class="capitalize text-1xl truncate" href="{% url 'mi_perfil' %}">
                         <li
                         class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
@@ -50,47 +58,66 @@
                         </li>
                     </a>
                     {% else %}
-                        {% if user.tipoUsuario.nombreTipo != "Socio" %}
+                        {% if user.tipoUsuario.idTipo ==  1  or  user.tipoUsuario.idTipo ==  2 or  user.tipoUsuario.idTipo ==  3 or  user.tipoUsuario.idTipo ==  4 or  user.tipoUsuario.idTipo ==  5 %}
+                        {% if user.tipoUsuario.idTipo ==  1  or  user.tipoUsuario.idTipo ==  2 or  user.tipoUsuario.idTipo ==  3 or  user.tipoUsuario.idTipo ==  4 %}
+
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_cursos' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Cursos
                             </li>
                         </a>
+                        {% endif %}
+                        {% if user.tipoUsuario.idTipo == 1 or user.tipoUsuario.idTipo == 2 %}
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_clases' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Clases
                             </li>
                         </a>
+                        {% endif %}
+                        {% if user.tipoUsuario.idTipo == 1 %}
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_usuarios' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Usuarios
                             </li>
                         </a>
+                        {% endif %}
+                        {% if user.tipoUsuario.idTipo == 1 or user.tipoUsuario.idTipo == 2 %}
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_profesores' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Profesores
                             </li>
                         </a>
+                        {% endif %}
+                        {% if user.tipoUsuario.idTipo ==  1  or  user.tipoUsuario.idTipo ==  2 or  user.tipoUsuario.idTipo ==  3 or  user.tipoUsuario.idTipo ==  4 or  user.tipoUsuario.idTipo ==  5 %}
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_alumnos' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Fichas
                             </li>
                         </a>
+                        {% endif %}
+
+                        {% if user.tipoUsuario.idTipo ==  1  or  user.tipoUsuario.idTipo ==  2 or  user.tipoUsuario.idTipo ==  4 %}
+                        {% if user.tipoUsuario.idTipo == 1 %}
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_planes' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Planes
                             </li>
                         </a>
+                        {% endif %}
                         <a class="capitalize text-1xl truncate" href="{% url 'mtn_inventario' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Inventario
                             </li>
                         </a>
+                        {% if user.tipoUsuario.idTipo == 1 or user.tipoUsuario.idTipo == 2 %}
                         <a class="capitalize text-1xl truncate" href="{% url 'reportes' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">
                                 Reportes
                             </li>
                         </a>
+                        {% endif %}
+                        {% endif %}
+
                         {% endif %}
                         <a class="capitalize text-1xl truncate" href="{% url 'logout' %}">
                             <li class="bg-gray-600 hover:bg-gray-500 p-3 my-1 shadow-lg shadow-gray-700/40  transition ease-in-out hover:translate-x-6 hover:scale-100 duration-300 w-full text-white hover:text-yellow-500">

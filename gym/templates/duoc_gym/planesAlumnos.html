@@ -19,12 +19,13 @@ Selecciona un Plan
         <div class="flex flex-wrap justify-evenly">
             {% for plan in listaPlanes %}
             {% if plan.estadoPlan %}
-            <div class="card w-3/12 px-2">
+            <div class="card md:w-3/12 sm:w-12/12 px-2 py-2">
                     {% if user.is_authenticated %}
-                    <form action="{% url 'suscribir_plan' user plan.idPlan  %}" class="bg-gray-300 p-4 rounded-lg ">
+                    <form action="{% url 'suscribir_plan' plan.idPlan  %}" class="bg-gray-300 p-4 rounded-lg" method="POST">
                     {% else %}
-                    <form action="{% url 'login' %}" class="bg-gray-300 p-4 rounded-lg ">
+                    <form action="{% url 'login' %}" class="bg-gray-300 p-4 rounded-lg">
                     {% endif %}
+                        {% csrf_token %}
                         <div class="flex flex-wrap items-center">
                             <img src="{% static 'duoc_gym/resources/ejercicio_custom.avif' %}" alt="Avatar"
                             class="card-img-top">
@@ -33,6 +34,12 @@ Selecciona un Plan
                                     <label class="card-title text-lg font-bold">{{ plan.nombrePlan }}</label><br/>
                                     <label class="card-text text-md my-4">{{ plan.descripcionPlan }}</label><br/>
                                     <label class="card-text font-bold text-2xl">$ {{ plan.precio }}</label><br/>
+                                    <select name="sucursalId" id="sucursalId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="" disabled selected>Seleccionar Sede</option>
+                                        {% for sucursal in sucursales %}
+                                        <option value="{{ sucursal.idSucursal }}">{{ sucursal.nombreSucursal }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                             </div>
                         </div>

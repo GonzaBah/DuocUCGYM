@@ -13,7 +13,7 @@ Modificar Cursos
 {% block cuerpo %}
 <div class="flex flex-wrap justify-center w-full">
     <div class="flex flex-wrap justify-center justify-items-center bg-white rounded-md mt-4  ">
-        <form id="signup" action="{% url 'mod_perfil_auth' %}" method="POST" enctype="multipart/form-data">
+        <form id="signup" action="{% url 'mod_curso_auth' cursoInfo.idCurso %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="flex justify-items-center p-10">
 
@@ -25,27 +25,35 @@ Modificar Cursos
                             <label>Datos Personales</label>
                         </div>
                         <div class="flex-col flex-wrap justify-evenly w-full ">
-                            <div class="py-2">
-                                <label 
-                                    class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
-                                    for="">Codigo</label>
-                                <input name="user.rut" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.rut }}" />
-                                
-                            </div>
-                    
+                         
                             <div class="py-2">
                                 <label 
                                     class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                                     for="">Nombre</label>
-                                <input name="user.nombre" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.nombre }}" />
+                                <input name="nombre" id="nombre" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ cursoInfo.nombreCurso }}" />
                             </div>
                     
                             <div class="py-2">
                                 <label
+                                class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                for="">Sucursal</label>
+                                <select name="sucursal" id="sucursal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled>Seleccionar</option>
+                                    {% for sucursal in sucursalesInfo %}
+                                    <option value="{{ sucursal.idSucursal }}" selected="{% if sucursal.idSucursal == cursoInfo.sucursal.idSucursal %}'true'{% endif %}">
+                                        {{ sucursal.nombreSucursal }}</option>
+                                    {% endfor %}
+                                </select>
+       
+                                    
+                                </select>
+                            </div>
+                            <!-- <div class="py-2">
+                                <label
                                     class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                                     for="">Sucursal</label>
-                                <input name="user.apellido1" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.apellido1 }}" />
-                            </div>
+                                <input name="sucursal" id="sucursal" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ cursoInfo.sucursal.nombreSucursal }}" />
+                            </div> -->
                         </div>
 
                        
@@ -58,19 +66,50 @@ Modificar Cursos
                         </div>
                         <div class="flex-col flex-wrap justify-evenly w-full">
                         
-                    
                             <div class="py-2">
+                                <label
+                                class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                for="">Profesor</label>
+                                <select name="profesor" id="profesor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled>Seleccionar</option>
+                                    {% for profesor in profesoresInfo %}
+                                    <option value="{{ profesor.idProfesor }}" selected="{% if profesor.idProfesor == cursoInfo.profesor.idProfesor %}'true'{% endif %}">{{ profesor.usuario.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+       
+                                    
+                                </select>
+                            </div>
+
+                            <!-- <div class="py-2">
                                 <label
                                     class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                                     for="">Profesor</label>
-                                    <input name="user.apellido2" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.apellido2 }}" />
-                            </div>
+                                    <input name="profesor" id="profesor" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ cursoInfo.profesor.usuario.nombre }}" />
+                            </div> -->
+
                             <div class="py-2">
+                                <label
+                                class="border-gray-900 after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+                                for="">Deporte</label>
+                                <select name="deporte" id="deporte" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled>Seleccionar</option>
+                                    {% for deporte in deportesInfo %}
+                                    <option value="{{ deporte.idDeporte }}" selected="{% if deporte.idDeporte == cursoInfo.deporte.idDeporte %}'true'{% endif %}">{{ deporte.nombreDeporte }}</option>
+                                    {% endfor %}
+                                </select>
+       
+                                    
+                                </select>
+                            </div>
+
+
+                            <!-- <div class="py-2">
                                 <label
                                 class="border-gray-900 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
                                 for="">Deporte</label>
-                                <input name="user.correo" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ userInfo.correo }}" />
-                            </div>
+                                <input name="deporte" id="deporte" class="px-3 py-2 bg-white border shadow-sm border-slate-200 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-lg sm:text-sm focus:ring-1 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" type="text" value="{{ cursoInfo.deporte.nombreDeporte }}" />
+                            </div> -->
 
                             
                             
