@@ -12,7 +12,9 @@ Bienvenido!
 
 {% block cuerpo %}
 <div class="flex flex-wrap justify-evenly max-h-80 w-full gap-8 mt-5 md:px-10 sm:px-2">
-
+  {% if data %}
+    <div>{{ data }}</div>
+  {% endif %}
   <div class="mx-2 justify-items-center bg-white rounded-lg transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 align-middle overflow-x-auto scroll-smooth" >
     <a href="{% url 'plan' %}">
       <!-- <img  src="../../static/duoc_gym/resources/carrusel/carrusel3.jpg" alt=""> -->

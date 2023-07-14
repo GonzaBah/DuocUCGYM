@@ -6,8 +6,12 @@ from .models import *
 from .forms import *
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.shortcuts import redirect, render
-import os
 from django.contrib import messages
+from flask import render_template, request
+import random
+from transbank.error.transbank_error import TransbankError
+from transbank.webpay.webpay_plus.transaction import Transaction
+
 import datetime
 
 
@@ -587,3 +591,43 @@ def reservas_canchas(request):
         "reservas": reservas
     }
     return render(request, 'duoc_gym/misReservasCanchas.html', contexto)
+
+@login_required(login_url='login')
+def desuscribir(request):
+    user = get_user_model().objects.get(correo = request.user)
+    if (user.is_sub == True):
+        user.is_sub = False
+        socio = Socio.objects.get(usuario_id = user.rut)
+        socio.delete()
+        user.save()
+        return redirect('index')
+    else:
+        return redirect('l_plan')
+
+def webpay_commit(req):
+    token = request.args.get("token_ws")
+    print("commit for token_ws: {}".format(token))
+
+    response = (Transaction()).commit(token=token)
+    print("response: {}".format(response))
+
+    return render_template('webpay/plus/commit.html', token=token, response=response)
+
+def pagar(req, plan):
+    plan = Plan.objects.get(idPlan = plan)
+    
+    buy_order = str(random.randrange(1000000, 99999999))
+    session_id = str(random.randrange(1000000, 99999999))
+    amount = plan.precio
+    return_url = 'http://127.0.0.1:8000/webpay_plus_commit'
+    
+    webpay_request = {
+        "buy_order": buy_order,
+        "session_id": session_id,
+        "amount": amount,
+        "return_url": return_url
+    }
+    
+    response = (Transaction()).create(buy_order, session_id, amount, return_url)
+    
+    return render(req, 'webpay/plus/create.html', {"request": webpay_request, "response": response})

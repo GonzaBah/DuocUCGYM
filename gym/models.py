@@ -183,3 +183,7 @@ class CursoReserva(models.Model):
     idCursoReserva = models.AutoField(primary_key=True, verbose_name="ID del curso reserva")
     socio = models.ForeignKey(Socio, on_delete=models.SET_DEFAULT, default=1)
     clase = models.ForeignKey(claseCurso, on_delete=models.SET_DEFAULT, default=1)
+
+class Pago(models.Model):
+    idPago = models.AutoField(primary_key=True, verbose_name="ID de la Transacción")
+    monto = models.IntegerField(verbose_name="Monto del Pago")

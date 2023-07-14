@@ -24,6 +24,7 @@ urlpatterns = [
     path('signup_auth', signup_view, name='signup_auth'),
     path('socios_reg', socio_reg, name='socios_registrarse'),
     path('suscribir_plan/<int:plan>', suscribir_plan, name='suscribir_plan'),
+    path('desuscribir', desuscribir, name='desuscribir'),
     path('mi_perfil',mi_perfil, name='mi_perfil'),
 
     path('docente', index_docente, name='docente'),
@@ -77,5 +78,7 @@ urlpatterns = [
     path('reporte_reservas_mes', reporteReservasMes, name='reporte_reservas_mes'),
     path('reportes', reportes, name='reportes'),
 
-    path('mod_curso/<int:id>', mod_curso_auth, name='mod_curso_auth')
+    path('mod_curso/<int:id>', mod_curso_auth, name='mod_curso_auth'),
+    path('webpay_plus_commit', webpay_commit, name='webpay_plus_commit'),
+    path('pago/<int:plan>', pagar, name='pagar')
  ]
