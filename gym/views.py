@@ -231,6 +231,7 @@ def mod_alumno(request, id):
 def mod_perfil(request):
     user = get_user_model().objects.get(correo=request.user)
     tipo = TipoUsuario.objects.all()
+    
     contexto = {
         "userInfo": user,
         "tipos": tipo
@@ -312,21 +313,35 @@ def mod_curso_auth(request, id):
         sucursal = request.POST.get('sucursal')
         profesor = request.POST.get('profesor')
         deporte = request.POST.get('deporte')
-        # if sucursalLibre == 'on':
-        #     sucursalLibre = True
-        # else:
-        #     sucursalLibre = False
-        # precio = request.POST.get('precio')
 
         curso = Curso.objects.get(idCurso = id)
         curso.nombreCurso = nombre
-        curso.sucursal.nombreSucursal = sucursal
-        curso.profesor.usuario.nombre = profesor
-        curso.deporte.nombreDeporte = deporte
+        curso.sucursal = Sucursal.objects.get(idSucursal = sucursal)
+        curso.profesor = Profesor.objects.get(idProfesor = profesor) 
+        curso.deporte = Deporte.objects.get(idDeporte = deporte) 
 
         curso.save()
 
     return redirect('mtn_cursos')
+
+@login_required(login_url='login')
+def mod_curso_auth(request, id):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        sucursal = request.POST.get('sucursal')
+        profesor = request.POST.get('profesor')
+        deporte = request.POST.get('deporte')
+
+        curso = Curso.objects.get(idCurso = id)
+        curso.nombreCurso = nombre
+        curso.sucursal = Sucursal.objects.get(idSucursal = sucursal)
+        curso.profesor = Profesor.objects.get(idProfesor = profesor) 
+        curso.deporte = Deporte.objects.get(idDeporte = deporte) 
+
+        curso.save()
+
+    return redirect('mtn_cursos')
+
 
 # @login_required(login_url="login")
 # def mod_inventario_auth(request):
@@ -422,11 +437,20 @@ def mod_clases(request, id):
 @login_required(login_url='login')
 def mod_cursos(request, id):
     curso = Curso.objects.get(idCurso = id)
-    contexto = {
-        "cursoInfo": curso
+    profesor = Profesor.objects.all()
+    deporte = Deporte.objects.all()
+    sucursal = Sucursal.objects.all()
+
+    contexto = {    
+        "cursoInfo": curso,
+        "profesoresInfo": profesor,
+        "deportesInfo": deporte,
+        "sucursalesInfo": sucursal
     }
     return render(request, 'duoc_gym/frmModificarCursos.html', contexto)
 
+
+@login_required(login_url='login')
 def mod_usuarios(request,id):
     usuario = Usuario.objects.get( rut = id)
     contexto = {
@@ -434,14 +458,18 @@ def mod_usuarios(request,id):
     }
     return render(request, 'duoc_gym/frmModificarUsuarios.html',contexto)
 
+
+@login_required(login_url='login')
 def mod_profesores(request, id): 
     profesor = Profesor.objects.get( idProfesor = id)
     contexto = {
-        "usuarioInfo": profesor
+        "profesorInfo": profesor
     }
 
     return render(request, 'duoc_gym/frmModificarProfesores.html',contexto)
 
+
+@login_required(login_url='login')
 def mod_planes(request, id):
     plan = Plan.objects.get(idPlan = id)
     contexto = {
@@ -449,6 +477,8 @@ def mod_planes(request, id):
     }
     return render(request, 'duoc_gym/frmModificarPlanes.html', contexto)
 
+
+@login_required(login_url='login')
 def mtn_fichas(request):
     contexto = {
         "fichas": Socio.objects.all()
@@ -515,6 +545,7 @@ def reporteSocioMes(request):
         return render(request, "duoc_gym/reporteSocioMes.html", contexto)
     except:
         return render(request, "duoc_gym/reporteSocioMes.html")
+
 
 def reporteReservasMes(request):
     try:
