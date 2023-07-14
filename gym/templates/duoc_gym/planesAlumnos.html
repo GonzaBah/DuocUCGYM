@@ -19,11 +19,11 @@ Selecciona un Plan
         <div class="flex flex-wrap justify-evenly">
             {% for plan in listaPlanes %}
             {% if plan.estadoPlan %}
-            <div class="card w-3/12 px-2">
+            <div class="card md:w-3/12 sm:w-12/12 px-2 py-2">
                     {% if user.is_authenticated %}
-                    <form action="{% url 'suscribir_plan' plan.idPlan  %}" class="bg-gray-300 p-4 rounded-lg " method="POST">
+                    <form action="{% url 'suscribir_plan' plan.idPlan  %}" class="bg-gray-300 p-4 rounded-lg" method="POST">
                     {% else %}
-                    <form action="{% url 'login' %}" class="bg-gray-300 p-4 rounded-lg ">
+                    <form action="{% url 'login' %}" class="bg-gray-300 p-4 rounded-lg">
                     {% endif %}
                         {% csrf_token %}
                         <div class="flex flex-wrap items-center">

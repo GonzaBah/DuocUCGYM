@@ -19,7 +19,7 @@
                 <div>
                     {% include "duoc_gym/include/sideBar.html" %}
                 </div>
-                <div class="container  xl:ml-60 sm:m-0 max-w-full max-h-full bg-gray-200">
+                <div class="container xl:ml-60 sm:m-0 max-w-full h-max min-h-full bg-gray-200">
                     {% if messages %}
                         {% for m in messages %}
                             {% if m.tags == "error" %}
@@ -57,6 +57,10 @@
 
                                     <img class="ml-3 w-12 h-12"
                                         src="{% static 'duoc_gym/resources/avatar-redondo.png' %}" alt="">
+                                    {% else %}
+                                    <div>
+                                        <a href="{% url 'login' %}">Iniciar Sesión</a>
+                                    </div>
                                     {% endif %}
                                 </div>
                             </div>
